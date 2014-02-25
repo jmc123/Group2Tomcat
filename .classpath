@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-7-oracle">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/apache-commons.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/c3p0-0.9.1.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/ejb3-persistence.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/el-api.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/guava-16.0.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/hibernate-core.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/hibernate-entitymanager.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/javassist-3.9.0.GA.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/mysql-connector-java.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/org.apache.commons.fileupload.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/poi-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/poi-ooxml-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/poi-ooxml-schemas-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/slf4j-simple-1.5.8.jar"/>
+	<classpathentry kind="lib" path="/home/zodac/workspaceEE/JPASprint1/WebContent/WEB-INF/lib/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
