@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Import Page</title>
+<title>Import Pages</title>
 <style>
 body {
 	background-color: gray;
