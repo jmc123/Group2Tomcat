@@ -96,7 +96,7 @@ public class Driver extends HttpServlet {
 					out.println("Uploaded File: <B>" + fileName + "</B><BR />");
 				}
 			}
-			loadExcelFile(file.getAbsolutePath());
+			loadExcelFile(file.getAbsolutePath(), out);
 
 			PersistenceUtil.setDatabaseState(true);
 			PersistenceUtil.dropSecondaryTables();
@@ -118,21 +118,22 @@ public class Driver extends HttpServlet {
 			out.close();
 			
 		} catch(Exception e){
-			System.out.println("Can't load file!");
-			out.println("<HTML><HEAD><TITLE>Servlet Upload</TITLE></HEAD>)"
-					 +  "<BODY><CENTER><p>No file uploaded!</p></CENTER></BODY></HTML>");
+			out.println("<script>alert(\"Invalid file!\");window.location.replace(\"import.jsp\");</script>");
 			return;
 		}
 	}
 
-	private static void loadExcelFile(String fileLocation) {
+	private static void loadExcelFile(String fileLocation, PrintWriter out) {
 		try {
 			String fileExtension = FilenameUtils.getExtension(fileLocation);
 			
 			if(fileExtension.equals("xls"))
 				excelData = new HSSFWorkbook(new FileInputStream(fileLocation));
-			else
+			else if(fileExtension.equals("xlsx"))
 				excelData = new XSSFWorkbook(new FileInputStream(fileLocation));
+			else{
+				out.println("<script>alert(\"Invalid file type!\");window.location.replace(\"import.jsp\");</script>");
+			}
 			
 		} catch (IOException e) {
 			System.out.println("Can't load file!");
