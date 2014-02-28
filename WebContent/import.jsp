@@ -76,7 +76,7 @@ table.center {
 }
 </style>
 				<table class='center'>
-					<form name="login" method="post" action="Driver" enctype="multipart/form-data">
+					<form name="upload" method="post" action="Driver" enctype="multipart/form-data">
 
 						<input type="file" value="Import" name="ImportFile"
 								accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>

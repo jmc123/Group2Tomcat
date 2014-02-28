@@ -29,7 +29,7 @@ body {
 		STYLE="position: absolute; TOP: 175px; LEFT: 110px; WIDTH: 110px; HEIGHT: 110px"
 		src="DIT_logo.png" alt="DIT logo" /></a>
 	<div id="floater">
-		<form method="post" name="logout" action="LogoutServlet">
+		<form method="post" name="logout" action="LoginServlet">
 			<input type="submit" value="Logout" />
 		</form>
 
@@ -83,7 +83,7 @@ table.center {
 }
 </style>
 				<table class='center'>
-					<form method="get" name="login" action="IMSIServlet">
+					<form method="get" name="query" action="IMSIServlet">
 						<h3>Queries</h3>
 						<ul>
 							<li>

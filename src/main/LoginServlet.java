@@ -69,14 +69,32 @@ public class LoginServlet extends HttpServlet {
 			}
 
 			out.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			// close connection
 		}
+	}
+	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)<br>	 
+	 * Requests cookies from browser, gets the G2user cookie and sets MaxAge to 0 forcing cookie to be destroyed.<br>
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		response.setContentType("text/html");
+		Cookie loginCookie = null;
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null){
+			for(Cookie cookie : cookies){
+				if(cookie.getName().equals("user")){
+					loginCookie = cookie;
+					break;
+				}
+			}
+		} 
+		if(loginCookie != null){
+			loginCookie.setMaxAge(0);
+			response.addCookie(loginCookie);
+		}
+		response.sendRedirect("index.jsp");
 	}
 }
