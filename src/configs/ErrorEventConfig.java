@@ -236,10 +236,21 @@ public class ErrorEventConfig {
 		return false;
 	}
 
-	private static void createErrorEvents(Date date, int eventId, int failureClass, int ueType, int market, int operator,
+	private static void createErrorEvents(Date date, int eventId, int failureClassId, int ueTypeId, int market, int operator,
 								   int cellId, int duration, int causeCode, String neVersion,
 								   long imsi, long hier3_id, long hier32_id, long hier321_id){
-		errorEvents.add(new ErrorEvent(date, eventId, failureClass, ueType, market, operator, cellId, duration, causeCode,
+		
+		
+		EventCause event = PersistenceUtil.getEventCause(eventId);
+		EventCause cause = PersistenceUtil.getEventCause(causeCode);
+		FailureClass failureClass = PersistenceUtil.getFailureClass(failureClassId);
+		UEType ueType = PersistenceUtil.getUEType(ueTypeId);
+		MCC_MNC mcc = PersistenceUtil.getMCC_MNC(market);
+		MCC_MNC mnc = PersistenceUtil.getMCC_MNC(operator);
+		
+		
+		
+		errorEvents.add(new ErrorEvent(date, event, failureClass, ueType, mcc, mnc, cellId, duration, cause,
 									   neVersion, imsi, hier3_id, hier32_id, hier321_id));
 	}
 	

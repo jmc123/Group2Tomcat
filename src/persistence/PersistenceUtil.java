@@ -8,6 +8,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import entity.EventCause;
+import entity.FailureClass;
+import entity.MCC_MNC;
+import entity.UEType;
+
 @SuppressWarnings("serial")
 public class PersistenceUtil implements Serializable {
 	protected static EntityManagerFactory emf;
@@ -79,13 +84,9 @@ public class PersistenceUtil implements Serializable {
 		checkDatabaseState();
 		
 		EntityManager em = emf.createEntityManager();
-//		SessionFactory sessionFactory = ((org.hibernate.impl.SessionImpl) em.getDelegate()).getSessionFactory();
-//		Session session = sessionFactory.openSession();
-//	    session.createSQLQuery("DROP TABLE IF EXISTS EventCause, FailureClass, MCC_MNC, UEType").executeUpdate();
 		em.getTransaction().begin();
 		em.createNativeQuery("DROP TABLE IF EXISTS EventCause, FailureClass, MCC_MNC, UEType").executeUpdate();
 		em.getTransaction().commit();
-
 	    em.close();
 	}
 	
@@ -99,24 +100,13 @@ public class PersistenceUtil implements Serializable {
 	public static void truncateSecondaryTables(){
 		checkDatabaseState();
 		
-		EntityManager em = emf.createEntityManager();
-//		SessionFactory sessionFactory = ((org.hibernate.impl.SessionImpl) em.getDelegate()).getSessionFactory();
-//		Session session = sessionFactory.openSession();
-//	    session.createSQLQuery("TRUNCATE TABLE EventCause").executeUpdate();
-//	    session.createSQLQuery("TRUNCATE TABLE FailureClass").executeUpdate();
-//	    session.createSQLQuery("TRUNCATE TABLE MCC_MNC").executeUpdate();
-//	    session.createSQLQuery("TRUNCATE TABLE UEType").executeUpdate();
-//	    session.clear();
-//	    session.close();
-//	    sessionFactory.close();
-		
+		EntityManager em = emf.createEntityManager();		
 		em.getTransaction().begin();
 		em.createNativeQuery("TRUNCATE TABLE EventCause").executeUpdate();
 	    em.createNativeQuery("TRUNCATE TABLE FailureClass").executeUpdate();
 	    em.createNativeQuery("TRUNCATE TABLE MCC_MNC").executeUpdate();
 	    em.createNativeQuery("TRUNCATE TABLE UEType").executeUpdate();
 		em.getTransaction().commit();
-		
 	    em.close();
 	}
 	
@@ -128,17 +118,7 @@ public class PersistenceUtil implements Serializable {
 	public static long numberOfErrorEvents(){
 		checkDatabaseState();
 		
-		
-		
-		
 		EntityManager em = emf.createEntityManager();
-//		SessionFactory sessionFactory = ((org.hibernate.impl.SessionImpl) em.getDelegate()).getSessionFactory();
-//		Session session = sessionFactory.openSession();
-//	    long count = ((BigInteger) session.createSQLQuery("SELECT COUNT(*) FROM ErrorEvent").uniqueResult()).longValue();
-//	    session.close();
-//	    session.clear();
-//	    sessionFactory.close();
-		
 		em.getTransaction().begin();
 		long count = ((BigInteger) em.createNativeQuery("SELECT COUNT(*) FROM ErrorEvent").getSingleResult()).longValue();
 		em.getTransaction().commit();
@@ -156,9 +136,6 @@ public class PersistenceUtil implements Serializable {
 		checkDatabaseState();
 		
 		EntityManager em = emf.createEntityManager();
-//		SessionFactory sessionFactory = ((org.hibernate.impl.SessionImpl) em.getDelegate()).getSessionFactory();
-//		Session session = sessionFactory.openSession();
-//	    long count = ((BigInteger) session.createSQLQuery("SELECT COUNT(*) FROM InvalidErrorEvent").uniqueResult()).longValue();
 		em.getTransaction().begin();
 		long count = ((BigInteger) em.createNativeQuery("SELECT COUNT(*) FROM InvalidErrorEvent").getSingleResult()).longValue();
 		em.getTransaction().commit();
@@ -166,4 +143,42 @@ public class PersistenceUtil implements Serializable {
 	    
 	    return count;
 	}
+
+	public static EventCause getEventCause(int eventIdOrCauseCode) {
+		checkDatabaseState();
+		EntityManager em = emf.createEntityManager();
+		EventCause eventCause = em.find(EventCause.class, eventIdOrCauseCode);
+		em.close();
+		
+		return eventCause;
+	}
+
+	public static FailureClass getFailureClass(int failureClassId) {
+		checkDatabaseState();
+		EntityManager em = emf.createEntityManager();
+		FailureClass failureClass = em.find(FailureClass.class, failureClassId);
+		em.close();
+		
+		return failureClass;
+	}
+
+	public static UEType getUEType(int ueTypeId) {
+		checkDatabaseState();
+		EntityManager em = emf.createEntityManager();
+		UEType ueType = em.find(UEType.class, ueTypeId);
+		em.close();
+		
+		return ueType;
+	}
+
+	public static MCC_MNC getMCC_MNC(int marketOrOperator) {
+		checkDatabaseState();
+		EntityManager em = emf.createEntityManager();
+		MCC_MNC mcc_mnc = em.find(MCC_MNC.class, marketOrOperator);
+		em.close();
+		
+		return mcc_mnc;
+	}
+	
+	
 }
