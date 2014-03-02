@@ -241,16 +241,16 @@ public class ErrorEventConfig {
 								   long imsi, long hier3_id, long hier32_id, long hier321_id){
 		
 		
-		EventCause event = PersistenceUtil.getEventCause(eventId);
-		EventCause cause = PersistenceUtil.getEventCause(causeCode);
+//		EventCause event = PersistenceUtil.getEventCause(eventId);
+//		EventCause cause = PersistenceUtil.getEventCause(causeCode);
 		FailureClass failureClass = PersistenceUtil.getFailureClass(failureClassId);
 		UEType ueType = PersistenceUtil.getUEType(ueTypeId);
-		MCC_MNC mcc = PersistenceUtil.getMCC_MNC(market);
-		MCC_MNC mnc = PersistenceUtil.getMCC_MNC(operator);
+		EventCause event = PersistenceUtil.findEventCauseByEventIdAndCauseCode(eventId, causeCode);
+		MCC_MNC mcc_mnc = PersistenceUtil.findMCCMNCByMCCAndMNC(market, operator);
+//		MCC_MNC mcc = PersistenceUtil.getMCC_MNC(market);
+//		MCC_MNC mnc = PersistenceUtil.getMCC_MNC(operator);		
 		
-		
-		
-		errorEvents.add(new ErrorEvent(date, event, failureClass, ueType, mcc, mnc, cellId, duration, cause,
+		errorEvents.add(new ErrorEvent(date, event, failureClass, ueType, mcc_mnc, cellId, duration,
 									   neVersion, imsi, hier3_id, hier32_id, hier321_id));
 	}
 	

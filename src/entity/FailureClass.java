@@ -1,8 +1,11 @@
 package entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 //@NamedQueries( {
 //	@NamedQuery(name = "FailureClass.findAll", query = "SELECT o FROM FailureClass o"),
@@ -16,6 +19,8 @@ public class FailureClass {
 	private int failureClass;
 	@Column(name="Description")
 	private String desc;
+//	@OneToMany(mappedBy="failureClass")
+//	private List<ErrorEvent> errorEvents;
 
 	public int getFailureClass() {
 		return failureClass;
@@ -32,7 +37,15 @@ public class FailureClass {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-
+	
+//	public List<ErrorEvent> getErrorEvents() {
+//		return errorEvents;
+//	}
+//
+//	public void setErrorEvents(List<ErrorEvent> errorEvents) {
+//		this.errorEvents = errorEvents;
+//	}
+	
 	public FailureClass(){
 		
 	}
@@ -41,7 +54,7 @@ public class FailureClass {
 		this.failureClass = failureClass;
 		this.desc = desc;
 	}
-	
+
 	public void print() {
 		if(desc == null)
 			System.out.println("No Failure Class found!");

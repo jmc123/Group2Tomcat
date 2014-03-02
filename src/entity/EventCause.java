@@ -1,42 +1,50 @@
 package entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
-import compositeKeys.CauseCodeEventIdCompKey;
+import compositeKeys.EventCauseComp;
 
-//@NamedQueries( {
-//	@NamedQuery(name = "EventCause.findAll", query = "SELECT o FROM EventCause o"),
-//	@NamedQuery(name = "EventCause.findByEventId", query = "SELECT o FROM EventCause o WHERE o.eventId=:eventId"),
-//	@NamedQuery(name = "EventCause.findByCauseCode", query = "SELECT o FROM EventCause o WHERE o.causeCode=:causeCode"),
-//})
+@NamedQueries( {
+	@NamedQuery(name = "EventCause.findByEventIdAndCauseCode",
+				query = "SELECT o FROM EventCause o WHERE o.id=:id"),
+})
 
 @Entity
-@IdClass(CauseCodeEventIdCompKey.class)
+//@IdClass(CauseCodeEventIdCompKey.class)
 public class EventCause {
-	@Id
-	private int causeCode;
-	@Id
-	private int eventId;
+//	@Id
+//	private int causeCode;
+//	@Id
+//	private int eventId;
+	@EmbeddedId
+	@Column(name="Event-Cause_ID")
+	private EventCauseComp id;
 	@Column(name="Description")
 	private String desc;
+//	@OneToMany(mappedBy="eventCause")
+//	private List<ErrorEvent> errorEvents;
 
 	public int getCauseCode() {
-		return causeCode;
+		return id.getCauseCode();
 	}
 
 	public void setCauseCode(int causeCode) {
-		this.causeCode = causeCode;
+		this.id.setCauseCode(causeCode);
 	}
 
 	public int getEventId() {
-		return eventId;
+		return id.getEventId();
 	}
 
 	public void setEventId(int eventId) {
-		this.eventId = eventId;
+		this.id.setEventId(eventId);
 	}
 
 	public String getDesc() {
@@ -47,14 +55,21 @@ public class EventCause {
 		this.desc = desc;
 	}
 	
+//	public List<ErrorEvent> getErrorEvents() {
+//		return errorEvents;
+//	}
+//
+//	public void setErrorEvents(List<ErrorEvent> errorEvents) {
+//		this.errorEvents = errorEvents;
+//	}
+
 	public EventCause(){
 		
 	}
 	
 	public EventCause(int causeCode, int eventId, String desc){
 		super();
-		this.causeCode = causeCode;
-		this.eventId = eventId;
+		this.id = new EventCauseComp(eventId, causeCode);
 		this.desc = desc;
 	}
 
@@ -62,7 +77,7 @@ public class EventCause {
 		if(desc == null)
 			System.out.println("No EventCause found!");
 		else{
-			System.out.println("EventID: " + eventId + "\tCause Code: " + causeCode +
+			System.out.println("EventID: " + id.getEventId() + "\tCause Code: " + id.getCauseCode() +
 							   "\nDescription: " + desc);
 		}
 	}

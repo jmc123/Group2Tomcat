@@ -1,8 +1,11 @@
 package entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 //@NamedQueries( {
 //	@NamedQuery(name = "UEType.findAll", query = "SELECT o FROM UEType o"),
@@ -30,6 +33,8 @@ public class UEType {
 	private String os;
 	@Column(name="Input_Mode")
 	private String inputMode;
+//	@OneToMany(mappedBy="ueType")
+//	private List<ErrorEvent> errorEvents;
 
 	public int getTac() {
 		return tac;
@@ -102,6 +107,14 @@ public class UEType {
 	public void setInputMode(String inputMode) {
 		this.inputMode = inputMode;
 	}
+
+//	public List<ErrorEvent> getErrorEvents() {
+//		return errorEvents;
+//	}
+//
+//	public void setErrorEvents(List<ErrorEvent> errorEvents) {
+//		this.errorEvents = errorEvents;
+//	}
 
 	public UEType(){
 		

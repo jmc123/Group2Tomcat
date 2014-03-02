@@ -17,7 +17,6 @@ import configs.MCC_MNCConfig;
 import configs.UETypeConfig;
 
 public class TestDatasetImportTiming {
-	
 	private static final String EXCEL_FILE = "src/res/TestLargeDataset.xlsx";
 	private static XSSFWorkbook excelData;
 

@@ -12,7 +12,6 @@ public class CauseCodeEventIdCompKey implements Serializable {
 	@Column(name="Event_ID")
 	private int eventId;
 	
-	
 	public int getCauseCode() {
 		return causeCode;
 	}

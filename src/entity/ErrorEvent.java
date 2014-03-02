@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 //@NamedQueries( {
@@ -29,27 +30,31 @@ public class ErrorEvent {
 	@Column(name="Date")
 	private Date date;
 	@ManyToOne(optional=false)
-	@JoinColumn(name="EventID", nullable=false, updatable=false)
-	private EventCause eventId;
+	@JoinColumns({
+		@JoinColumn(name = "Cause_Code", referencedColumnName = "Cause_Code", insertable = false, updatable = false),
+		@JoinColumn(name = "Event_ID", referencedColumnName = "Event_ID", insertable = false, updatable = false) })
+	private EventCause eventCause;
 	@ManyToOne(optional=false)
-	@JoinColumn(name="Failure_Class", nullable=false, updatable=false)
+	@JoinColumn(name="Failure_Class", insertable = false, updatable = false)
 	private FailureClass failureClass;
 	@ManyToOne(optional=false)
-	@JoinColumn(name="UE_Type", nullable=false, updatable=false)
+	@JoinColumn(name="UE_Type", insertable = false, updatable = false)
 	private UEType ueType;
 	@ManyToOne(optional=false)
-	@JoinColumn(name="Market", nullable=false, updatable=false)
-	private MCC_MNC market;
-	@ManyToOne(optional=false)
-	@JoinColumn(name="Operator", nullable=false, updatable=false)
-	private MCC_MNC operator;
+	@JoinColumns({
+		@JoinColumn(name = "Market", referencedColumnName = "MCC", insertable = false, updatable = false),
+		@JoinColumn(name = "Operator", referencedColumnName = "MNC", insertable = false, updatable = false) })
+	private MCC_MNC mcc_mnc;
+//	@ManyToOne(optional=false)
+//	@JoinColumn(name="Operator", nullable=false, updatable=false)
+//	private MCC_MNC operator;
 	@Column(name="Cell_ID")
 	private int cellId;
 	@Column(name="Duration")
 	private int duration;
-	@ManyToOne(optional=false)
-	@JoinColumn(name="Cause_Code", nullable=false, updatable=false)
-	private EventCause causeCode;
+//	@ManyToOne(optional=false)
+//	@JoinColumn(name="Cause_Code", nullable=false, updatable=false)
+//	private EventCause causeCode;
 	@Column(name="NE_Version")
 	private String neVersion;
 	@Column(name="IMSI")
@@ -65,18 +70,16 @@ public class ErrorEvent {
 			
 	}
 	
-	public ErrorEvent(Date date, EventCause eventId, FailureClass failureClass, UEType ueType, MCC_MNC market, MCC_MNC operator, int cellId,
-						int duration, EventCause causeCode, String neVersion, long imsi, long hier3_id, long hier32_id, long hier321_id){
+	public ErrorEvent(Date date, EventCause eventCause, FailureClass failureClass, UEType ueType, MCC_MNC mcc_mnc, int cellId,
+						int duration, String neVersion, long imsi, long hier3_id, long hier32_id, long hier321_id){
 		super();
 		this.date = date;
-		this.eventId = eventId;
+		this.eventCause = eventCause;
 		this.failureClass = failureClass;
 		this.ueType = ueType;
-		this.market = market;
-		this.operator = operator;
+		this.mcc_mnc = mcc_mnc;
 		this.cellId = cellId;
 		this.duration = duration;
-		this.causeCode = causeCode;
 		this.neVersion = neVersion;
 		this.imsi = imsi;
 		this.hier3_id = hier3_id;
@@ -101,11 +104,11 @@ public class ErrorEvent {
 	}
 
 	public EventCause getEventId() {
-		return eventId;
+		return eventCause;
 	}
 
 	public void setEventId(EventCause eventId) {
-		this.eventId = eventId;
+		this.eventCause = eventId;
 	}
 
 	public FailureClass getFailureClass() {
@@ -125,20 +128,20 @@ public class ErrorEvent {
 	}
 
 	public MCC_MNC getMarket() {
-		return market;
+		return mcc_mnc;
 	}
 
 	public void setMarket(MCC_MNC market) {
-		this.market = market;
+		this.mcc_mnc = market;
 	}
 
-	public MCC_MNC getOperator() {
-		return operator;
-	}
-
-	public void setOperator(MCC_MNC operator) {
-		this.operator = operator;
-	}
+//	public MCC_MNC getOperator() {
+//		return operator;
+//	}
+//
+//	public void setOperator(MCC_MNC operator) {
+//		this.operator = operator;
+//	}
 
 	public int getCellId() {
 		return cellId;
@@ -156,13 +159,13 @@ public class ErrorEvent {
 		this.duration = duration;
 	}
 
-	public EventCause getCauseCode() {
-		return causeCode;
-	}
-
-	public void setCauseCode(EventCause causeCode) {
-		this.causeCode = causeCode;
-	}
+//	public EventCause getCauseCode() {
+//		return causeCode;
+//	}
+//
+//	public void setCauseCode(EventCause causeCode) {
+//		this.causeCode = causeCode;
+//	}
 
 	public String getNeVersion() {
 		return neVersion;
@@ -208,9 +211,9 @@ public class ErrorEvent {
 		if(neVersion == null)
 			System.out.println("No ErrorEvent found!");
 		else{
-			System.out.println("Date: " + date + "\tEvent ID: " + eventId.getEventId() + "\t\tFailure Class: " + failureClass.getFailureClass() + 
-							   "\nUE Type: " + ueType.getTac() + "\t\tMarket: " + market.getMcc() + "\t\tOperator: " + operator.getMnc() + 
-							   "\nCell ID: " + cellId + "\t\t\tDuration: " + duration + "\t\tCause Code: " + causeCode.getCauseCode() + 
+			System.out.println("Date: " + date + "\tEvent ID: " + eventCause.getEventId() + "\t\tFailure Class: " + failureClass.getFailureClass() + 
+							   "\nUE Type: " + ueType.getTac() + "\t\tMarket: " + mcc_mnc.getMcc() + //"\t\tOperator: " + operator.getMnc() + 
+							   "\nCell ID: " + cellId + "\t\t\tDuration: " + duration + //"\t\tCause Code: " + causeCode.getCauseCode() + 
 							   "\nNE Version: " + neVersion + "\t\t\tIMSI: " + imsi + "\tHIER3_ID: " + hier3_id + 
 							   "\nHIER32_ID: " + hier32_id + "\tHIER321_ID: " + hier321_id);
 		}

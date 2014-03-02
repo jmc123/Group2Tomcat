@@ -8,12 +8,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import compositeKeys.EventCauseComp;
+import compositeKeys.MCCMNCComp;
+
 import entity.EventCause;
 import entity.FailureClass;
 import entity.MCC_MNC;
 import entity.UEType;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "unchecked"})
 public class PersistenceUtil implements Serializable {
 	protected static EntityManagerFactory emf;
 	private static boolean liveDatabase = false;
@@ -144,15 +147,6 @@ public class PersistenceUtil implements Serializable {
 	    return count;
 	}
 
-	public static EventCause getEventCause(int eventIdOrCauseCode) {
-		checkDatabaseState();
-		EntityManager em = emf.createEntityManager();
-		EventCause eventCause = em.find(EventCause.class, eventIdOrCauseCode);
-		em.close();
-		
-		return eventCause;
-	}
-
 	public static FailureClass getFailureClass(int failureClassId) {
 		checkDatabaseState();
 		EntityManager em = emf.createEntityManager();
@@ -170,6 +164,45 @@ public class PersistenceUtil implements Serializable {
 		
 		return ueType;
 	}
+	
+	public static EventCause findEventCauseByEventIdAndCauseCode(int eventId, int causeCode){
+		checkDatabaseState();
+		EntityManager em = emf.createEntityManager();
+		List<EventCause> eventCauses = (List<EventCause>) em.createNamedQuery("EventCause.findByEventIdAndCauseCode")
+															.setParameter("id", new EventCauseComp(eventId, causeCode))
+															.getResultList();
+		em.close();
+		
+		if(eventCauses.isEmpty()){
+			return null;
+		} else{
+			return eventCauses.get(0);
+		}
+	}
+	
+	public static MCC_MNC findMCCMNCByMCCAndMNC(int mcc, int mnc){
+		checkDatabaseState();
+		EntityManager em = emf.createEntityManager();
+		List<MCC_MNC> mcc_mncs = (List<MCC_MNC>) em.createNamedQuery("MCC_MNC.findByMCCANDMNC")
+															.setParameter("id", new MCCMNCComp(mcc, mnc))
+															.getResultList();
+		em.close();
+		
+		if(mcc_mncs.isEmpty()){
+			return null;
+		} else{
+			return mcc_mncs.get(0);
+		}
+	}
+	
+//	public static EventCause getEventCause(int eventId, int causeCode) {
+//		checkDatabaseState();
+//		EntityManager em = emf.createEntityManager();
+//		EventCause eventCause = (EventCause) em.createNativeQuery("SELECT ").getSingleResult();
+//		em.close();
+//		
+//		return eventCause;
+//	}
 
 	public static MCC_MNC getMCC_MNC(int marketOrOperator) {
 		checkDatabaseState();
