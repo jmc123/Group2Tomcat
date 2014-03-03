@@ -30,8 +30,7 @@ body {
 			<div
 				style="background: #0195FE; border-radius: 5px 5px 0px 0px; padding: 15px;">
 				<span
-					style="font-family: verdana, arial; color: #D4D4D4; font-size: 1.00em; font-weight: bold;">Login
-					page</span>
+					style="font-family: verdana, arial; color: #D4D4D4; font-size: 1.00em; font-weight: bold;">Login page</span>
 			</div>
 			<div style="background:; padding: 15px">
 				<style type="text/css" scoped>
