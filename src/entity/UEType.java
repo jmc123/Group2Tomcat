@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class UEType {
 	@Id
-	@Column(name="TAC") //Called "TAC" in Excel sheet
+	@Column(name="TAC")
 	private int tac;
 	@Column(name="Marketing_Name")
 	private String mName;
@@ -33,8 +33,8 @@ public class UEType {
 	private String os;
 	@Column(name="Input_Mode")
 	private String inputMode;
-//	@OneToMany(mappedBy="ueType")
-//	private List<ErrorEvent> errorEvents;
+	@OneToMany(mappedBy="ueType")
+	private List<ErrorEvent> errorEvents;
 
 	public int getTac() {
 		return tac;
@@ -108,13 +108,13 @@ public class UEType {
 		this.inputMode = inputMode;
 	}
 
-//	public List<ErrorEvent> getErrorEvents() {
-//		return errorEvents;
-//	}
-//
-//	public void setErrorEvents(List<ErrorEvent> errorEvents) {
-//		this.errorEvents = errorEvents;
-//	}
+	public List<ErrorEvent> getErrorEvents() {
+		return errorEvents;
+	}
+
+	public void setErrorEvents(List<ErrorEvent> errorEvents) {
+		this.errorEvents = errorEvents;
+	}
 
 	public UEType(){
 		

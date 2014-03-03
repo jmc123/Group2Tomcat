@@ -19,8 +19,8 @@ public class FailureClass {
 	private int failureClass;
 	@Column(name="Description")
 	private String desc;
-//	@OneToMany(mappedBy="failureClass")
-//	private List<ErrorEvent> errorEvents;
+	@OneToMany(mappedBy="failureClass")
+	private List<ErrorEvent> errorEvents;
 
 	public int getFailureClass() {
 		return failureClass;
@@ -38,13 +38,13 @@ public class FailureClass {
 		this.desc = desc;
 	}
 	
-//	public List<ErrorEvent> getErrorEvents() {
-//		return errorEvents;
-//	}
-//
-//	public void setErrorEvents(List<ErrorEvent> errorEvents) {
-//		this.errorEvents = errorEvents;
-//	}
+	public List<ErrorEvent> getErrorEvents() {
+		return errorEvents;
+	}
+
+	public void setErrorEvents(List<ErrorEvent> errorEvents) {
+		this.errorEvents = errorEvents;
+	}
 	
 	public FailureClass(){
 		

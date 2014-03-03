@@ -25,7 +25,7 @@ public class PersistenceUtil implements Serializable {
 		liveDatabase = usingLiveDatabase;
 	}
 	
-	private static void checkDatabaseState() {
+	public static void checkDatabaseState() {
 		if(liveDatabase)
 			emf = Persistence.createEntityManagerFactory("dt340a");
 		else
@@ -49,7 +49,7 @@ public class PersistenceUtil implements Serializable {
 	}
 
 	public static void remove(Object entity) {
-		checkDatabaseState();
+//		checkDatabaseState();
 		
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
@@ -57,23 +57,6 @@ public class PersistenceUtil implements Serializable {
 		em.remove(mergedEntity);
 		em.getTransaction().commit();
 		em.close();
-	}
-	
-	public static Object merge(Object entity) {
-		checkDatabaseState();
-		
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		entity = em.merge(entity);
-		em.getTransaction().commit();		
-		em.close();
-		return entity;
-	}
-
-	public static EntityManager createEM() {
-		checkDatabaseState();
-		
-		return emf.createEntityManager();
 	}
 	
 	/**
@@ -94,32 +77,12 @@ public class PersistenceUtil implements Serializable {
 	}
 	
 	/**
-	 * Truncates the following tables in the current database:<br />
-	 * <ul><li>EventCause</li>
-	 *     <li>FailureClass</li>
-	 *     <li>MCC_MNC</li>
-	 *     <li>UEType</li></ul>
-	 */
-	public static void truncateSecondaryTables(){
-		checkDatabaseState();
-		
-		EntityManager em = emf.createEntityManager();		
-		em.getTransaction().begin();
-		em.createNativeQuery("TRUNCATE TABLE EventCause").executeUpdate();
-	    em.createNativeQuery("TRUNCATE TABLE FailureClass").executeUpdate();
-	    em.createNativeQuery("TRUNCATE TABLE MCC_MNC").executeUpdate();
-	    em.createNativeQuery("TRUNCATE TABLE UEType").executeUpdate();
-		em.getTransaction().commit();
-	    em.close();
-	}
-	
-	/**
 	 * Returns the total number of ErrorEvent entries in the ErrorEvent table in the database
 	 * 
 	 * @return	the number of ErrorEvents in the database
 	 */
 	public static long numberOfErrorEvents(){
-		checkDatabaseState();
+//		checkDatabaseState();
 		
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
@@ -136,7 +99,7 @@ public class PersistenceUtil implements Serializable {
 	 * @return	the number of InvalidErrorEvents in the database
 	 */
 	public static long numberOfInvalidErrorEvents(){
-		checkDatabaseState();
+//		checkDatabaseState();
 		
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
@@ -148,7 +111,7 @@ public class PersistenceUtil implements Serializable {
 	}
 
 	public static FailureClass getFailureClass(int failureClassId) {
-		checkDatabaseState();
+//		checkDatabaseState();
 		EntityManager em = emf.createEntityManager();
 		FailureClass failureClass = em.find(FailureClass.class, failureClassId);
 		em.close();
@@ -157,7 +120,7 @@ public class PersistenceUtil implements Serializable {
 	}
 
 	public static UEType getUEType(int ueTypeId) {
-		checkDatabaseState();
+//		checkDatabaseState();
 		EntityManager em = emf.createEntityManager();
 		UEType ueType = em.find(UEType.class, ueTypeId);
 		em.close();
@@ -166,7 +129,7 @@ public class PersistenceUtil implements Serializable {
 	}
 	
 	public static EventCause findEventCauseByEventIdAndCauseCode(int eventId, int causeCode){
-		checkDatabaseState();
+//		checkDatabaseState();
 		EntityManager em = emf.createEntityManager();
 		List<EventCause> eventCauses = (List<EventCause>) em.createNamedQuery("EventCause.findByEventIdAndCauseCode")
 															.setParameter("id", new EventCauseComp(eventId, causeCode))
@@ -181,7 +144,7 @@ public class PersistenceUtil implements Serializable {
 	}
 	
 	public static MCC_MNC findMCCMNCByMCCAndMNC(int mcc, int mnc){
-		checkDatabaseState();
+//		checkDatabaseState();
 		EntityManager em = emf.createEntityManager();
 		List<MCC_MNC> mcc_mncs = (List<MCC_MNC>) em.createNamedQuery("MCC_MNC.findByMCCANDMNC")
 															.setParameter("id", new MCCMNCComp(mcc, mnc))
@@ -205,7 +168,7 @@ public class PersistenceUtil implements Serializable {
 //	}
 
 	public static MCC_MNC getMCC_MNC(int marketOrOperator) {
-		checkDatabaseState();
+//		checkDatabaseState();
 		EntityManager em = emf.createEntityManager();
 		MCC_MNC mcc_mnc = em.find(MCC_MNC.class, marketOrOperator);
 		em.close();

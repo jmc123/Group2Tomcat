@@ -3,9 +3,11 @@ package compositeKeys;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
 @SuppressWarnings("serial")
-public class MCCMNCCompKey implements Serializable{
+@Embeddable
+public class MCCMNCComp implements Serializable{
 	@Column(name="MCC")
 	private int mcc;
 	@Column(name="MNC")	//"Operator" in main sheet
@@ -21,6 +23,15 @@ public class MCCMNCCompKey implements Serializable{
 		return mnc;
 	}
 	public void setMnc(int mnc) {
+		this.mnc = mnc;
+	}
+	
+	public MCCMNCComp(){
+		
+	}
+
+	public MCCMNCComp(int mcc, int mnc){
+		this.mcc = mcc;
 		this.mnc = mnc;
 	}
 }

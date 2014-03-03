@@ -17,19 +17,14 @@ import compositeKeys.EventCauseComp;
 })
 
 @Entity
-//@IdClass(CauseCodeEventIdCompKey.class)
 public class EventCause {
-//	@Id
-//	private int causeCode;
-//	@Id
-//	private int eventId;
 	@EmbeddedId
 	@Column(name="Event-Cause_ID")
 	private EventCauseComp id;
 	@Column(name="Description")
 	private String desc;
-//	@OneToMany(mappedBy="eventCause")
-//	private List<ErrorEvent> errorEvents;
+	@OneToMany(mappedBy="eventCause")
+	private List<ErrorEvent> errorEvents;
 
 	public int getCauseCode() {
 		return id.getCauseCode();
@@ -55,13 +50,13 @@ public class EventCause {
 		this.desc = desc;
 	}
 	
-//	public List<ErrorEvent> getErrorEvents() {
-//		return errorEvents;
-//	}
-//
-//	public void setErrorEvents(List<ErrorEvent> errorEvents) {
-//		this.errorEvents = errorEvents;
-//	}
+	public List<ErrorEvent> getErrorEvents() {
+		return errorEvents;
+	}
+
+	public void setErrorEvents(List<ErrorEvent> errorEvents) {
+		this.errorEvents = errorEvents;
+	}
 
 	public EventCause(){
 		

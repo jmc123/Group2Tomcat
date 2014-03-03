@@ -17,12 +17,7 @@ import compositeKeys.MCCMNCComp;
 })
 
 @Entity
-//@IdClass(MCCMNCCompKey.class)
 public class MCC_MNC {
-//	@Id
-//	private int mcc;
-//	@Id
-//	private int mnc;
 	@EmbeddedId
 	@Column(name="MCC_MNC_ID")
 	private MCCMNCComp id;
@@ -30,8 +25,8 @@ public class MCC_MNC {
 	private String country;
 	@Column(name="Operator")
 	private String operator;
-//	@OneToMany(mappedBy="mcc_mnc")
-//	private List<ErrorEvent> errorEvents;
+	@OneToMany(mappedBy="mcc_mnc")
+	private List<ErrorEvent> errorEvents;
 
 	public int getMcc() {
 		return id.getMcc();
@@ -65,21 +60,19 @@ public class MCC_MNC {
 		this.operator = operator;
 	}
 	
-//	public List<ErrorEvent> getErrorEvents() {
-//		return errorEvents;
-//	}
-//
-//	public void setErrorEvents(List<ErrorEvent> errorEvents) {
-//		this.errorEvents = errorEvents;
-//	}
+	public List<ErrorEvent> getErrorEvents() {
+		return errorEvents;
+	}
+
+	public void setErrorEvents(List<ErrorEvent> errorEvents) {
+		this.errorEvents = errorEvents;
+	}
 
 	public MCC_MNC(){
 		
 	}
 	
 	public MCC_MNC(int mcc, int mnc, String country, String operator){
-//		this.mcc = mcc;
-//		this.mnc = mnc;
 		super();
 		this.id = new MCCMNCComp(mcc, mnc);
 		this.country = country;

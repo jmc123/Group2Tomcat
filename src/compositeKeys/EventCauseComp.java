@@ -3,10 +3,11 @@ package compositeKeys;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
 @SuppressWarnings("serial")
-public class CauseCodeEventIdCompKey implements Serializable {
-	
+@Embeddable
+public class EventCauseComp implements Serializable {
 	@Column(name="Cause_Code")
 	private int causeCode;
 	@Column(name="Event_ID")
@@ -23,5 +24,15 @@ public class CauseCodeEventIdCompKey implements Serializable {
 	}
 	public void setEventId(int eventId) {
 		this.eventId = eventId;
+	}
+	
+	public EventCauseComp(){
+		
+	}
+	
+	public EventCauseComp(int eventId, int causeCode){
+		super();
+		this.eventId = eventId;
+		this.causeCode = causeCode;
 	}
 }

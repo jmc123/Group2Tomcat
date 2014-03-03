@@ -31,30 +31,24 @@ public class ErrorEvent {
 	private Date date;
 	@ManyToOne(optional=false)
 	@JoinColumns({
-		@JoinColumn(name = "Cause_Code", referencedColumnName = "Cause_Code", insertable = false, updatable = false),
-		@JoinColumn(name = "Event_ID", referencedColumnName = "Event_ID", insertable = false, updatable = false) })
+		@JoinColumn(name = "Cause_Code", referencedColumnName = "Cause_Code"),
+		@JoinColumn(name = "Event_ID", referencedColumnName = "Event_ID") })
 	private EventCause eventCause;
 	@ManyToOne(optional=false)
-	@JoinColumn(name="Failure_Class", insertable = false, updatable = false)
+	@JoinColumn(name="Failure_Class")
 	private FailureClass failureClass;
 	@ManyToOne(optional=false)
-	@JoinColumn(name="UE_Type", insertable = false, updatable = false)
+	@JoinColumn(name="UE_Type")
 	private UEType ueType;
 	@ManyToOne(optional=false)
 	@JoinColumns({
-		@JoinColumn(name = "Market", referencedColumnName = "MCC", insertable = false, updatable = false),
-		@JoinColumn(name = "Operator", referencedColumnName = "MNC", insertable = false, updatable = false) })
+		@JoinColumn(name = "Market", referencedColumnName = "MCC"),
+		@JoinColumn(name = "Operator", referencedColumnName = "MNC") })
 	private MCC_MNC mcc_mnc;
-//	@ManyToOne(optional=false)
-//	@JoinColumn(name="Operator", nullable=false, updatable=false)
-//	private MCC_MNC operator;
 	@Column(name="Cell_ID")
 	private int cellId;
 	@Column(name="Duration")
 	private int duration;
-//	@ManyToOne(optional=false)
-//	@JoinColumn(name="Cause_Code", nullable=false, updatable=false)
-//	private EventCause causeCode;
 	@Column(name="NE_Version")
 	private String neVersion;
 	@Column(name="IMSI")
