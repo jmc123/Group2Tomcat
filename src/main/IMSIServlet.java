@@ -24,9 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings("serial")
 public class IMSIServlet extends HttpServlet {
 
-	//Made a change here
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		long startTime = System.nanoTime();
 		String imsi = request.getParameter("IMSI");

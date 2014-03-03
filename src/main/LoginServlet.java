@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 @SuppressWarnings("serial")
-public class LoginServletTestRename extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
