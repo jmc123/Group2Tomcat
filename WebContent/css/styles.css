@@ -1,0 +1,44 @@
+			body{
+				background-color: #193066;
+			}
+			.container{
+				background-color: white;
+			}
+			html, body, .container {
+				height: 100%; 
+			}
+			#margintext{
+				margin-top:90px;
+			}
+			#marginbt{
+				margin-top:75px;
+			}
+			#logo{
+				margin-top:10px;
+			}
+			footer.container  /* hereee */
+			{
+				position: relative;
+				margin-top: -60px; /* negative value of footer height */
+				height: 60px;
+				clear:both;
+				padding-top:20px;
+				background-color: #CCCCCC;
+			}
+			
+			#hero{
+				margin-top:100px;
+			}
+			
+	
+			#main
+			{
+				overflow:auto;
+				padding-bottom:150px; /* this needs to be bigger than footer height*/
+				
+				min-height: 100%;
+				height: auto !important;
+				height: 100%;
+				/* Negative indent footer by it's height */
+				margin: 0 auto -60px;
+			}
