@@ -1,10 +1,10 @@
-<jsp:include page="templates/header.jsp" />
-<jsp:include page="templates/csrepNav.jsp" />
+<jsp:include page="../templates/header.jsp" />
+<jsp:include page="../templates/csrepNav.jsp" />
 
 <!-- content here -->
 
 				<div class="col-md-9 text-center">
-					<h3 class="col-md-offset-2 col-md-7 text-center">Enter an IMSI for all Unique Cause Codes for it's Call Failures</h3>
+					<h3 class="col-md-offset-2 col-md-7 text-center">Enter an IMSI for EventID and Cause Code</h3>
 					<br /><br /><br />
 					<form method="get" action="" class="form-horizontal" role="form">
 						<div class="form-group">
@@ -23,4 +23,4 @@
 					</form>
 				</div>
 				
-<jsp:include page="templates/footer.jsp" />
+<jsp:include page="../templates/footer.jsp" />

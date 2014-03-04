@@ -1,5 +1,5 @@
-<jsp:include page="templates/header.jsp" />
-<jsp:include page="templates/sysNav.jsp" />
+<jsp:include page="../templates/header.jsp" />
+<jsp:include page="../templates/sysNav.jsp" />
 
 <!-- content here -->
 
@@ -9,4 +9,4 @@
 					
 				</div>
 				
-<jsp:include page="templates/footer.jsp" />
+<jsp:include page="../templates/footer.jsp" />
