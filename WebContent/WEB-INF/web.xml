@@ -47,6 +47,6 @@
 	<context-param>
 		<description>Location to store uploaded file</description>
 		<param-name>ImportFile</param-name>
-		<param-value>C:\data</param-value>
+		<param-value>/home/zodac/Downloads/apache-tomcat-7.0.50/webapps/data/</param-value>
 	</context-param>
 </web-app>
