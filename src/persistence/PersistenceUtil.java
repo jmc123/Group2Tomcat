@@ -18,18 +18,12 @@ import entity.UEType;
 
 @SuppressWarnings({"serial", "unchecked"})
 public class PersistenceUtil implements Serializable {
-	protected static EntityManagerFactory emf;
-	private static boolean liveDatabase = false;
+	protected static EntityManagerFactory emf = Persistence.createEntityManagerFactory("dt340a");
 	
-	public static void setDatabaseState(boolean usingLiveDatabase){
-		liveDatabase = usingLiveDatabase;
-	}
-	
-	public static void checkDatabaseState() {
-		if(liveDatabase)
-			emf = Persistence.createEntityManagerFactory("dt340a");
-		else
+	public static void useLiveDatabase(boolean usingLiveDatabase){
+		if(!usingLiveDatabase){
 			emf = Persistence.createEntityManagerFactory("dt340atest");
+		}
 	}
 	
 	/** 
@@ -38,19 +32,16 @@ public class PersistenceUtil implements Serializable {
 	 * @param entities	List of objects to be stored in the database
 	 */
 	public static void persistMany(List<Object> entities){
-		checkDatabaseState();
-	
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		for(Object e : entities)
+		for(Object e : entities){
 			em.persist(e);
+		}
 		em.getTransaction().commit();
 		em.close();
 	}
 
 	public static void remove(Object entity) {
-//		checkDatabaseState();
-		
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		Object mergedEntity = em.merge(entity);
@@ -66,9 +57,7 @@ public class PersistenceUtil implements Serializable {
 	 *     <li>MCC_MNC</li>
 	 *     <li>UEType</li></ul>
 	 */
-	public static void dropSecondaryTables(){
-		checkDatabaseState();
-		
+	public static void dropSecondaryTables(){		
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		em.createNativeQuery("DROP TABLE IF EXISTS EventCause, FailureClass, MCC_MNC, UEType").executeUpdate();
@@ -82,8 +71,6 @@ public class PersistenceUtil implements Serializable {
 	 * @return	the number of ErrorEvents in the database
 	 */
 	public static long numberOfErrorEvents(){
-//		checkDatabaseState();
-		
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		long count = ((BigInteger) em.createNativeQuery("SELECT COUNT(*) FROM ErrorEvent").getSingleResult()).longValue();
@@ -99,8 +86,6 @@ public class PersistenceUtil implements Serializable {
 	 * @return	the number of InvalidErrorEvents in the database
 	 */
 	public static long numberOfInvalidErrorEvents(){
-//		checkDatabaseState();
-		
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		long count = ((BigInteger) em.createNativeQuery("SELECT COUNT(*) FROM InvalidErrorEvent").getSingleResult()).longValue();
@@ -111,7 +96,6 @@ public class PersistenceUtil implements Serializable {
 	}
 
 	public static FailureClass getFailureClass(int failureClassId) {
-//		checkDatabaseState();
 		EntityManager em = emf.createEntityManager();
 		FailureClass failureClass = em.find(FailureClass.class, failureClassId);
 		em.close();
@@ -120,7 +104,6 @@ public class PersistenceUtil implements Serializable {
 	}
 
 	public static UEType getUEType(int ueTypeId) {
-//		checkDatabaseState();
 		EntityManager em = emf.createEntityManager();
 		UEType ueType = em.find(UEType.class, ueTypeId);
 		em.close();
@@ -129,7 +112,6 @@ public class PersistenceUtil implements Serializable {
 	}
 	
 	public static EventCause findEventCauseByEventIdAndCauseCode(int eventId, int causeCode){
-//		checkDatabaseState();
 		EntityManager em = emf.createEntityManager();
 		List<EventCause> eventCauses = (List<EventCause>) em.createNamedQuery("EventCause.findByEventIdAndCauseCode")
 															.setParameter("id", new EventCauseComp(eventId, causeCode))
@@ -144,7 +126,6 @@ public class PersistenceUtil implements Serializable {
 	}
 	
 	public static MCC_MNC findMCCMNCByMCCAndMNC(int mcc, int mnc){
-//		checkDatabaseState();
 		EntityManager em = emf.createEntityManager();
 		List<MCC_MNC> mcc_mncs = (List<MCC_MNC>) em.createNamedQuery("MCC_MNC.findByMCCANDMNC")
 															.setParameter("id", new MCCMNCComp(mcc, mnc))
@@ -158,23 +139,16 @@ public class PersistenceUtil implements Serializable {
 		}
 	}
 	
-//	public static EventCause getEventCause(int eventId, int causeCode) {
-//		checkDatabaseState();
-//		EntityManager em = emf.createEntityManager();
-//		EventCause eventCause = (EventCause) em.createNativeQuery("SELECT ").getSingleResult();
-//		em.close();
-//		
-//		return eventCause;
-//	}
-
-	public static MCC_MNC getMCC_MNC(int marketOrOperator) {
-//		checkDatabaseState();
+	/**
+	 * Queries
+	 */
+	
+	public static List<EventCause> findEventCauseByIMSI(long imsi){
 		EntityManager em = emf.createEntityManager();
-		MCC_MNC mcc_mnc = em.find(MCC_MNC.class, marketOrOperator);
+		List<EventCause> eventCauses = (List<EventCause>) em.createNamedQuery("ErrorEvent.EventCauseByIMSI")
+														.setParameter("IMSI", imsi).getResultList();
 		em.close();
 		
-		return mcc_mnc;
+		return eventCauses;
 	}
-	
-	
 }

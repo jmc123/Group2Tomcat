@@ -8,22 +8,22 @@ import javax.persistence.Embeddable;
 @SuppressWarnings("serial")
 @Embeddable
 public class EventCauseComp implements Serializable {
-	@Column(name="Cause_Code")
-	private int causeCode;
-	@Column(name="Event_ID")
-	private int eventId;
+	@Column(name="a_Event_ID")
+	public int a_eventId;
+	@Column(name="b_Cause_Code")
+	public int b_causeCode;
 	
 	public int getCauseCode() {
-		return causeCode;
+		return b_causeCode;
 	}
 	public void setCauseCode(int causeCode) {
-		this.causeCode = causeCode;
+		this.b_causeCode = causeCode;
 	}
 	public int getEventId() {
-		return eventId;
+		return a_eventId;
 	}
 	public void setEventId(int eventId) {
-		this.eventId = eventId;
+		this.a_eventId = eventId;
 	}
 	
 	public EventCauseComp(){
@@ -32,7 +32,7 @@ public class EventCauseComp implements Serializable {
 	
 	public EventCauseComp(int eventId, int causeCode){
 		super();
-		this.eventId = eventId;
-		this.causeCode = causeCode;
+		this.a_eventId = eventId;
+		this.b_causeCode = causeCode;
 	}
 }

@@ -26,20 +26,20 @@ public class EventCause {
 	@OneToMany(mappedBy="eventCause")
 	private List<ErrorEvent> errorEvents;
 
-	public int getCauseCode() {
-		return id.getCauseCode();
-	}
-
-	public void setCauseCode(int causeCode) {
-		this.id.setCauseCode(causeCode);
-	}
-
 	public int getEventId() {
 		return id.getEventId();
 	}
 
 	public void setEventId(int eventId) {
 		this.id.setEventId(eventId);
+	}
+	
+	public int getCauseCode() {
+		return id.getCauseCode();
+	}
+
+	public void setCauseCode(int causeCode) {
+		this.id.setCauseCode(causeCode);
 	}
 
 	public String getDesc() {

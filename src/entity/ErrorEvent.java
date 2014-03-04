@@ -10,16 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
-//@NamedQueries( {
-//	@NamedQuery(name = "ErrorEvent.findAll", query = "SELECT o FROM ErrorEvent o"),
-//	@NamedQuery(name = "ErrorEvent.findErrorEventByEventId", query = "SELECT o FROM ErrorEvent o WHERE o.eventId=:eventId"),
-//	@NamedQuery(name = "ErrorEvent.findEventIdAndCauseCodeByIMSI", query = "SELECT o.eventId, o.causeCode FROM ErrorEvent o WHERE o.imsi=:imsi"),
-//	@NamedQuery(name = "ErrorEvent.findEventIdAndCauseCodeByIMSIGroupByEventId", query = "SELECT o.eventId, o.causeCode FROM ErrorEvent o WHERE o.imsi=:imsi GROUP BY o.eventId"),
-//	@NamedQuery(name = "ErrorEvent.findEventIdAndCauseCodeByIMSIGroupByCauseCode", query = "SELECT o.eventId, o.causeCode FROM ErrorEvent o WHERE o.imsi=:imsi GROUP BY o.causeCode"),
-//	@NamedQuery(name = "ErrorEvent.findCauseCodeAndCountry", query = "SELECT o.causeCode, s.country FROM ErrorEvent o, MCC_MNC s WHERE o.market=s.mcc"),
-//	@NamedQuery(name = "ErrorEvent.findCauseCodeAndCountryGroupByCountry", query = "SELECT o.causeCode, s.country FROM ErrorEvent o, MCC_MNC s WHERE o.market=s.mcc GROUP BY s.country, o.causeCode"),
-//})
+@NamedQueries( {
+	@NamedQuery(name = "ErrorEvent.EventCauseByIMSI",
+				query = "SELECT o.eventCause FROM ErrorEvent o WHERE IMSI=:IMSI GROUP BY o.eventCause"),
+})
 
 @Entity
 public class ErrorEvent {
@@ -31,8 +28,8 @@ public class ErrorEvent {
 	private Date date;
 	@ManyToOne(optional=false)
 	@JoinColumns({
-		@JoinColumn(name = "Cause_Code", referencedColumnName = "Cause_Code"),
-		@JoinColumn(name = "Event_ID", referencedColumnName = "Event_ID") })
+		@JoinColumn(name = "Event_ID", referencedColumnName = "a_Event_ID"),
+		@JoinColumn(name = "Cause_Code", referencedColumnName = "b_Cause_Code") })
 	private EventCause eventCause;
 	@ManyToOne(optional=false)
 	@JoinColumn(name="Failure_Class")
@@ -129,14 +126,6 @@ public class ErrorEvent {
 		this.mcc_mnc = market;
 	}
 
-//	public MCC_MNC getOperator() {
-//		return operator;
-//	}
-//
-//	public void setOperator(MCC_MNC operator) {
-//		this.operator = operator;
-//	}
-
 	public int getCellId() {
 		return cellId;
 	}
@@ -152,14 +141,6 @@ public class ErrorEvent {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-
-//	public EventCause getCauseCode() {
-//		return causeCode;
-//	}
-//
-//	public void setCauseCode(EventCause causeCode) {
-//		this.causeCode = causeCode;
-//	}
 
 	public String getNeVersion() {
 		return neVersion;

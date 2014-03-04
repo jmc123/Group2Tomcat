@@ -42,11 +42,9 @@ public class Driver extends HttpServlet {
 
 	private static DecimalFormat dFormatter = new DecimalFormat("#,###,###");
 	private static Workbook excelData;
-	private boolean isMultipart;
 	private String filePath;
 	private int maxFileSize = 10*200*1024;
 	private int maxMemSize = 4*1024;
-	
 	
 	/**
 	 * Initializes context-parameter to get file-path.
@@ -59,15 +57,14 @@ public class Driver extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		long startTime = System.nanoTime();
-		System.out.println("Filepath: " + filePath);
 		
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
-		isMultipart = ServletFileUpload.isMultipartContent(request);
+		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		
 		if(!isMultipart){
-			out.println("<HTML><HEAD><TITLE>Servlet Upload</TITLE></HEAD>)"
-					 +  "<BODY><CENTER><p>No file uploaded!</p></CENTER></BODY></HTML>");
+			out.println("<HTML><HEAD><TITLE>Servlet Upload</TITLE></HEAD>"
+					 +  "<BODY><CENTER>No file uploaded!</CENTER></BODY></HTML>");
 			return;
 		}
 		
@@ -99,17 +96,16 @@ public class Driver extends HttpServlet {
 			}
 			loadExcelFile(file.getAbsolutePath(), out);
 
-			PersistenceUtil.setDatabaseState(true);
-			PersistenceUtil.dropSecondaryTables();
+			PersistenceUtil.useLiveDatabase(true);
 			generateDatabase();
 			long timeTakenInMillis = (System.nanoTime()-startTime)/1000000;
 
 			out.println("<p>Successfully imported the database.</p>"
 				+ "<p>" + dFormatter.format(ErrorEventConfig.errorEvents.size())+ " ErrorEvents added to database."
-					+ "(Total: "+ dFormatter.format(PersistenceUtil.numberOfErrorEvents()) + ")"
+					+ " (Total: "+ dFormatter.format(PersistenceUtil.numberOfErrorEvents()) + ")"
 				+ "<br />"
 				+ dFormatter.format(ErrorEventConfig.invalidErrorEvents.size()) + " ErrorEvents removed due to inconsistencies."
-					+ "(Total: " + dFormatter.format(PersistenceUtil.numberOfInvalidErrorEvents()) + ")</p>"
+					+ " (Total: " + dFormatter.format(PersistenceUtil.numberOfInvalidErrorEvents()) + ")</p>"
 				+ "<p>Click <a href=\"queries.jsp\">here</a> to query the database.</p>"
 				+ "</CENTER></BODY>"
 				+ "<DIV style=\"position: relative\""

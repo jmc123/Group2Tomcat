@@ -42,8 +42,7 @@ public class LoginServlet extends HttpServlet {
 			String userName = request.getParameter("userName");
 			String userPassword = request.getParameter("password");
 
-			PreparedStatement statement = connection
-					.prepareStatement("SELECT userPassword from UserTable WHERE userName = ?");
+			PreparedStatement statement = connection.prepareStatement("SELECT userPassword from UserTable WHERE userName = ?");
 			statement.setString(1, userName);
 
 			ResultSet resultset = statement.executeQuery();
