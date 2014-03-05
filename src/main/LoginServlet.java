@@ -14,6 +14,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import entity.User;
+import entity.UserType;
 /**
  * 
  * @author Group2<br>
@@ -26,6 +29,10 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		UserType.createTypes();
+		User.createAdmin();
+		
 		String dbURL = "jdbc:mysql://localhost:3306/dt340a";
 		String dbUserName = "root";
 		String dbPassword = "toor";
