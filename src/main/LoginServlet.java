@@ -1,19 +1,17 @@
 package main;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.codec.digest.DigestUtils;
+
+import persistence.PersistenceUtil;
 /**
  * 
  * @author Group2<br>
@@ -23,53 +21,31 @@ import javax.servlet.http.HttpServletResponse;
  */
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Would be nice if we could run these two, but errors with it adding to the database too many times.
+		//For now, will use an SQL script, and go ahead as if DB is persistent, but can look into it later.
+		//Sorry, Tim. :(
+//		UserType.createTypes();
+//		User.createAdmin();
+		
+		String inputUserName = request.getParameter("userName");
+		String inputUserPassword = DigestUtils.sha1Hex(request.getParameter("password"));
+		
+		List<String> userPasswords = PersistenceUtil.findPasswordByUsername(inputUserName);
+		
+		if(!userPasswords.isEmpty()){
+			if(inputUserPassword.equals(userPasswords.get(0))){
+				Cookie loginCookie = new Cookie("user", inputUserName);
+				loginCookie.setMaxAge(30*60);
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		String dbURL = "jdbc:mysql://localhost:3306/dt340a";
-		String dbUserName = "root";
-		String dbPassword = "toor";
-		Connection connection = null;
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection(dbURL, dbUserName,
-					dbPassword);
-
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-
-			String userName = request.getParameter("userName");
-			String userPassword = request.getParameter("password");
-
-			PreparedStatement statement = connection.prepareStatement("SELECT userPassword from UserTable WHERE userName = ?");
-			statement.setString(1, userName);
-
-			ResultSet resultset = statement.executeQuery();
-			ResultSetMetaData resultmetadata = resultset.getMetaData();
-
-			int columnCount = resultmetadata.getColumnCount();
-
-			while (resultset.next()) {
-				for (int i = 1; i <= columnCount; i++) {
-
-					String columnValue = resultset.getString(i);
-					if (columnValue.equals(userPassword)) {
-						Cookie loginCookie = new Cookie("user", userName);
-						// setting cookie to expiry in 30 mins
-						loginCookie.setMaxAge(30 * 60);
-
-						response.addCookie(loginCookie);
-						response.sendRedirect("import.jsp");
-					} else {
-						response.sendRedirect("index.jsp");
-					}
-				}
+				response.addCookie(loginCookie);
+				response.sendRedirect("import.jsp");
+			} else{
+				response.sendRedirect("index.jsp");
 			}
-
-			out.close();
-		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
+		} else{
+			response.sendRedirect("index.jsp"); //Redirect, or give alert?
 		}
 	}
 	

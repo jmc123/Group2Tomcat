@@ -15,6 +15,7 @@ import entity.EventCause;
 import entity.FailureClass;
 import entity.MCC_MNC;
 import entity.UEType;
+import entity.UserType;
 
 @SuppressWarnings({"serial", "unchecked"})
 public class PersistenceUtil implements Serializable {
@@ -24,6 +25,14 @@ public class PersistenceUtil implements Serializable {
 		if(!usingLiveDatabase){
 			emf = Persistence.createEntityManagerFactory("dt340atest");
 		}
+	}
+	
+	public static void persist(Object entity) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(entity);
+		em.getTransaction().commit();
+		em.close();
 	}
 	
 	/** 
@@ -139,6 +148,14 @@ public class PersistenceUtil implements Serializable {
 		}
 	}
 	
+	public static UserType findUserTypeById(int userTypeId){
+		EntityManager em = emf.createEntityManager();
+		UserType userType = em.find(UserType.class, userTypeId);
+		em.close();
+		
+		return userType;
+	}
+	
 	/**
 	 * Queries
 	 */
@@ -146,9 +163,19 @@ public class PersistenceUtil implements Serializable {
 	public static List<EventCause> findEventCauseByIMSI(long imsi){
 		EntityManager em = emf.createEntityManager();
 		List<EventCause> eventCauses = (List<EventCause>) em.createNamedQuery("ErrorEvent.EventCauseByIMSI")
-														.setParameter("IMSI", imsi).getResultList();
+															.setParameter("IMSI", imsi).getResultList();
 		em.close();
 		
 		return eventCauses;
+	}
+	
+	public static List<String> findPasswordByUsername(String userName){
+		EntityManager em = emf.createEntityManager();
+		
+		List<String> userPasswords = (List<String>) em.createNamedQuery("User.findPasswordByUsername")
+													  .setParameter("userName", userName).getResultList();
+		em.close();
+		
+		return userPasswords;
 	}
 }
