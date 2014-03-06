@@ -1,9 +1,3 @@
-<html>
-<head>
-<title>Login page</title>
-</head>
-<body>
-
 <jsp:include page="../templates/header.jsp" />
 <jsp:include page="../templates/sysNav.jsp" />
 
@@ -12,7 +6,7 @@
 				<div class="col-md-9 text-center">
 					<h3 class="col-md-offset-4 col-md-7 text-left">Create User Role</h3>
 					<br /><br /><br />
-					<form method="get" action="registerServlet" class="form-horizontal" role="form">
+					<form method="get" action="" class="form-horizontal" role="form">
 						<div class="form-group">
 							<label for="role" class="col-md-4 control-label">Role:</label>
 							<div class="col-md-4">
@@ -46,5 +40,3 @@
 				</div>
 				
 <jsp:include page="../templates/footer.jsp" />
-</body>
-</html>

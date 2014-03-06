@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import persistence.PersistenceUtil;
 
 /**
@@ -36,11 +38,11 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String username = request.getParameter("userName");
-		String password = request.getParameter("password");
+		String userName = request.getParameter("userName");
+		String password = DigestUtils.sha1Hex(request.getParameter("password"));
 		int usertype = Integer.parseInt(request.getParameter("role"));
 		
-		PersistenceUtil.registerUser(username, password,usertype);
+		PersistenceUtil.registerUser(userName, password,usertype);
 				
 		response.sendRedirect("index.jsp");
 		

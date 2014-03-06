@@ -15,6 +15,7 @@ import entity.EventCause;
 import entity.FailureClass;
 import entity.MCC_MNC;
 import entity.UEType;
+import entity.User;
 import entity.UserType;
 
 @SuppressWarnings({"serial", "unchecked"})
@@ -156,6 +157,16 @@ public class PersistenceUtil implements Serializable {
 		return userType;
 	}
 	
+	public static void registerUser(String userName, String password, int userTypeId){
+		EntityManager em = emf.createEntityManager();
+		User newUser = new User(userName, password, userTypeId);
+		
+		em.getTransaction().begin();
+		em.persist(newUser);
+		em.getTransaction().commit();
+		em.close();
+	}
+	
 	/**
 	 * Queries
 	 */
@@ -169,23 +180,6 @@ public class PersistenceUtil implements Serializable {
 		return eventCauses;
 	}
 	
-<<<<<<< HEAD
-	public static void registerUser(String username, String password, int usertype){
-
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-
-		User newUser = new User();
-		newUser.setUsername(username);
-		newUser.setPassword(password);
-		newUser.setUsertype(usertype);
-
-		em.persist(newUser);
-		em.flush();
-		em.getTransaction().commit();
-		em.close();
-
-=======
 	public static List<String> findPasswordByUsername(String userName){
 		EntityManager em = emf.createEntityManager();
 		
@@ -194,6 +188,5 @@ public class PersistenceUtil implements Serializable {
 		em.close();
 		
 		return userPasswords;
->>>>>>> branch 'master' of https://github.com/jmc123/Group2Tomcat.git
 	}
 }
