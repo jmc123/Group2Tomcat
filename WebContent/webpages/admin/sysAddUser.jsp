@@ -6,7 +6,7 @@
 				<div class="col-md-9 text-center">
 					<h3 class="col-md-offset-4 col-md-7 text-left">Create User Role</h3>
 					<br /><br /><br />
-					<form method="POST" action="" class="form-horizontal" role="form">
+					<form method="POST" action="RegisterServlet" class="form-horizontal" role="form">
 						<div class="form-group">
 							<label for="role" class="col-md-4 control-label">Role:</label>
 							<div class="col-md-4">
