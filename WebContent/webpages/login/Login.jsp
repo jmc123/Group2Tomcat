@@ -3,13 +3,12 @@
 	<head>
 		<title>			</title>
 		
-		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/styles.css" rel="stylesheet">
+		<link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.ico">
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/styles.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/loginValidation.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
 
 	</head>
 	<body>

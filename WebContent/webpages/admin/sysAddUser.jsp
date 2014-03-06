@@ -11,9 +11,9 @@
 							<label for="role" class="col-md-4 control-label">Role:</label>
 							<div class="col-md-4">
 								<select class="form-control" name="role">
-									<option>Customer Service Rep</option>
-									<option>Support Engineer</option>
-									<option>Network Management Engineer</option>
+									<option value="3">Customer Service Rep</option>
+									<option value="2">Support Engineer</option>
+									<option value="1">Network Management Engineer</option>
 								</select>
 							</div>
 						</div>
