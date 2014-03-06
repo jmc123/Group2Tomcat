@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import persistence.PersistenceUtil;
+import entity.UserType;
 /**
  * 
  * @author Group2<br>
@@ -21,6 +22,11 @@ import persistence.PersistenceUtil;
  */
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
+	
+	private static final int SYSTEM_ADMINISTRATOR = 1;
+	private static final int NETWORK_MANAGEMENT_ENGINEER = 2;
+	private static final int SUPPORT_ENGINEER = 3;
+	private static final int CUSTOMER_SERVICE_REP = 4;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Would be nice if we could run these two, but errors with it adding to the database too many times.
@@ -32,15 +38,29 @@ public class LoginServlet extends HttpServlet {
 		String inputUserName = request.getParameter("userName");
 		String inputUserPassword = DigestUtils.sha1Hex(request.getParameter("password"));
 		
-		List<String> userPasswords = PersistenceUtil.findPasswordByUsername(inputUserName);
+		List<Object[]> userDetails = PersistenceUtil.findPasswordAndUserTypeByUsername(inputUserName);
 		
-		if(!userPasswords.isEmpty()){
-			if(inputUserPassword.equals(userPasswords.get(0))){
+		if(!userDetails.isEmpty()){
+			String userPassword = String.valueOf(userDetails.get(0)[0]);
+			int userTypeId = ((UserType) userDetails.get(0)[1]).getId();			
+			
+			if(inputUserPassword.equals(userPassword)){
 				Cookie loginCookie = new Cookie("user", inputUserName);
 				loginCookie.setMaxAge(30*60);
 
 				response.addCookie(loginCookie);
-				response.sendRedirect("webpages/admin/sysHome.jsp");
+				if(userTypeId == SYSTEM_ADMINISTRATOR){
+					response.sendRedirect("webpages/admin/sysHome.jsp");
+				} else if(userTypeId == NETWORK_MANAGEMENT_ENGINEER){
+					//Need page here - next sprint
+				} else if(userTypeId == SUPPORT_ENGINEER){
+					response.sendRedirect("webpages/admin/seHome.jsp");
+				} else if(userTypeId == CUSTOMER_SERVICE_REP){
+					response.sendRedirect("webpages/admin/csHome.jsp");
+				} else{
+					System.out.println("No UserType found for this user!");
+					response.sendRedirect("webpages/login/Login.jsp");
+				}
 			} else{
 				response.sendRedirect("webpages/login/Login.jsp");
 			}

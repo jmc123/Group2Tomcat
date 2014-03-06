@@ -13,8 +13,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 import persistence.PersistenceUtil;
 
 @NamedQueries( {
-	@NamedQuery(name="User.findPasswordByUsername",
-				query="SELECT o.userPassword FROM User o WHERE o.userName =:userName"),
+	@NamedQuery(name="User.findPasswordAndUserTypeByUsername",
+				query="SELECT o.userPassword, o.userType FROM User o WHERE o.userName =:userName"),
 })
 
 @Entity

@@ -180,13 +180,13 @@ public class PersistenceUtil implements Serializable {
 		return eventCauses;
 	}
 	
-	public static List<String> findPasswordByUsername(String userName){
+	public static List<Object[]> findPasswordAndUserTypeByUsername(String userName){
 		EntityManager em = emf.createEntityManager();
 		
-		List<String> userPasswords = (List<String>) em.createNamedQuery("User.findPasswordByUsername")
+		List<Object[]> userDetails = (List<Object[]>) em.createNamedQuery("User.findPasswordAndUserTypeByUsername")
 													  .setParameter("userName", userName).getResultList();
 		em.close();
 		
-		return userPasswords;
+		return userDetails;
 	}
 }
