@@ -169,6 +169,23 @@ public class PersistenceUtil implements Serializable {
 		return eventCauses;
 	}
 	
+<<<<<<< HEAD
+	public static void registerUser(String username, String password, int usertype){
+
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+
+		User newUser = new User();
+		newUser.setUsername(username);
+		newUser.setPassword(password);
+		newUser.setUsertype(usertype);
+
+		em.persist(newUser);
+		em.flush();
+		em.getTransaction().commit();
+		em.close();
+
+=======
 	public static List<String> findPasswordByUsername(String userName){
 		EntityManager em = emf.createEntityManager();
 		
@@ -177,5 +194,6 @@ public class PersistenceUtil implements Serializable {
 		em.close();
 		
 		return userPasswords;
+>>>>>>> branch 'master' of https://github.com/jmc123/Group2Tomcat.git
 	}
 }
