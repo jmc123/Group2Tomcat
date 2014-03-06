@@ -45,9 +45,5 @@ public class RegisterServlet extends HttpServlet {
 		PersistenceUtil.registerUser(userName, password,usertype);
 				
 		response.sendRedirect("index.jsp");
-		
 	}
-	
-	
-
 }	

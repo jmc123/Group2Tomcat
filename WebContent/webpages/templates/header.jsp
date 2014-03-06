@@ -20,7 +20,11 @@
 					<p class="text-right center"><span class="glyphicon glyphicon-user"></span> Logged in as <a href="#" class="navbar-link">${user.userType}</a></p><!-- get from session -->
 				</div>
 				<div class="col-md-2" id="marginbt">
-					<a href="login.jsp" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+				
+					<form method="POST" name="logout" action="LoginServlet">
+					
+						<button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-log-out"></span>Logout</button>
+					</form>
 				</div>
 			</div>
 			<div class="col-md-12">
