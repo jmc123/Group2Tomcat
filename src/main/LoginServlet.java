@@ -62,10 +62,12 @@ public class LoginServlet extends HttpServlet {
 					response.sendRedirect("webpages/login/Login.jsp");
 				}
 			} else{
-				response.sendRedirect("webpages/login/Login.jsp");
+//				response.sendRedirect("webpages/login/Login.jsp");
+				response.getWriter().print("<script>location.replace(\"webpages/login/Login.jsp\");</script>");
 			}
 		} else{
-			response.sendRedirect("webpages/login/Login.jsp"); //Redirect, or give alert?
+//			response.sendRedirect("webpages/login/Login.jsp"); //Redirect, or give alert?
+			response.getWriter().print("<script>location.replace(\"webpages/login/Login.jsp\");</script>");
 		}
 	}
 	
