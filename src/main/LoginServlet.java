@@ -40,12 +40,12 @@ public class LoginServlet extends HttpServlet {
 				loginCookie.setMaxAge(30*60);
 
 				response.addCookie(loginCookie);
-				response.sendRedirect("import.jsp");
+				response.sendRedirect("webpages/admin/sysHome.jsp");
 			} else{
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("webpages/login/Login.jsp");
 			}
 		} else{
-			response.sendRedirect("index.jsp"); //Redirect, or give alert?
+			response.sendRedirect("webpages/login/Login.jsp"); //Redirect, or give alert?
 		}
 	}
 	
@@ -70,6 +70,6 @@ public class LoginServlet extends HttpServlet {
 			loginCookie.setMaxAge(0);
 			response.addCookie(loginCookie);
 		}
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("webpages/login/Login.jsp");
 	}
 }

@@ -6,14 +6,14 @@
 				<div class="col-md-9 text-center">
 					<h3 class="col-md-offset-4 col-md-7 text-left">Create User Role</h3>
 					<br /><br /><br />
-					<form method="get" action="" class="form-horizontal" role="form">
+					<form method="POST" action="" class="form-horizontal" role="form">
 						<div class="form-group">
 							<label for="role" class="col-md-4 control-label">Role:</label>
 							<div class="col-md-4">
 								<select class="form-control" name="role">
-									<option value="3">Customer Service Rep</option>
-									<option value="2">Support Engineer</option>
-									<option value="1">Network Management Engineer</option>
+									<option value="4">Customer Service Rep</option>
+									<option value="3">Support Engineer</option>
+									<option value="2">Network Management Engineer</option>
 								</select>
 							</div>
 						</div>
