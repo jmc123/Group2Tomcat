@@ -31,15 +31,15 @@
 					<br /><br /><br />
 					<form method="get" action="LoginServlet" class="form-horizontal" name="loginForm" onsubmit="return validateLogin();">
 						<div class="form-group">
-							<label for="id" class="col-md-4 control-label">ID:</label>
+							<label for="id" class="col-md-4 control-label"></label>
 							<div class="col-md-4">
-								<input type="text" class="form-control" id="id" name="id">
+								<input type="text" class="form-control" id="userName" name="userName" placeholder="UserName" required />
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="pass" class="col-md-4 control-label">Password:</label>
+							<label for="pass" class="col-md-4 control-label"></label>
 							<div class="col-md-4">
-								<input type="password" class="form-control" id="pass" name="password">
+								<input type="password" class="form-control" id="pass" name="password" placeholder="Password" required />
 							</div>
 						</div>
 
