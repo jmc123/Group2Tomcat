@@ -59,15 +59,15 @@ public class LoginServlet extends HttpServlet {
 					response.sendRedirect("webpages/admin/csHome.jsp");
 				} else{
 					System.out.println("No UserType found for this user!");
-					response.sendRedirect("webpages/login/Login.jsp");
+					response.sendRedirect("webpages/login/login.jsp");
 				}
 			} else{
-//				response.sendRedirect("webpages/login/Login.jsp");
-				response.getWriter().print("<script>location.replace(\"webpages/login/Login.jsp\");</script>");
+//				response.sendRedirect("webpages/login.jsp");
+				response.getWriter().print("<script>location.replace(\"webpages/login.jsp\");</script>");
 			}
 		} else{
-//			response.sendRedirect("webpages/login/Login.jsp"); //Redirect, or give alert?
-			response.getWriter().print("<script>location.replace(\"webpages/login/Login.jsp\");</script>");
+//			response.sendRedirect("webpages/login.jsp"); //Redirect, or give alert?
+			response.getWriter().print("<script>location.replace(\"webpages/login.jsp\");</script>");
 		}
 	}
 	
@@ -92,6 +92,6 @@ public class LoginServlet extends HttpServlet {
 			loginCookie.setMaxAge(0);
 			response.addCookie(loginCookie);
 		}
-		response.sendRedirect("webpages/login/Login.jsp");
+		response.sendRedirect("webpages/login.jsp");
 	}
 }

@@ -6,7 +6,7 @@
 	
 	<display-name>Group2</display-name>
 	<welcome-file-list>
-		<welcome-file>webpages/login/Login.jsp</welcome-file>
+		<welcome-file>webpages/login.jsp</welcome-file>
 	</welcome-file-list>
 	
 	<servlet>
