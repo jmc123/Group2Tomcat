@@ -11,14 +11,28 @@
 	
 	<servlet>
 		<description></description>
-		<display-name>IMSIServlet</display-name>
-		<servlet-name>IMSIServlet</servlet-name>
-		<servlet-class>main.IMSIServlet</servlet-class>
+		<display-name>CSRepServlet</display-name>
+		<servlet-name>CSRepServlet</servlet-name>
+		<servlet-class>queryServlets.CSRepServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<description></description>
+		<display-name>NMEServlet</display-name>
+		<servlet-name>NMEServlet</servlet-name>
+		<servlet-class>queryServlets.NMEServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<description></description>
+		<display-name>SEngServlet</display-name>
+		<servlet-name>SEngServlet</servlet-name>
+		<servlet-class>queryServlets.SEngServlet</servlet-class>
 	</servlet>
 	
 	 <servlet>
-        <servlet-name>JPAServlet</servlet-name>
-        <servlet-class>main.Driver</servlet-class>
+        <servlet-name>ImportServlet</servlet-name>
+        <servlet-class>main.ImportServlet</servlet-class>
     </servlet>
     
 	<servlet>
@@ -36,8 +50,8 @@
 	
 	
 	<servlet-mapping>
-        <servlet-name>JPAServlet</servlet-name>
-        <url-pattern>/Driver</url-pattern>
+        <servlet-name>ImportServlet</servlet-name>
+        <url-pattern>/ImportServlet</url-pattern>
     </servlet-mapping>
 	
 	<servlet-mapping>
@@ -51,8 +65,18 @@
 	</servlet-mapping>
 	
 	<servlet-mapping>
-		<servlet-name>IMSIServlet</servlet-name>
-		<url-pattern>/IMSIServlet</url-pattern>
+		<servlet-name>CSRepServlet</servlet-name>
+		<url-pattern>/CSRepServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>NMEServlet</servlet-name>
+		<url-pattern>/NMEServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>SEngServlet</servlet-name>
+		<url-pattern>/SEngServlet</url-pattern>
 	</servlet-mapping>
 	
 	<context-param>

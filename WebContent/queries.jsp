@@ -83,12 +83,13 @@ table.center {
 }
 </style>
 				<table class='center'>
-					<form method="get" name="query" action="IMSIServlet">
+					<form method="get" name="query" action="CSRepServlet">
 						<h3>Queries</h3>
 						<ul>
 							<li>
 								<p>Enter an IMSI and get back the Event ID and the Cause Code</p>
-								IMSI: <input type="text" name="IMSI" />
+								IMSI: <input type="text" id="query" name="query" value="EventCauseByIMSI" style="display: none" />
+									  <input type="text" name="IMSI" />
 									  <input type="submit" value="Query" />
 							</li>
 						</ul>

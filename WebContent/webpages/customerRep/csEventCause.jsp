@@ -6,10 +6,11 @@
 				<div class="col-md-9 text-center">
 					<h3 class="col-md-offset-2 col-md-7 text-center">Enter an IMSI for EventID and Cause Code</h3>
 					<br /><br /><br />
-					<form method="get" action="/JPASprint1/IMSIServlet" class="form-horizontal">
+					<form method="get" action="/JPASprint1/CSRepServlet" class="form-horizontal">
 						<div class="form-group">
 							<label for="imsi" class="col-md-4 control-label"></label>
 							<div class="col-md-4">
+								<input type="text" id="query" name="query" value="EventCauseByIMSI" style="display: none" />
 								<input type="text" class="form-control" id="IMSI" name="IMSI" placeholder="IMSI value" required />
 							</div>
 						</div>

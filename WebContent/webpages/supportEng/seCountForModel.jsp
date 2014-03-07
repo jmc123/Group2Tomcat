@@ -6,10 +6,11 @@
 				<div class="col-md-9 text-center">
 					<h3 class="col-md-offset-2 col-md-7 text-center">Enter model of phone for a count of call failures</h3>
 					<br /><br /><br />
-					<form method="get" action="" class="form-horizontal" role="form">
+					<form method="get" action="/JPASprint1/SEngServlet" class="form-horizontal" role="form">
 						<div class="form-group">
 							<label for="imsi" class="col-md-4 control-label">Phone Model:</label>
 							<div class="col-md-4">
+								<input type="text" id="query" name="query" value="CallFailuresByModel" style="display: none" />
 								<input type="text" class="form-control" id="imsi" name="imsi">
 							</div>
 						</div>

@@ -38,7 +38,7 @@ import configs.UETypeConfig;
  * Parses the file into the database.<br> 
  */
 @SuppressWarnings({"serial", "unchecked"})
-public class Driver extends HttpServlet {
+public class ImportServlet extends HttpServlet {
 
 	private static DecimalFormat dFormatter = new DecimalFormat("#,###,###");
 	private static Workbook excelData;
