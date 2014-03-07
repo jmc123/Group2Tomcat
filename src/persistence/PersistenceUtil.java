@@ -181,7 +181,7 @@ public class PersistenceUtil implements Serializable {
 	public static List<EventCause> findEventCauseByIMSI(long imsi){
 		EntityManager em = emf.createEntityManager();
 		List<EventCause> eventCauses = (List<EventCause>) em.createNamedQuery("ErrorEvent.EventCauseByIMSI")
-															.setParameter("IMSI", imsi).getResultList();
+															.setParameter("imsi", imsi).getResultList();
 		em.close();
 		
 		return eventCauses;

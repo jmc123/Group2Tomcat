@@ -15,7 +15,7 @@ import javax.persistence.NamedQuery;
 
 @NamedQueries( {
 	@NamedQuery(name = "ErrorEvent.EventCauseByIMSI",
-				query = "SELECT o.eventCause FROM ErrorEvent o WHERE IMSI=:IMSI GROUP BY o.eventCause"),
+				query = "SELECT o.eventCause FROM ErrorEvent o WHERE o.imsi=:imsi GROUP BY o.eventCause"),
 })
 
 @Entity

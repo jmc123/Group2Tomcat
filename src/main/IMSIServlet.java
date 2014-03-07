@@ -29,6 +29,9 @@ public class IMSIServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		List<EventCause> eventCauses = PersistenceUtil.findEventCauseByIMSI(imsi);
+		System.out.println(imsi);
+		System.out.println("Matching ECs: " + eventCauses.size());
+		
 		
 		out.print("<!DOCTYPE html><html><head>"
 				+ "<title>IMSI Query Result</title>"

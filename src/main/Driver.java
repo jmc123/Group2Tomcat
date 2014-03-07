@@ -110,7 +110,7 @@ public class Driver extends HttpServlet {
 				+ "</CENTER></BODY>"
 				+ "<DIV style=\"position: relative\""
 				+ "<p style=\"position: fixed; bottom: 0; width=100%; text-align: center\"></p>"
-				+ "<p><CENTER>Dataset imported in " + String.format("%.2f", (double) timeTakenInMillis/1000) +" seconds</CENTER?></p>"
+				+ "<p><CENTER>Dataset imported in " + String.format("%.2f", (double) timeTakenInMillis/1000) +" seconds</CENTER></p>"
 				+ "</DIV></CENTER></BODY></HTML>");
 			out.close();
 			
