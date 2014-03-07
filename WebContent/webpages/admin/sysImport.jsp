@@ -14,7 +14,7 @@
 		<div class="form-group">
 			<div class="col-md-offset-4 col-md-4">
 				<input type="file" value="Import" name="ImportFile"
-					accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+					accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required/>
 			</div>
 		</div>
 		<br />
