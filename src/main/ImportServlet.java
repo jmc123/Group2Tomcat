@@ -68,7 +68,6 @@ public class ImportServlet extends HttpServlet {
 					 +  "<BODY><CENTER>No file uploaded!</CENTER></BODY></HTML>");
 			return;
 		}
-		System.out.println("Is multi? " + isMultipart);
 		
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(maxMemSize);
@@ -78,14 +77,11 @@ public class ImportServlet extends HttpServlet {
 		upload.setSizeMax(maxFileSize);
 		File file = null;
 		
-		System.out.println("entering try");
 		try{
-			System.out.println("making fi list");
 			List<FileItem> fileItems = Lists.newArrayList(upload.parseRequest(request).iterator());
 			
 			out.println("<HTML><HEAD><TITLE>Excel Upload</TITLE></HEAD><BODY><CENTER>");
 			
-			System.out.println("making fi");
 			for(FileItem fi : fileItems){
 				if(!fi.isFormField()){
 					String fileName = fi.getName();
@@ -99,11 +95,9 @@ public class ImportServlet extends HttpServlet {
 					out.println("Uploaded File: <B>" + fileName + "</B><BR />");
 				}
 			}
-			System.out.println("loading file");
 			loadExcelFile(file.getAbsolutePath(), out);
 
 			PersistenceUtil.useLiveDatabase(true);
-			System.out.println("making db");
 			generateDatabase();
 			long timeTakenInMillis = (System.nanoTime()-startTime)/1000000;
 
