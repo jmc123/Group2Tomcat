@@ -106,7 +106,7 @@ public class ImportServlet extends HttpServlet {
 				+ "<br />"
 				+ dFormatter.format(ErrorEventConfig.invalidErrorEvents.size()) + " ErrorEvents removed due to inconsistencies."
 					+ " (Total: " + dFormatter.format(PersistenceUtil.numberOfInvalidErrorEvents()) + ")</p>"
-				+ "<p>Click <a href=\"queries.jsp\">here</a> to query the database.</p>"
+				+ "<p>Click <a href=\"webpages/admin/sysHome.jsp\">here</a> to return to your homepage.</p>"
 				+ "</CENTER></BODY>"
 				+ "<DIV style=\"position: relative\""
 				+ "<p style=\"position: fixed; bottom: 0; width=100%; text-align: center\"></p>"
@@ -115,7 +115,7 @@ public class ImportServlet extends HttpServlet {
 			out.close();
 			
 		} catch(Exception e){
-			out.println("<script>alert(\"Invalid file!\");window.location.replace(\"import.jsp\");</script>");
+			out.println("<script>alert(\"Invalid file!\");window.location.replace(\"webpages/admin/sysImport.jsp\");</script>");
 			return;
 		}
 	}
@@ -129,7 +129,7 @@ public class ImportServlet extends HttpServlet {
 			else if(fileExtension.equals("xlsx"))
 				excelData = new XSSFWorkbook(new FileInputStream(fileLocation));
 			else{
-				out.println("<script>alert(\"Invalid file type!\");window.location.replace(\"import.jsp\");</script>");
+				out.println("<script>alert(\"Invalid file type!\");window.location.replace(\"webpages/admin/sysImport.jsp\");</script>");
 			}
 			
 		} catch (IOException e) {

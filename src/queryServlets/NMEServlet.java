@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 public class NMEServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 //		String queryType = request.getParameter("query");
 		
 		//No queries for NME this sprint
