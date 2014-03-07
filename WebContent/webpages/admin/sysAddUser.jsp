@@ -6,7 +6,8 @@
 				<div class="col-md-9 text-center">
 					<h3 class="col-md-offset-4 col-md-7 text-left">Create User Role</h3>
 					<br /><br /><br />
-					<form method="POST" action="RegisterServlet" class="form-horizontal" role="form">
+					<form name="register" method="POST" action="/JPASprint1/RegisterServlet"
+							class="form-horizontal" onsubmit="return validatePasswordsMatch()">
 						<div class="form-group">
 							<label for="role" class="col-md-4 control-label">Role:</label>
 							<div class="col-md-4">
@@ -18,15 +19,21 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="userid" class="col-md-4 control-label">ID:</label>
+							<label for="userid" class="col-md-4 control-label"></label>
 							<div class="col-md-4">
-								<input type="text" class="form-control" id="userid" name="username">
+								<input type="text" class="form-control" id="userName" name="userName" placeholder="UserName" required />
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="pass" class="col-md-4 control-label">Password:</label>
+							<label for="pass" class="col-md-4 control-label"></label>
 							<div class="col-md-4">
-								<input type="password" class="form-control" id="pass" name="password">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Password" required />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="pass" class="col-md-4 control-label"></label>
+							<div class="col-md-4">
+								<input type="password" class="form-control" id="confirm" name="confirm" placeholder="Confirm Password" required />
 							</div>
 						</div>
 

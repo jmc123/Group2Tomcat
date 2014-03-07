@@ -28,7 +28,7 @@
 				<div class="col-md-9 text-center">
 					<h3 class="col-md-offset-3 col-md-6 text-center">Login</h3>
 					<br /><br /><br />
-					<form method="get" action="LoginServlet" class="form-horizontal" name="loginForm" onsubmit="return validateLogin();">
+					<form method="get" action="LoginServlet" class="form-horizontal" name="loginForm">
 						<div class="form-group">
 							<label for="id" class="col-md-4 control-label"></label>
 							<div class="col-md-4">

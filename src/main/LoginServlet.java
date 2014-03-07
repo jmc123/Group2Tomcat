@@ -54,12 +54,12 @@ public class LoginServlet extends HttpServlet {
 				} else if(userTypeId == NETWORK_MANAGEMENT_ENGINEER){
 					//Need page here - next sprint
 				} else if(userTypeId == SUPPORT_ENGINEER){
-					response.sendRedirect("webpages/admin/seHome.jsp");
+					response.sendRedirect("webpages/supportEng/seHome.jsp");
 				} else if(userTypeId == CUSTOMER_SERVICE_REP){
-					response.sendRedirect("webpages/admin/csHome.jsp");
+					response.sendRedirect("webpages/customerRep/csHome.jsp");
 				} else{
 					System.out.println("No UserType found for this user!");
-					response.sendRedirect("webpages/login/login.jsp");
+					response.sendRedirect("webpages/login.jsp");
 				}
 			} else{
 //				response.sendRedirect("webpages/login.jsp");

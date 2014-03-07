@@ -40,10 +40,13 @@ public class RegisterServlet extends HttpServlet {
 		
 		String userName = request.getParameter("userName");
 		String password = DigestUtils.sha1Hex(request.getParameter("password"));
-		int usertype = Integer.parseInt(request.getParameter("role"));
+		String input = request.getParameter("role");
+		int usertype = Integer.parseInt(input);
+		
+		System.out.println("UN: " + userName + ", PW: " + password + ", UT: " + usertype);
 		
 		PersistenceUtil.registerUser(userName, password,usertype);
 				
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("webpages/admin/sysHome.jsp");
 	}
 }	
