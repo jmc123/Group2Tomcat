@@ -10,7 +10,6 @@ import javax.persistence.Persistence;
 
 import compositeKeys.EventCauseComp;
 import compositeKeys.MCCMNCComp;
-
 import entity.EventCause;
 import entity.FailureClass;
 import entity.MCC_MNC;
@@ -165,6 +164,14 @@ public class PersistenceUtil implements Serializable {
 		em.persist(newUser);
 		em.getTransaction().commit();
 		em.close();
+	}
+	
+	public static List<String> findAllUserNames(){
+		EntityManager em = emf.createEntityManager();
+		List<String> users = (List<String>) em.createNamedQuery("User.findAllUserNames").getResultList();
+		em.close();
+		
+		return users;
 	}
 	
 	/**

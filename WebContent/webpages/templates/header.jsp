@@ -7,6 +7,7 @@
 		<link href="../../css/styles.css" rel="stylesheet">
 		<script src="../../js/jquery.min.js"></script>
 		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/validation.js"></script>
 
 	</head>
 	<body>
@@ -21,8 +22,7 @@
 				</div>
 				<div class="col-md-2" id="marginbt">
 				
-					<form method="POST" name="logout" action="LoginServlet">
-					
+					<form method="POST" name="logout" action="/JPASprint1/LoginServlet">
 						<button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-log-out"></span>Logout</button>
 					</form>
 				</div>

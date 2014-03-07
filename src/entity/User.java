@@ -15,6 +15,8 @@ import persistence.PersistenceUtil;
 @NamedQueries( {
 	@NamedQuery(name="User.findPasswordAndUserTypeByUsername",
 				query="SELECT o.userPassword, o.userType FROM User o WHERE o.userName =:userName"),
+	@NamedQuery(name="User.findAllUserNames",
+				query="SELECT o.userName FROM User o"),
 })
 
 @Entity
