@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
@@ -43,7 +44,7 @@ public class ImportServlet extends HttpServlet {
 	private static DecimalFormat dFormatter = new DecimalFormat("#,###,###");
 	private static Workbook excelData;
 	private String filePath;
-	private int maxFileSize = 10*200*1024;
+	private int maxFileSize = 100*200*1024;
 	private int maxMemSize = 4*1024;
 	
 	/**
@@ -67,6 +68,7 @@ public class ImportServlet extends HttpServlet {
 					 +  "<BODY><CENTER>No file uploaded!</CENTER></BODY></HTML>");
 			return;
 		}
+		System.out.println("Is multi? " + isMultipart);
 		
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(maxMemSize);
@@ -76,11 +78,14 @@ public class ImportServlet extends HttpServlet {
 		upload.setSizeMax(maxFileSize);
 		File file = null;
 		
-		try{			
+		System.out.println("entering try");
+		try{
+			System.out.println("making fi list");
 			List<FileItem> fileItems = Lists.newArrayList(upload.parseRequest(request).iterator());
 			
 			out.println("<HTML><HEAD><TITLE>Excel Upload</TITLE></HEAD><BODY><CENTER>");
 			
+			System.out.println("making fi");
 			for(FileItem fi : fileItems){
 				if(!fi.isFormField()){
 					String fileName = fi.getName();
@@ -94,9 +99,11 @@ public class ImportServlet extends HttpServlet {
 					out.println("Uploaded File: <B>" + fileName + "</B><BR />");
 				}
 			}
+			System.out.println("loading file");
 			loadExcelFile(file.getAbsolutePath(), out);
 
 			PersistenceUtil.useLiveDatabase(true);
+			System.out.println("making db");
 			generateDatabase();
 			long timeTakenInMillis = (System.nanoTime()-startTime)/1000000;
 
@@ -114,8 +121,11 @@ public class ImportServlet extends HttpServlet {
 				+ "</DIV></CENTER></BODY></HTML>");
 			out.close();
 			
-		} catch(Exception e){
-			out.println("<script>alert(\"Invalid file!\");window.location.replace(\"webpages/admin/sysImport.jsp\");</script>");
+		} catch(FileUploadException e){
+			out.println("<script>alert(\"File to large!\");window.location.replace(\"webpages/admin/sysImport.jsp\");</script>");
+			return;
+		} catch (Exception e) {
+			out.println("<script>alert(\"File not saving correctly!\");window.location.replace(\"webpages/admin/sysImport.jsp\");</script>");
 			return;
 		}
 	}
