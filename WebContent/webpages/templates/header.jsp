@@ -1,3 +1,7 @@
+ <%@ page import ="java.util.*" %>
+ <%@ page import ="entity.*" %>
+   <%@ page import ="persistence.*" %>
+   <%@ page import="javax.servlet.*, javax.servlet.http.*" %>
 <!DOCTYPE>
 <html>
 	<head>
@@ -11,14 +15,23 @@
 
 	</head>
 	<body>
-	
+	<%
+	String userName = null;
+	Cookie [] cookies = request.getCookies();
+	for(Cookie cookie : cookies){
+		userName = cookie.getValue();
+	} %>
 		<div class="container" id="main">
 			<div class="row">
 				<div class="col-md-3 text-center">
 					<img src="../../images/logo.jpg" height="100" width="100" id="logo">
 				</div>
 				<div class="col-md-7" id="margintext">
-					<p class="text-right center"><span class="glyphicon glyphicon-user"></span> Logged in as <a href="#" class="navbar-link">${user.userType}</a></p><!-- get from session -->
+					<% List<Object[]> userDetails = PersistenceUtil.findPasswordAndUserTypeByUsername(userName);
+					String userType = ((UserType) userDetails.get(0)[1]).getDesc();
+						
+					%>
+					<p class="text-right center"><span class="glyphicon glyphicon-user"></span> Logged in as <strong><%= userType %></strong></p><!-- get from session -->
 				</div>
 				<div class="col-md-2" id="marginbt">
 				
