@@ -56,11 +56,3 @@
 				</div>
 				
 <jsp:include page="../templates/footer.jsp" />
-
-<%-- 
-<% User u = PersistenceUtil.findUserByName(userName); 
-List<ToDo> list= u.getTodos();%>
-<div class="col-sm-offset-4 col-md-6"><ol><%for(ToDo g : list){%>
-<li>
-<%=g.getDescription()%></li><%} %>
-</ol> </div> --%>
