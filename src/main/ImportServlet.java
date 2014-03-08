@@ -69,6 +69,7 @@ public class ImportServlet extends HttpServlet {
 			return;
 		}
 		
+		createTempFolders();
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(maxMemSize);
 		factory.setRepository(new File("C:\\tmp"));
@@ -116,12 +117,28 @@ public class ImportServlet extends HttpServlet {
 			out.close();
 			
 		} catch(FileUploadException e){
-			out.println("<script>alert(\"File to large!\");window.location.replace(\"webpages/admin/sysImport.jsp\");</script>");
+			out.println("<script>alert(\"File too large!\");window.location.replace(\"webpages/admin/sysImport.jsp\");</script>");
 			return;
 		} catch (Exception e) {
 			out.println("<script>alert(\"File not saving correctly!\");window.location.replace(\"webpages/admin/sysImport.jsp\");</script>");
 			return;
 		}
+	}
+	
+	private static void createTempFolders(){
+		File tmp = new File("C:\\tmp");
+		File tmpFinal = new File("C:\\tmpFinal");
+		
+		if(!tmp.exists()){
+			makeFolder(tmp);
+		}
+		if(!tmpFinal.exists()){
+			makeFolder(tmpFinal);
+		}
+	}
+	
+	private static void makeFolder(File folderName){
+		folderName.mkdir();
 	}
 
 	private static void loadExcelFile(String fileLocation, PrintWriter out) {
