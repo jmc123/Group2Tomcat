@@ -2,6 +2,7 @@ package persistence;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -195,5 +196,26 @@ public class PersistenceUtil implements Serializable {
 		em.close();
 		
 		return userDetails;
+	}
+	
+	public static List<Object[]> findNumberOfFailuresAndDuration(long imsi, Date fromDate, Date toDate){
+		EntityManager em = emf.createEntityManager();
+		
+		List<Object[]> queryDetails = (List<Object[]>) em.createNamedQuery("ErrorEvent.NumOfFailuresAndDuration")
+				.setParameter("imsi", imsi).setParameter("fromDate",fromDate).setParameter("toDate",toDate).getResultList();
+		em.close();
+		
+		return queryDetails;
+	}
+	
+	public static String returnDate(String dataParam){
+		char[] charOfDate = dataParam.toCharArray();
+		
+		StringBuffer sqlDate = new StringBuffer();
+		for(int i=0; i<10; i++){
+			sqlDate.append(charOfDate[i]);
+		}
+		sqlDate.append(" " + charOfDate[11] + charOfDate[12] + ":" + charOfDate[14] + charOfDate[15] + ":00");
+		return sqlDate.toString();
 	}
 }
