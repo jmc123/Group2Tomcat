@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 				if(userTypeId == SYSTEM_ADMINISTRATOR){
 					response.sendRedirect("webpages/admin/sysHome.jsp");
 				} else if(userTypeId == NETWORK_MANAGEMENT_ENGINEER){
-					//Need page here - next sprint
+					response.sendRedirect("webpages/networkManEng/nmeHome.jsp");
 				} else if(userTypeId == SUPPORT_ENGINEER){
 					response.sendRedirect("webpages/supportEng/seHome.jsp");
 				} else if(userTypeId == CUSTOMER_SERVICE_REP){
