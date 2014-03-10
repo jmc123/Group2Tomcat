@@ -15,8 +15,11 @@ import javax.persistence.NamedQuery;
 
 @NamedQueries( {
 	@NamedQuery(name = "ErrorEvent.EventCauseByIMSI",
-				query = "SELECT o.eventCause FROM ErrorEvent o WHERE o.imsi=:imsi GROUP BY o.eventCause"),
+			query = "SELECT o.eventCause FROM ErrorEvent o WHERE o.imsi=:imsi GROUP BY o.eventCause"),
+//			@NamedQuery(name = "ErrorEvent.CountFailureByIMSI",
+//			query = "SELECT count(*) FROM errorevent o WHERE o.IMSI=:imsi and (o.Date between form =:fromDate and to =:toDate)")
 })
+
 
 @Entity
 public class ErrorEvent {
@@ -56,13 +59,13 @@ public class ErrorEvent {
 	private long hier32_id;
 	@Column(name="HIER321_ID")
 	private long hier321_id;
-	
+
 	public ErrorEvent(){
-			
+
 	}
-	
+
 	public ErrorEvent(Date date, EventCause eventCause, FailureClass failureClass, UEType ueType, MCC_MNC mcc_mnc, int cellId,
-						int duration, String neVersion, long imsi, long hier3_id, long hier32_id, long hier321_id){
+			int duration, String neVersion, long imsi, long hier3_id, long hier32_id, long hier321_id){
 		super();
 		this.date = date;
 		this.eventCause = eventCause;
@@ -77,7 +80,7 @@ public class ErrorEvent {
 		this.hier32_id = hier32_id;
 		this.hier321_id = hier321_id;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -187,10 +190,10 @@ public class ErrorEvent {
 			System.out.println("No ErrorEvent found!");
 		else{
 			System.out.println("Date: " + date + "\tEvent ID: " + eventCause.getEventId() + "\t\tFailure Class: " + failureClass.getFailureClass() + 
-							   "\nUE Type: " + ueType.getTac() + "\t\tMarket: " + mcc_mnc.getMcc() + //"\t\tOperator: " + operator.getMnc() + 
-							   "\nCell ID: " + cellId + "\t\t\tDuration: " + duration + //"\t\tCause Code: " + causeCode.getCauseCode() + 
-							   "\nNE Version: " + neVersion + "\t\t\tIMSI: " + imsi + "\tHIER3_ID: " + hier3_id + 
-							   "\nHIER32_ID: " + hier32_id + "\tHIER321_ID: " + hier321_id);
+					"\nUE Type: " + ueType.getTac() + "\t\tMarket: " + mcc_mnc.getMcc() + //"\t\tOperator: " + operator.getMnc() + 
+					"\nCell ID: " + cellId + "\t\t\tDuration: " + duration + //"\t\tCause Code: " + causeCode.getCauseCode() + 
+					"\nNE Version: " + neVersion + "\t\t\tIMSI: " + imsi + "\tHIER3_ID: " + hier3_id + 
+					"\nHIER32_ID: " + hier32_id + "\tHIER321_ID: " + hier321_id);
 		}
 	}
 }

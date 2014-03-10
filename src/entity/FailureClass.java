@@ -5,12 +5,15 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 //@NamedQueries( {
 //	@NamedQuery(name = "FailureClass.findAll", query = "SELECT o FROM FailureClass o"),
 //	@NamedQuery(name = "FailureClass.findFailureClassByFailureClass", query = "SELECT o FROM FailureClass o WHERE o.failureClass=:failureClass"),
 //})
+//
+
 
 @Entity
 public class FailureClass {
