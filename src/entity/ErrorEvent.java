@@ -15,9 +15,9 @@ import javax.persistence.NamedQuery;
 
 @NamedQueries( {
 	@NamedQuery(name = "ErrorEvent.EventCauseByIMSI",
-			query = "SELECT o.eventCause FROM ErrorEvent o WHERE o.imsi=:imsi GROUP BY o.eventCause"),
-//			@NamedQuery(name = "ErrorEvent.CountFailureByIMSI",
-//			query = "SELECT count(*) FROM errorevent o WHERE o.IMSI=:imsi and (o.Date between form =:fromDate and to =:toDate)")
+				query = "SELECT o.eventCause FROM ErrorEvent o WHERE o.imsi=:imsi GROUP BY o.eventCause"),
+	@NamedQuery(name = "ErrorEvent.NumOfFailuresAndDuration",
+				query= "SELECT COUNT(o),SUM(o.duration) FROM ErrorEvent o WHERE o.imsi=:imsi and o.date>=:fromDate and o.date<=:toDate"),
 })
 
 

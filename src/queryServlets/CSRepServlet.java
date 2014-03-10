@@ -84,59 +84,66 @@ public class CSRepServlet extends HttpServlet {
 		long startTime = System.nanoTime();
 		PrintWriter out = response.getWriter();
 
-		try {
-			String imsi = request.getParameter("IMSI");
 
-			
-			String fromDate = request.getParameter("imsifrom");
-			String toDate = request.getParameter("imsito");
-
-			fromDate = modifyDateLayout(fromDate);
-			
-			toDate = modifyDateLayout(toDate);
-			
-
-			List<String> counts = PersistenceUtil.findNumOfFailuresByImsi(imsi, fromDate, toDate);
+		long imsi = Long.parseLong(request.getParameter("imsi"));
 
 
-			/**
-			 * TODO Update the info for the query (as confirmation to the user)
-			 */
-			out.print("<!DOCTYPE html><html><head>"
-					+ "<title>Number of Failures for : "+imsi+"</title>"
-					+ "<center><b><font face=\"verdana\" color=\"red\" size=\"5\">"
-					+ "Number of failures between "+fromDate+" and "+toDate+"<br>"
-					+ "</font></b></center>"
-					+ "</head>");
+		String fromDate = request.getParameter("imsifrom");
+		String toDate = request.getParameter("imsito");
 
-			/**
-			 * TODO Table headers, added manually
-			 */
-			out.print("<body><center><br />"
-					+ "<table cellpadding=\"5\" border=\"1\">"
-					+ "<tr>"
-					+ "<td><b>Num of Failures</b></td>"
-					+ "</tr>");
+		String fromdate = PersistenceUtil.returnDate(request.getParameter("imsifrom"));
+		String todate = PersistenceUtil.returnDate(request.getParameter("imsito"));
 
-			/**
-			 * TODO Print out the results from your List<> called above
-			 */
-		
-				out.print("<tr>"
-						+ "<td>" + counts.get(0).toString()+ "</td>"
-						+ "</tr>");
-			
+		SimpleDateFormat currentParsed = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-			long timeTakenInNanos = System.nanoTime()-startTime;
-			out.print("</table>"
-					+ String.format("<p>Query executed in %.2f ms<p>", (double) timeTakenInNanos/1000000)
-					+ "</center></body></html>");
+		Date fdate = null, tdate = null;
+		try{
+			fdate = currentParsed.parse(fromdate);
+			tdate = currentParsed.parse(todate);
+		}catch (ParseException e){
 
-			out.close();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+		List<Object[]> queryDetails = PersistenceUtil.findNumberOfFailures(imsi, fdate, tdate);
+			
+		
+		//Long count = ((Long) counts.get(0)[0]).longValue();
+
+
+		/**
+		 * TODO Update the info for the query (as confirmation to the user)
+		 */
+		out.print("<!DOCTYPE html><html><head>"
+				+ "<title>Number of Failures for : "+imsi+"</title>"
+				+ "<center><b><font face=\"verdana\" color=\"red\" size=\"5\">"
+				+ "Number of failures between "+fromDate+" and "+toDate+"<br>"
+				+ "</font></b></center>"
+				+ "</head>");
+
+		/**
+		 * TODO Table headers, added manually
+		 */
+		out.print("<body><center><br />"
+				+ "<table cellpadding=\"5\" border=\"1\">"
+				+ "<tr>"
+				+ "<td><b>Num of Failures</b></td>"
+				+ "</tr>");
+
+		/**
+		 * TODO Print out the results from your List<> called above
+		 */
+
+		out.print("<tr>"
+				+ "<td>" + queryDetails.get(0)[0] + "</td>"
+				+ "</tr>");
+
+
+		long timeTakenInNanos = System.nanoTime()-startTime;
+		out.print("</table>"
+				+ String.format("<p>Query executed in %.2f ms<p>", (double) timeTakenInNanos/1000000)
+				+ "</center></body></html>");
+
+		out.close();
+
 	}
 
 	/**
@@ -193,9 +200,6 @@ public class CSRepServlet extends HttpServlet {
 
 		out.close();
 	}
-	
-	private String modifyDateLayout(String inputDate) throws ParseException{
-	    Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z").parse(inputDate);
-	    return new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(date);
-	}
+
+
 }

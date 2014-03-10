@@ -1,3 +1,7 @@
+  <%@ page import ="java.util.*" %>
+  <%@ page import ="java.text.*" %>
+ <%@ page import ="entity.*" %>
+   <%@ page import ="persistence.*" %>
 <jsp:include page="../templates/header.jsp" />
 <jsp:include page="../templates/nmeNav.jsp" />
 
@@ -34,6 +38,42 @@
 							</div>
 						</div>
 					</form>
+					<% 
+					if(request.getParameter("imsi") != null){
+						long startTime = System.nanoTime();
+						long imsi = Long.parseLong(request.getParameter("imsi"));
+						String fromdate = PersistenceUtil.returnDate(request.getParameter("imsifrom"));
+						String todate = PersistenceUtil.returnDate(request.getParameter("imsito"));
+						SimpleDateFormat currentParsed = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						Date fdate = null, tdate = null;
+						try{
+							fdate = currentParsed.parse(fromdate);
+							tdate = currentParsed.parse(todate);
+						}catch (ParseException e){
+							
+						}
+						List<Object[]> queryDetails = PersistenceUtil.findNumberOfFailuresAndDuration(imsi, fdate, tdate);
+					%>
+					<div class="col-md-offset-2 col-md-7">
+						<h3 class="text-center">The Number of Failures and Duration for <br />IMSI:<%= imsi %></h3>
+						<table class=" table table-striped table-bordered">
+							<tr>
+								<th class="text-center">Number Of Failures </th>
+								<th class="text-center">Duration in Milliseconds</th>
+							</tr>
+							<tr>
+								<td class="text-center"><%= queryDetails.get(0)[0]  %></td>
+								<td class="text-center"><%= queryDetails.get(0)[1] %></td>
+							</tr>
+							<%
+							long timeTakenInNanos = System.nanoTime()-startTime;
+							String timeTaken = String.format("<p>Query executed in %.2f ms<p>", (double) timeTakenInNanos/1000000);
+							%>
+							
+						</table>
+						<h3 class="text-center"><%=timeTaken %></h3>
+					</div>
+					<%} %>
 				</div>
 				
 <jsp:include page="../templates/footer.jsp" />
