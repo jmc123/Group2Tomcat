@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import persistence.PersistenceUtil;
 
 @Entity
-public class UserType {
+public class UserType implements DatasetEntity{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID")
@@ -30,7 +30,7 @@ public class UserType {
 	}
 	
 	public static void createTypes(){
-		List<Object> userTypes = new ArrayList<>();
+		List<DatasetEntity> userTypes = new ArrayList<>();
 		
 		userTypes.add(new UserType("System Administrator"));
 		userTypes.add(new UserType("Network Management Engineer"));
@@ -54,5 +54,10 @@ public class UserType {
 
 	public void setDesc(String desc) {
 		this.desc = desc;
+	}
+
+	@Override
+	public Object getPrimaryKey() {
+		return id;
 	}
 }

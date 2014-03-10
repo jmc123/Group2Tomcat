@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 //})
 
 @Entity
-public class UEType {
+public class UEType implements DatasetEntity{
 	@Id
 	@Column(name="TAC")
 	private int tac;
@@ -143,5 +143,10 @@ public class UEType {
 							   "\nModel: " + model + ", Vendor Name: " + vName + ", UE Type: " + ueType + 
 							   "\nOS: " + os + ", Input Mode: " + inputMode);
 		}
+	}
+
+	@Override
+	public Object getPrimaryKey() {
+		return tac;
 	}
 }

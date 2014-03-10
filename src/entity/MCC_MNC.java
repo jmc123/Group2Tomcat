@@ -17,7 +17,7 @@ import compositeKeys.MCCMNCComp;
 })
 
 @Entity
-public class MCC_MNC {
+public class MCC_MNC implements DatasetEntity{
 	@EmbeddedId
 	@Column(name="MCC_MNC_ID")
 	private MCCMNCComp id;
@@ -87,5 +87,10 @@ public class MCC_MNC {
 							   "\tMNC: " + id.getMnc() +
 							   "\nCountry: " + country +
 							   "\tOperator: " + operator);
+	}
+
+	@Override
+	public Object getPrimaryKey() {
+		return id;
 	}
 }

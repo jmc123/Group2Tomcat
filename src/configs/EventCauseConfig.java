@@ -12,12 +12,13 @@ import persistence.PersistenceUtil;
 
 import com.google.common.collect.Lists;
 
+import entity.DatasetEntity;
 import entity.EventCause;
 
 public class EventCauseConfig {
-	private static List<Object> eventCauses;
+	private static List<DatasetEntity> eventCauses;
 	
-	public static List<Object> parseExcelData(Sheet excelSheet){
+	public static List<DatasetEntity> parseExcelData(Sheet excelSheet){
 		eventCauses = new ArrayList<>();
 		Iterator<Row> rowIterator = excelSheet.iterator();
         List<Row> rowList = Lists.newArrayList(rowIterator);
@@ -27,8 +28,8 @@ public class EventCauseConfig {
         	parseCells(cellIterator);
         }
 		
-		addObjectsToDb();
-		System.out.println(eventCauses.size() + " EventCauses added to database.");
+		int objectsPersisted = PersistenceUtil.persistMany(eventCauses);
+		System.out.println(objectsPersisted + " EventCauses added to database.");
 		return eventCauses;
 	}
 	
@@ -46,10 +47,6 @@ public class EventCauseConfig {
 	
 	private static void createEventCause(int causeCode, int eventId, String desc){
 		eventCauses.add(new EventCause(causeCode, eventId, desc));
-	}
-	
-	private static void addObjectsToDb(){
-		PersistenceUtil.persistMany(eventCauses);
 	}
 	
 	public static int numberOfEventCauses(){

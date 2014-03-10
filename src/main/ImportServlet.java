@@ -30,6 +30,7 @@ import configs.EventCauseConfig;
 import configs.FailureClassConfig;
 import configs.MCC_MNCConfig;
 import configs.UETypeConfig;
+import entity.DatasetEntity;
 
 /**
  * @author Group2<br>
@@ -160,10 +161,10 @@ public class ImportServlet extends HttpServlet {
 	}
 
 	private static void generateDatabase() {
-		List<Object> eventCauses = EventCauseConfig.parseExcelData(excelData.getSheetAt(1));
-		List<Object> failureClasses = FailureClassConfig.parseExcelData(excelData.getSheetAt(2));
-		List<Object> ueTypes = UETypeConfig.parseExcelData(excelData.getSheetAt(3));
-		List<Object> mcc_mncs = MCC_MNCConfig.parseExcelData(excelData .getSheetAt(4));
+		List<DatasetEntity> failureClasses = FailureClassConfig.parseExcelData(excelData.getSheetAt(2));
+		List<DatasetEntity> eventCauses = EventCauseConfig.parseExcelData(excelData.getSheetAt(1));
+		List<DatasetEntity> ueTypes = UETypeConfig.parseExcelData(excelData.getSheetAt(3));
+		List<DatasetEntity> mcc_mncs = MCC_MNCConfig.parseExcelData(excelData .getSheetAt(4));
 		ErrorEventConfig.parseExcelData(excelData.getSheetAt(0), eventCauses, failureClasses, mcc_mncs, ueTypes);
 	}
 }

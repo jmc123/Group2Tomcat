@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 //@NamedQueries( {
@@ -16,7 +15,7 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class FailureClass {
+public class FailureClass implements DatasetEntity{
 	@Id
 	@Column(name="Failure_Class")
 	private int failureClass;
@@ -64,5 +63,10 @@ public class FailureClass {
 		else{
 			System.out.println("Failure Class: " + failureClass + "\nDescription: " + desc);
 		}
+	}
+
+	@Override
+	public Object getPrimaryKey() {
+		return failureClass;
 	}
 }

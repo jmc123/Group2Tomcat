@@ -15,6 +15,7 @@ import persistence.PersistenceUtil;
 
 import com.google.common.collect.Lists;
 
+import entity.DatasetEntity;
 import entity.ErrorEvent;
 import entity.EventCause;
 import entity.FailureClass;
@@ -23,19 +24,18 @@ import entity.MCC_MNC;
 import entity.UEType;
 
 public class ErrorEventConfig {
-	public static List<Object> errorEvents;
-	public static List<Object> invalidErrorEvents;
-	private static List<Object> mcc_mncs;
-	private static List<Object> eventCauses;
-	private static List<Object> failureClasses;
-	private static List<Object> ueTypes;
-	private static DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyy HH:mm:ss");
-	
+	public static List<DatasetEntity> errorEvents;
+	public static List<DatasetEntity> invalidErrorEvents;
+	private static List<DatasetEntity> mcc_mncs;
+	private static List<DatasetEntity> eventCauses;
+	private static List<DatasetEntity> failureClasses;
+	private static List<DatasetEntity> ueTypes;
+	private static DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-	public static void parseExcelData(Sheet excelSheet, List<Object> eventCausesInput,
-															List<Object> failureClassesInput,
-															List<Object> mcc_mncsInput,
-															List<Object> ueTypesInput){
+	public static void parseExcelData(Sheet excelSheet, List<DatasetEntity> eventCausesInput,
+															List<DatasetEntity> failureClassesInput,
+															List<DatasetEntity> mcc_mncsInput,
+															List<DatasetEntity> ueTypesInput){
 		errorEvents = new ArrayList<>();
 		invalidErrorEvents = new ArrayList<>();
 		eventCauses = eventCausesInput;
@@ -45,12 +45,12 @@ public class ErrorEventConfig {
         Iterator<Row> rowIterator = excelSheet.iterator();
         List<Row> rowList = Lists.newArrayList(rowIterator);
         
-        for(int i = 1; i < rowList.size(); i++){ //Start at 1 to skip column names
+        for(int i = 1; i < rowList.size(); i++){
             Iterator<Cell> cellIterator = rowList.get(i).cellIterator();
             parseCells(cellIterator);	
         } 
 		
-		addObjectsToDb();
+		addErrorEventsToDb();
 		System.out.println(errorEvents.size() + " ErrorEvents added to database.");
 		System.out.println(invalidErrorEvents.size() + " ErrorEvents removed due to inconsistencies."); //Break down inconsistencies into eventId/causeCode/date/MCC?
 	}
@@ -256,9 +256,9 @@ public class ErrorEventConfig {
 					   								 neVersion, imsi, hier3_id, hier32_id, hier321_id));
 	}
 	
-	private static void addObjectsToDb(){
-		PersistenceUtil.persistMany(errorEvents);
-		PersistenceUtil.persistMany(invalidErrorEvents);
+	private static void addErrorEventsToDb(){
+		PersistenceUtil.persistManyFailures(errorEvents);
+		PersistenceUtil.persistManyFailures(invalidErrorEvents);
 	}
 	
 	public static int numberOfErrorEvents(){

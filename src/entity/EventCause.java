@@ -17,7 +17,7 @@ import compositeKeys.EventCauseComp;
 })
 
 @Entity
-public class EventCause {
+public class EventCause implements DatasetEntity{
 	@EmbeddedId
 	@Column(name="Event-Cause_ID")
 	private EventCauseComp id;
@@ -76,5 +76,9 @@ public class EventCause {
 							   "\nDescription: " + desc);
 		}
 	}
-}
 
+	@Override
+	public Object getPrimaryKey() {
+		return id;
+	}
+}

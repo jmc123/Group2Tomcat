@@ -12,12 +12,13 @@ import persistence.PersistenceUtil;
 
 import com.google.common.collect.Lists;
 
+import entity.DatasetEntity;
 import entity.MCC_MNC;
 
 public class MCC_MNCConfig {
-	private static List<Object> mcc_mncs;
+	private static List<DatasetEntity> mcc_mncs;
 	
-	public static List<Object> parseExcelData(Sheet excelSheet){
+	public static List<DatasetEntity> parseExcelData(Sheet excelSheet){
 		mcc_mncs = new ArrayList<>();
         Iterator<Row> rowIterator = excelSheet.iterator();
         List<Row> rowList = Lists.newArrayList(rowIterator);
@@ -27,8 +28,8 @@ public class MCC_MNCConfig {
             parseCells(cellIterator);
         }
 		
-		addObjectsToDb();
-		System.out.println(mcc_mncs.size() + " MCC_MNCs added to database.");
+        int objectsPersisted = PersistenceUtil.persistMany(mcc_mncs);;
+		System.out.println(objectsPersisted + " MCC_MNCs added to database.");
 		return mcc_mncs;
 	}
 
@@ -48,10 +49,6 @@ public class MCC_MNCConfig {
 	
 	private static void createMCC_MNC(int mcc, int mnc, String country, String operator){
 		mcc_mncs.add(new MCC_MNC(mcc, mnc, country, operator));
-	}
-	
-	private static void addObjectsToDb(){
-		PersistenceUtil.persistMany(mcc_mncs);
 	}
 
 	public static int numberOfMCC_MNCs() {

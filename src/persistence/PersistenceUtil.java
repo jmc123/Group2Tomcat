@@ -8,10 +8,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 import compositeKeys.EventCauseComp;
 import compositeKeys.MCCMNCComp;
+
+import entity.DatasetEntity;
 import entity.EventCause;
 import entity.FailureClass;
 import entity.MCC_MNC;
@@ -37,16 +38,30 @@ public class PersistenceUtil implements Serializable {
 		em.close();
 	}
 
-	/** 
-	 * Persists a List of objects in the database. Only requires one connection/transaction.
-	 * 
-	 * @param entities	List of objects to be stored in the database
-	 */
-	public static void persistMany(List<Object> entities){
+	public static int persistMany(List<DatasetEntity> entities){
 		EntityManager em = emf.createEntityManager();
+		int count = 0;
+		
+		for(DatasetEntity entity : entities){
+			Object primaryKey = em.find(entity.getClass(), entity.getPrimaryKey());
+			
+			if(primaryKey == null){
+				em.getTransaction().begin();
+				em.persist(entity);
+				em.getTransaction().commit();
+				count++;
+			}
+		}
+		em.close();
+		return count;
+	}
+	
+	public static void persistManyFailures(List<DatasetEntity> entities){
+		EntityManager em = emf.createEntityManager();
+		
 		em.getTransaction().begin();
-		for(Object e : entities){
-			em.persist(e);
+		for(DatasetEntity entity : entities){
+			em.persist(entity);
 		}
 		em.getTransaction().commit();
 		em.close();

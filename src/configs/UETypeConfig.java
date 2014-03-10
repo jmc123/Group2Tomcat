@@ -12,12 +12,13 @@ import persistence.PersistenceUtil;
 
 import com.google.common.collect.Lists;
 
+import entity.DatasetEntity;
 import entity.UEType;
 
 public class UETypeConfig {
-	private static List<Object> ueTypes;
+	private static List<DatasetEntity> ueTypes;
 	
-	public static List<Object> parseExcelData(Sheet excelSheet){
+	public static List<DatasetEntity> parseExcelData(Sheet excelSheet){
 		ueTypes = new ArrayList<>();
 		Iterator<Row> rowIterator = excelSheet.iterator();
         List<Row> rowList = Lists.newArrayList(rowIterator);
@@ -27,8 +28,8 @@ public class UETypeConfig {
             parseCells(cellIterator);
         }
 		
-		addObjectsToDb();
-		System.out.println(ueTypes.size() + " UETypes added to database.");
+        int objectsPersisted = PersistenceUtil.persistMany(ueTypes);
+		System.out.println(objectsPersisted + " UETypes added to database.");
 		return ueTypes;
 	}
 
@@ -81,10 +82,6 @@ public class UETypeConfig {
 	private static void createUEType(int tac, String mName, String manu, String access, String model, String vName,
 									 String ueType, String os, String inputMode){
 		ueTypes.add(new UEType(tac, mName, manu, access, model, vName, ueType, os, inputMode));
-	}
-	
-	private static void addObjectsToDb(){
-		PersistenceUtil.persistMany(ueTypes);
 	}
 
 	public static int numberOfUETypes() {

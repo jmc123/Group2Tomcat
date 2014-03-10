@@ -14,7 +14,7 @@ import javax.persistence.Id;
 //})
 
 @Entity
-public class InvalidErrorEvent {
+public class InvalidErrorEvent implements DatasetEntity{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID")
@@ -82,5 +82,9 @@ public class InvalidErrorEvent {
 							   "\nHIER32_ID: " + hier32_id + "\tHIER321_ID: " + hier321_id);
 		}
 	}
-	
+
+	@Override
+	public Object getPrimaryKey() {
+		return id;
+	}
 }

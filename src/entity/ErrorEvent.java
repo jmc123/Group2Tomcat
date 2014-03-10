@@ -22,7 +22,7 @@ import javax.persistence.NamedQuery;
 
 
 @Entity
-public class ErrorEvent {
+public class ErrorEvent implements DatasetEntity{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID")
@@ -195,5 +195,10 @@ public class ErrorEvent {
 					"\nNE Version: " + neVersion + "\t\t\tIMSI: " + imsi + "\tHIER3_ID: " + hier3_id + 
 					"\nHIER32_ID: " + hier32_id + "\tHIER321_ID: " + hier321_id);
 		}
+	}
+
+	@Override
+	public Object getPrimaryKey() {
+		return id;
 	}
 }

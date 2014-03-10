@@ -12,12 +12,13 @@ import persistence.PersistenceUtil;
 
 import com.google.common.collect.Lists;
 
+import entity.DatasetEntity;
 import entity.FailureClass;
 
 public class FailureClassConfig {
-	private static List<Object> failureClasses;
+	private static List<DatasetEntity> failureClasses;
 	
-	public static List<Object> parseExcelData(Sheet excelSheet){	
+	public static List<DatasetEntity> parseExcelData(Sheet excelSheet){	
 		failureClasses = new ArrayList<>();
 		Iterator<Row> rowIterator = excelSheet.iterator();
         List<Row> rowList = Lists.newArrayList(rowIterator);
@@ -27,8 +28,8 @@ public class FailureClassConfig {
         	parseCells(cellIterator);
         }
 		
-		addObjectsToDb();
-		System.out.println(failureClasses.size() + " FailureClasses added to database.");
+		int objectsPersisted = PersistenceUtil.persistMany(failureClasses);
+		System.out.println(objectsPersisted + " FailureClasses added to database.");
 		return failureClasses;
 	}
 
@@ -44,10 +45,6 @@ public class FailureClassConfig {
 	
 	private static void createFailureClass(int failureClass, String desc){
 		failureClasses.add(new FailureClass(failureClass, desc));
-	}
-	
-	private static void addObjectsToDb(){
-		PersistenceUtil.persistMany(failureClasses);
 	}
 
 	public static int numberOfFailureClasses() {

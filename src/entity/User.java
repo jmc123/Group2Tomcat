@@ -20,7 +20,7 @@ import persistence.PersistenceUtil;
 })
 
 @Entity
-public class User {
+public class User implements DatasetEntity{
 	@Id
 	@Column(name="UserName")
 	private String userName;
@@ -42,5 +42,10 @@ public class User {
 	
 	public static void createAdmin(){
 		PersistenceUtil.persist(new User("user", DigestUtils.sha1Hex("pass"), 1));
+	}
+
+	@Override
+	public Object getPrimaryKey() {
+		return userName;
 	}
 }

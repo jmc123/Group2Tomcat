@@ -1,45 +1,54 @@
- <%@ page import ="java.util.*" %>
- <%@ page import ="entity.*" %>
-   <%@ page import ="persistence.*" %>
-   <%@ page import="javax.servlet.*, javax.servlet.http.*" %>
+
+<%@ page import="java.util.*"%>
+<%@ page import="entity.*"%>
+<%@ page import="persistence.*"%>
+<%@ page import="javax.servlet.*, javax.servlet.http.*"%>
 <!DOCTYPE>
 <html>
-	<head>
-		<title>Group 2 Web App</title>
-		<link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.ico">
-		<link href="../../css/bootstrap.min.css" rel="stylesheet">
-		<link href="../../css/styles.css" rel="stylesheet">
-		<script src="../../js/jquery.min.js"></script>
-		<script src="../../js/bootstrap.min.js"></script>
-		<script src="../../js/validation.js"></script>
+<head>
+<title>Group 2 Web App</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="../../images/favicon.ico">
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/styles.css" rel="stylesheet">
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/validation.js"></script>
 
-	</head>
-	<body>
+</head>
+<body>
 	<%
-	String userName = null;
-	Cookie [] cookies = request.getCookies();
-	for(Cookie cookie : cookies){
-		userName = cookie.getValue();
-	} %>
-		<div class="container" id="main">
-			<div class="row">
-				<div class="col-md-3 text-center">
-					<img src="../../images/logo.jpg" height="100" width="100" id="logo">
-				</div>
-				<div class="col-md-7" id="margintext">
-					<% List<Object[]> userDetails = PersistenceUtil.findPasswordAndUserTypeByUsername(userName);
+		String userName = null;
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			userName = cookie.getValue();
+		}
+	%>
+	<div class="container" id="main">
+		<div class="row">
+			<div class="col-md-3 text-center">
+				<img src="../../images/logo.jpg" height="100" width="100" id="logo">
+			</div>
+			<div class="col-md-7" id="margintext">
+				<%
+					List<Object[]> userDetails = PersistenceUtil
+							.findPasswordAndUserTypeByUsername(userName);
 					String userType = ((UserType) userDetails.get(0)[1]).getDesc();
-						
-					%>
-					<p class="text-right center"><span class="glyphicon glyphicon-user"></span> Logged in as <strong><%= userType %></strong></p><!-- get from session -->
-				</div>
-				<div class="col-md-2" id="marginbt">
-				
-					<form method="POST" name="logout" action="/JPASprint1/LoginServlet">
-						<button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-log-out"></span>Logout</button>
-					</form>
-				</div>
+				%>
+				<p class="text-right center">
+					<span class="glyphicon glyphicon-user"></span> Logged in as <strong><%=userType%></strong>
+				</p>
+				<!-- get from session -->
 			</div>
-			<div class="col-md-12">
-				<hr />
+			<div class="col-md-2" id="marginbt">
+
+				<form method="POST" name="logout" action="/JPASprint1/LoginServlet">
+					<button class="btn btn-danger" type="submit">
+						<span class="glyphicon glyphicon-log-out"></span>Logout
+					</button>
+				</form>
 			</div>
+		</div>
+		<div class="col-md-12">
+			<hr />
+		</div>

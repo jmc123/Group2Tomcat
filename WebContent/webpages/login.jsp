@@ -32,7 +32,7 @@
 						<div class="form-group">
 							<label for="id" class="col-md-4 control-label"></label>
 							<div class="col-md-4">
-								<input type="text" class="form-control" id="userName" name="userName" placeholder="UserName" required />
+								<input type="text" class="form-control" id="userName" name="userName" placeholder="Username" required />
 							</div>
 						</div>
 						<div class="form-group">
