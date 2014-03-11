@@ -10,8 +10,10 @@
 			<div id="collapseOne" class="panel-collapse collapse ">
 				<ul class="nav nav-pills nav-stacked text-left">
 					<li><a href="nmeCountNumFailures.jsp"><span
-							class="glyphicon glyphicon-arrow-right"></span> Count the Number
-							of Call Failures and their Duration</a></li>
+							class="glyphicon glyphicon-arrow-right"></span> Count the Number of Call Failures and their Duration</a></li>
+					<li><a href="nmeCountEventCauseModel.jsp"><span
+							class="glyphicon glyphicon-arrow-right"></span>
+							Count the unique Event ID/Cause Code combinations and their occurances, by Model</a></li>
 				</ul>
 			</div>
 		</ul>

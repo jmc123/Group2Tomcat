@@ -246,4 +246,13 @@ public class PersistenceUtil implements Serializable {
 		sqlDate.append(" " + charOfDate[11] + charOfDate[12] + ":" + charOfDate[14] + charOfDate[15] + ":00");
 		return sqlDate.toString();
 	}
+	
+	public static List<Object[]> findUniqueEventCauseAndOccurancesByModel(String model){
+		EntityManager em = emf.createEntityManager();
+		List<Object[]> eventCauses = (List<Object[]>) em.createNamedQuery("ErrorEvent.UniqueEventCauseAndOccurancesByModel")
+					.setParameter("model", model).getResultList();
+		em.close();
+
+		return eventCauses;
+	}
 }
