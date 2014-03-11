@@ -20,6 +20,9 @@ import javax.persistence.NamedQuery;
 				query= "SELECT COUNT(o), SUM(o.duration) FROM ErrorEvent o WHERE o.imsi=:imsi and o.date>=:fromDate and o.date<=:toDate"),
 	@NamedQuery(name = "ErrorEvent.UniqueEventCauseAndOccurancesByModel",
 				query = "SELECT o.eventCause, COUNT(o) FROM ErrorEvent o JOIN o.ueType d WHERE d.model=:model GROUP BY o.eventCause"),
+	@NamedQuery(name = "ErrorEvent.ListIMSIFail",
+				query= "SELECT o.imsi FROM ErrorEvent o WHERE o.date>=:fromDate and o.date<=:toDate GROUP BY o.imsi"),
+				
 })
 
 

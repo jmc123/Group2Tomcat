@@ -1,4 +1,8 @@
-<jsp:include page="../templates/header.jsp" />
+<%@ page import ="java.util.*" %>
+ 	<%@ page import ="java.text.*" %>
+ 	<%@ page import ="entity.*" %>
+ 	<%@ page import ="persistence.*" %>
+ 	<jsp:include page="../templates/header.jsp" />
 <jsp:include page="../templates/seNav.jsp" />
 
 <!-- content here -->
@@ -30,4 +34,42 @@
 					</form>
 				</div>
 				
+<% 
+				if((request.getParameter("callfailfrom") != null) || (request.getParameter("callfailto")  != null)){
+						long startTime = System.nanoTime();
+						String fromdate = PersistenceUtil.returnDate(request.getParameter("callfailfrom"));
+						String todate = PersistenceUtil.returnDate(request.getParameter("callfailto"));
+						SimpleDateFormat currentParsed = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						Date fdate = null, tdate = null;
+						try{
+							fdate = currentParsed.parse(fromdate);
+							tdate = currentParsed.parse(todate);
+						}catch (ParseException e){
+							
+						}
+						List<Object[]> queryDetails = PersistenceUtil.findCallFailuresBetweenDates(fdate, tdate);
+					%>
+					<div class="col-md-offset-2 col-md-7">
+						<h3 class="text-center">Call Failures and Duration</h3>
+						<table class=" table table-striped table-bordered">
+							<tr>
+								<th class="text-center">IMSI Call Failures </th>
+								<th class="text-center">Duration in Milliseconds</th>
+							</tr>
+							<tr>
+								<td class="text-center"><%= queryDetails.get(0)[0]  %></td>
+								<td class="text-center"><%= queryDetails.get(0)[1] %></td>
+							</tr>
+							<%
+							long timeTakenInNanos = System.nanoTime()-startTime;
+							String timeTaken = String.format("<p>Query executed in %.2f ms<p>", (double) timeTakenInNanos/1000000);
+							%>
+							
+						</table>
+						<h3 class="text-center"><%=timeTaken %></h3>
+					</div>
+					<% } %>
+				</div>
+				
 <jsp:include page="../templates/footer.jsp" />
+

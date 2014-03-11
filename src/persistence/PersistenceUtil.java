@@ -255,4 +255,15 @@ public class PersistenceUtil implements Serializable {
 
 		return eventCauses;
 	}
+	
+	public static List<Object[]> findCallFailuresBetweenDates(Date fromDate, Date toDate){
+		EntityManager em = emf.createEntityManager();
+		
+		List<Object[]> queryDetails = (List<Object[]>) em.createNamedQuery("ErrorEvent.ListIMSIFail")
+				.setParameter("fromDate",fromDate).setParameter("toDate",toDate).getResultList();
+		em.close();
+		
+		return queryDetails;
+	}
+
 }
