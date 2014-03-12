@@ -284,6 +284,20 @@ public class PersistenceUtil implements Serializable {
 
 		return uniqueCauses;
 	}
+	
+	public static List<Long> findNumberOfFailuresByModelOverTime(String model, Date fromDate, Date toDate){
+		EntityManager em = emf.createEntityManager();
+		
+		System.out.println(fromDate.toString());
+		System.out.println(toDate.toString());
+		List<Long> queryDetails = (List<Long>) em.createNamedQuery("ErrorEvent.ErrorsByModelOverTime")
+				.setParameter("model", model).setParameter("fromDate",fromDate).setParameter("toDate",toDate).getResultList();
+		em.close();
+		
+		return queryDetails;
+	}
+
+
 
 
 }

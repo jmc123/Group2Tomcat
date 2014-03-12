@@ -22,6 +22,8 @@ import javax.persistence.NamedQuery;
 				query = "SELECT o.eventCause, COUNT(o) FROM ErrorEvent o JOIN o.ueType d WHERE d.model=:model GROUP BY o.eventCause"),
 	@NamedQuery(name = "ErrorEvent.ListIMSIFail",
 				query= "SELECT o.imsi FROM ErrorEvent o WHERE o.date>=:fromDate and o.date<=:toDate GROUP BY o.imsi"),
+				@NamedQuery(name = "ErrorEvent.ErrorsByModelOverTime",
+				query = "SELECT COUNT(o) FROM ErrorEvent o JOIN o.ueType d WHERE d.model=:model AND o.date>=:fromDate AND o.date<=:toDate"),
 				
 })
 
