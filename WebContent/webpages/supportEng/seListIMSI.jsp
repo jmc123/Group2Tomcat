@@ -10,18 +10,18 @@
 				<div class="col-md-9 text-center">
 					<h3 class="col-md-offset-2 col-md-7 text-center">See all the IMSI's with call failures</h3>
 					<br /><br /><br />
-					<form method="get" action="/JPASprint1/SEngServlet" class="form-horizontal">
+					<form method="get" action="/JPASprint1/webpages/supportEng/seListIMSI.jsp" class="form-horizontal">
 						<div class="form-group">
 							<label for="from" class="col-md-4 control-label">FROM:</label>
 							<div class="col-md-4">
 								<input type="text" id="query" name="query" value="AllIMSITimePeriod" style="display: none" />
-								<input type="datetime-local" class="form-control" id="from" name="imsifrom">
+								<input type="datetime-local" class="form-control" id="callfailfrom" name="callfailfrom">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="to" class="col-md-4 control-label">TO:</label>
 							<div class="col-md-4">
-								<input type="datetime-local" class="form-control" id="to" name="imsito">
+								<input type="datetime-local" class="form-control" id="callfailto" name="callfailto">
 							</div>
 						</div>
 
@@ -35,7 +35,7 @@
 				</div>
 				
 <% 
-				if((request.getParameter("callfailfrom") != null) || (request.getParameter("callfailto")  != null)){
+				if((request.getParameter("callfailfrom") != null) && (request.getParameter("callfailto")  != null)){
 						long startTime = System.nanoTime();
 						String fromdate = PersistenceUtil.returnDate(request.getParameter("callfailfrom"));
 						String todate = PersistenceUtil.returnDate(request.getParameter("callfailto"));
@@ -47,19 +47,25 @@
 						}catch (ParseException e){
 							
 						}
-						List<Object[]> queryDetails = PersistenceUtil.findCallFailuresBetweenDates(fdate, tdate);
+						List<Long> queryDetails = PersistenceUtil.findCallFailuresBetweenDates(fdate, tdate);
 					%>
 					<div class="col-md-offset-2 col-md-7">
 						<h3 class="text-center">Call Failures and Duration</h3>
 						<table class=" table table-striped table-bordered">
 							<tr>
-								<th class="text-center">IMSI Call Failures </th>
-								<th class="text-center">Duration in Milliseconds</th>
+								<th class="text-center">IMSI</th>
+								
 							</tr>
-							<tr>
-								<td class="text-center"><%= queryDetails.get(0)[0]  %></td>
-								<td class="text-center"><%= queryDetails.get(0)[1] %></td>
-							</tr>
+							<%
+				for (Long object : queryDetails) {
+			%>
+			<tr>
+				<td class="text-center"><%= object  %></td>
+				
+			</tr>
+			<%
+				}
+			%>
 							<%
 							long timeTakenInNanos = System.nanoTime()-startTime;
 							String timeTaken = String.format("<p>Query executed in %.2f ms<p>", (double) timeTakenInNanos/1000000);
