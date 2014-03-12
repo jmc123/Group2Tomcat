@@ -10,7 +10,7 @@
 			<div id="collapseOne" class="panel-collapse collapse ">
 				<ul class="nav nav-pills nav-stacked text-left">
 					<li><a href="seListIMSI.jsp"><span
-							class="glyphicon glyphicon-arrow-right"></span> List all IMSI's
+							class="glyphicon glyphicon-arrow-right"></span> List all IMSIs
 							over a time period</a></li>
 					<li><a href="seCountForModel.jsp"><span
 							class="glyphicon glyphicon-arrow-right"></span> Number of Call

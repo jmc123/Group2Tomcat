@@ -1,27 +1,75 @@
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.*"%>
+<%@ page import="entity.*"%>
+<%@ page import="persistence.*"%>
 <jsp:include page="../templates/header.jsp" />
 <jsp:include page="../templates/csrepNav.jsp" />
 
 <!-- content here -->
 
-				<div class="col-md-9 text-center">
-					<h3 class="col-md-offset-2 col-md-7 text-center">Enter an IMSI for all Unique Cause Codes for it's Call Failures</h3>
-					<br /><br /><br />
-					<form method="get" action="/JPASprint1/CSRepServlet" class="form-horizontal">
-						<div class="form-group">
-							<label for="imsi" class="col-md-4 control-label">IMSI:</label>
-							<div class="col-md-4">
-								<input type="text" id="query" name="query" value="UniqueCauseCodesByIMSI" style="display: none" />
-								<input type="text" class="form-control" id="IMSI" name="IMSI">
-							</div>
-						</div>
+<div class="col-md-9 text-center">
+	<h3 class="col-md-offset-2 col-md-7 text-center">Enter an IMSI for
+		all Unique Cause Codes for its Call Failures</h3>
+	<br /> <br /> <br />
+	<form method="get" action="/JPASprint1/webpages/customerRep/csUniqueCodes.jsp"
+		class="form-horizontal">
+		<div class="form-group">
+			<label for="imsi" class="col-md-4 control-label"></label>
+			<div class="col-md-4">
+				<input type="text" class="form-control" id="IMSI" name="IMSI"
+					placeholder="IMSI" required />
+			</div>
+		</div>
 
-						<br />
-						<div class="form-group">
-							<div class="col-md-offset-4 col-md-4">
-								<button type="submit" class="btn btn-primary">Submit</button>
-							</div>
-						</div>
-					</form>
-				</div>
-				
+		<br />
+		<div class="form-group">
+			<div class="col-md-offset-4 col-md-4">
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+		</div>
+	</form>
+
+	<%
+		if (request.getParameter("IMSI") != null) {
+			long startTime = System.nanoTime();
+			long imsi = Long.parseLong(request.getParameter("IMSI"));
+
+			List<Integer> uniqueCauseCodes = PersistenceUtil.findUniqueCauseByIMSI(imsi);
+	%>
+	<div class="col-md-offset-2 col-md-7">
+		<h3 class="text-center">The Unique Cause Codes for <br />IMSI:<%=imsi%></h3>
+		<table class=" table table-striped table-bordered">
+			<tr>
+				<th class="text-center">Cause Code</th>
+			</tr>
+			<%
+				for (Integer causeCode : uniqueCauseCodes) {
+			%>
+			<tr>
+				<td class="text-center"><%=causeCode%></td>
+			</tr>
+			<%
+				}
+			%>
+			<%
+				long timeTakenInNanos = System.nanoTime() - startTime;
+					String timeTaken = String.format(
+							"<p>Query executed in %.2f ms<p>",
+							(double) timeTakenInNanos / 1000000);
+			%>
+
+		</table>
+		<h3 class="text-center"><%=timeTaken%></h3>
+	</div>
+	<%
+		}
+	%>
+
+
+
+
+
+
+</div>
+
 <jsp:include page="../templates/footer.jsp" />

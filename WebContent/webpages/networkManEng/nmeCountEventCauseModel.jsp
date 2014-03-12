@@ -37,8 +37,7 @@
 			long startTime = System.nanoTime();
 			String model = request.getParameter("model");
 
-			List<Object[]> queryResults = PersistenceUtil
-					.findUniqueEventCauseAndOccurancesByModel(model);
+			List<Object[]> queryResults = PersistenceUtil.findUniqueEventCauseAndOccurancesByModel(model);
 	%>
 	<div class="col-md-offset-2 col-md-7">
 		<h3 class="text-center">

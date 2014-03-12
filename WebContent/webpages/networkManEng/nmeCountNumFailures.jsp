@@ -10,18 +10,14 @@
 <div class="col-md-9 text-center">
 	<h3 class="col-md-offset-2 col-md-7 text-center">Enter an IMSI and
 		time period for number of failures and their duration</h3>
-	<br />
-	<br />
-	<br />
+	<br /> <br /> <br />
 	<form method="get"
 		action="/JPASprint1/webpages/networkManEng/nmeCountNumFailures.jsp"
 		class="form-horizontal">
 		<div class="form-group">
-			<label for="imsi" class="col-md-4 control-label">IMSI:</label>
 			<div class="col-md-4">
-				<input type="text" id="query" name="query"
-					value="CountIMSIByTimePeriod" style="display: none" /> <input
-					type="text" class="form-control" id="imsi" name="imsi">
+				<input type="text" class="form-control" id="imsi" name="imsi"
+					placeholder="IMSI" required />
 			</div>
 		</div>
 		<div class="form-group">
@@ -68,7 +64,11 @@
 	%>
 	<div class="col-md-offset-2 col-md-7">
 		<h3 class="text-center">
-			The Number of Failures and Duration for <br />IMSI:<%=imsi%></h3>
+			The Number of Failures and Duration for <br />IMSI:<%=imsi%>
+			from <br />
+			<%=fdate%>
+			to:
+			<%=tdate%></h3>
 		<table class=" table table-striped table-bordered">
 			<tr>
 				<th class="text-center">Number Of Failures</th>
