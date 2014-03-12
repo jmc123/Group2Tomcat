@@ -147,7 +147,7 @@ public class CSRepServlet extends HttpServlet {
 	}
 
 	/**
-	 * Tim
+	 * Gavin
 	 */
 	private void uniqueCauseCodesByIMSI(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		long startTime = System.nanoTime();
@@ -156,42 +156,40 @@ public class CSRepServlet extends HttpServlet {
 		/**
 		 * TODO Get the imsi value (commented code should work)
 		 */
-		//		long imsi = Long.parseLong(request.getParameter("IMSI"));
+				long imsi = Long.parseLong(request.getParameter("IMSI"));
 
 		/**
 		 * TODO Call your query from PersistenceUtil here
 		 */
-		//		List<EventCause> eventCauses = PersistenceUtil.findEventCauseByIMSI(imsi);		
+				List<Integer> eventCauses = PersistenceUtil.findUniqueCauseByIMSI(imsi);		
 
 		/**
 		 * TODO Update the info for the query (as confirmation to the user)
 		 */
-		//		out.print("<!DOCTYPE html><html><head>"
-		//				+ "<title>IMSI Query Result</title>"
-		//				+ "<center><b><font face=\"verdana\" color=\"red\" size=\"5\">"
-		//				+ "The Event IDs and Cause Codes for <br />IMSI: " + imsi
-		//				+ "</font></b></center>"
-		//			+ "</head>");
+				out.print("<!DOCTYPE html><html><head>"
+						+ "<title>Unique Cause Codes </title>"
+						+ "<center><b><font face=\"verdana\" color=\"red\" size=\"5\">"
+						+ "The Unique Cause Codes for <br />IMSI: " + imsi
+						+ "</font></b></center>"
+					+ "</head>");
 
 		/**
 		 * TODO Table headers, added manually
 		 */
-		//		out.print("<body><center><br />"
-		//				+ "<table cellpadding=\"5\" border=\"1\">"
-		//				+ "<tr>"
-		//					+ "<td><b>Event ID</b></td>"
-		//					+ "<td><b>Cause Code</b></td>"
-		//				+ "</tr>");
+				out.print("<body><center><br />"
+						+ "<table cellpadding=\"5\" border=\"1\">"
+						+ "<tr>"
+							+ "<td><b>Cause Code</b></td>"
+						+ "</tr>");
 
 		/**
 		 * TODO Print out the results from your List<> called above
 		 */
-		//		for(EventCause eventCause : eventCauses){
-		//			out.print("<tr>"
-		//						+ "<td>" + eventCause.getEventId() + "</td>"
-		//						+ "<td>" + eventCause.getCauseCode() + "</td>"
-		//					+ "</tr>");
-		//		}	
+				for(Integer eventCause : eventCauses){
+					out.print("<tr>"
+								+ "<td>" + eventCause + "</td>"
+							+ "</tr>");
+				}	
 
 		long timeTakenInNanos = System.nanoTime()-startTime;
 		out.print("</table>"
@@ -200,6 +198,15 @@ public class CSRepServlet extends HttpServlet {
 
 		out.close();
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
