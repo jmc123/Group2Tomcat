@@ -55,7 +55,7 @@
 			<tr>
 				<td class="text-center"><%=((EventCause) object[0]).getEventId()%></td>
 				<td class="text-center"><%=((EventCause) object[0]).getCauseCode()%></td>
-				<td class="text-center"><%=object[1]%></td>
+				<td class="text-center"><%=new DecimalFormat("#,###,###").format(object[1])%></td>
 			</tr>
 			<%
 				}

@@ -55,9 +55,7 @@ public class ImportServlet extends HttpServlet {
 		filePath = getServletContext().getInitParameter("ImportFile");
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long startTime = System.nanoTime();
 		
 		PrintWriter out = response.getWriter();

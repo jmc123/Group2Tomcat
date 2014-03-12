@@ -9,32 +9,11 @@
 		<welcome-file>webpages/login.jsp</welcome-file>
 	</welcome-file-list>
 	
+	<!-- Servlets -->
 	<servlet>
-		<description></description>
-		<display-name>CSRepServlet</display-name>
-		<servlet-name>CSRepServlet</servlet-name>
-		<servlet-class>queryServlets.CSRepServlet</servlet-class>
-	</servlet>
-	
-	<servlet>
-		<description></description>
-		<display-name>NMEServlet</display-name>
-		<servlet-name>NMEServlet</servlet-name>
-		<servlet-class>queryServlets.NMEServlet</servlet-class>
-	</servlet>
-	
-	<servlet>
-		<description></description>
-		<display-name>SEngServlet</display-name>
-		<servlet-name>SEngServlet</servlet-name>
-		<servlet-class>queryServlets.SEngServlet</servlet-class>
-	</servlet>
-	
-	 <servlet>
         <servlet-name>ImportServlet</servlet-name>
         <servlet-class>main.ImportServlet</servlet-class>
     </servlet>
-    
 	<servlet>
 		<description></description>
 		<display-name>LoginServlet</display-name>
@@ -48,7 +27,7 @@
 		<servlet-class>main.RegisterServlet</servlet-class>
 	</servlet>
 	
-	
+	<!-- Servlet mappings -->
 	<servlet-mapping>
         <servlet-name>ImportServlet</servlet-name>
         <url-pattern>/ImportServlet</url-pattern>
@@ -64,21 +43,7 @@
 		<url-pattern>/RegisterServlet</url-pattern>
 	</servlet-mapping>
 	
-	<servlet-mapping>
-		<servlet-name>CSRepServlet</servlet-name>
-		<url-pattern>/CSRepServlet</url-pattern>
-	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>NMEServlet</servlet-name>
-		<url-pattern>/NMEServlet</url-pattern>
-	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>SEngServlet</servlet-name>
-		<url-pattern>/SEngServlet</url-pattern>
-	</servlet-mapping>
-	
+	<!-- Context Parameters -->
 	<context-param>
 		<description>Location to store uploaded file</description>
 		<param-name>ImportFile</param-name>

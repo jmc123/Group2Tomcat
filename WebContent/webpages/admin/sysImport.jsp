@@ -31,6 +31,3 @@
 </div>
 
 <jsp:include page="../templates/footer.jsp" />
-
-
-

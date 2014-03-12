@@ -75,7 +75,7 @@
 				for (Long object : queryDetails) {
 			%>
 			<tr>
-				<td class="text-center"><%=object%></td>
+				<td class="text-center"><%=new DecimalFormat("#,###,###").format(object)%></td>
 
 			</tr>
 			<%

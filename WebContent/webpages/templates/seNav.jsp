@@ -14,7 +14,7 @@
 							over a time period</a></li>
 					<li><a href="seCountForModel.jsp"><span
 							class="glyphicon glyphicon-arrow-right"></span> Number of Call
-							Failures over a time period</a></li>
+							Failures over a time period by Phone Model</a></li>
 				</ul>
 			</div>
 		</ul>

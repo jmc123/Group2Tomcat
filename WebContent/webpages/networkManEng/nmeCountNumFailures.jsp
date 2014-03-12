@@ -78,8 +78,8 @@
 				for (Object[] object : queryResults) {
 			%>
 			<tr>
-				<td class="text-center"><%=object[0]%></td>
-				<td class="text-center"><%=object[1]%></td>
+				<td class="text-center"><%=new DecimalFormat("#,###,###").format(object[0])%></td>
+				<td class="text-center"><%=new DecimalFormat("#,###,###").format(object[1])%></td>
 			</tr>
 			<%
 				}
