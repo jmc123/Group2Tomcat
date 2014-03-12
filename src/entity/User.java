@@ -17,6 +17,8 @@ import persistence.PersistenceUtil;
 				query="SELECT o.userPassword, o.userType FROM User o WHERE o.userName =:userName"),
 	@NamedQuery(name="User.findAllUserNames",
 				query="SELECT o.userName FROM User o"),
+	@NamedQuery(name="User.findAllUsers",
+				query="SELECT o FROM User o"),
 })
 
 @Entity
@@ -43,9 +45,14 @@ public class User implements DatasetEntity{
 	public static void createAdmin(){
 		PersistenceUtil.persist(new User("user", DigestUtils.sha1Hex("pass"), 1));
 	}
-
+	
+	public UserType getUserType(){
+		return this.userType;
+	}
+	
 	@Override
 	public Object getPrimaryKey() {
 		return userName;
 	}
+	
 }

@@ -190,6 +190,14 @@ public class PersistenceUtil implements Serializable {
 
 		return users;
 	}
+	
+	public static List<User> findAllUsers(){
+		EntityManager em = emf.createEntityManager();
+		List<User> users = (List<User>) em.createNamedQuery("User.findAllUsers").getResultList();
+		em.close();
+		
+		return users;
+	}
 
 	/**
 	 * Queries

@@ -7,5 +7,7 @@
 					class="glyphicon glyphicon-save"></span> Import Dataset</a></li>
 			<li><a href="sysAddUser.jsp"><span
 					class="glyphicon glyphicon-user"></span> Add user</a></li>
+			<li><a href="sysListUsers.jsp"><span
+					class="glyphicon glyphicon-user"></span> Show list of users</a></li>
 		</ul>
 	</div>
