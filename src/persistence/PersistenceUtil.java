@@ -233,14 +233,13 @@ public class PersistenceUtil implements Serializable {
 		return queryDetails;
 	}
 	
-	public static List<Object[]>  findNumberOfFailures(long imsi, Date fromDate, Date toDate){
+	public static List<Object[]> findNumberOfFailures(long imsi, Date fromDate, Date toDate){
 		EntityManager em = emf.createEntityManager();
 		
-		List<Object[]>  queryDetails = em.createNamedQuery("ErrorEvent.NumOfFailuresAndDuration")
+		List<Object[]> queryDetails = em.createNamedQuery("ErrorEvent.NumOfFailuresAndDuration")
 				.setParameter("imsi", imsi).setParameter("fromDate",fromDate).setParameter("toDate",toDate).getResultList();
 		
 		em.close();
-		
 		return queryDetails;
 	}
 	
@@ -287,9 +286,7 @@ public class PersistenceUtil implements Serializable {
 	
 	public static List<Long> findNumberOfFailuresByModelOverTime(String model, Date fromDate, Date toDate){
 		EntityManager em = emf.createEntityManager();
-		
-		System.out.println(fromDate.toString());
-		System.out.println(toDate.toString());
+
 		List<Long> queryDetails = (List<Long>) em.createNamedQuery("ErrorEvent.ErrorsByModelOverTime")
 				.setParameter("model", model).setParameter("fromDate",fromDate).setParameter("toDate",toDate).getResultList();
 		em.close();

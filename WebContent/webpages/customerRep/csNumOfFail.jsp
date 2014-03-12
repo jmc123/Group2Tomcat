@@ -45,9 +45,9 @@
 	</form>
 
 	<%
-		if (request.getParameter("IMSI") != null) {
+		if (request.getParameter("imsi") != null) {
 			long startTime = System.nanoTime();
-			long imsi = Long.parseLong(request.getParameter("IMSI"));
+			long imsi = Long.parseLong(request.getParameter("imsi"));
 			String fromdate = PersistenceUtil.returnDate(request
 					.getParameter("from"));
 			String todate = PersistenceUtil.returnDate(request
@@ -63,8 +63,7 @@
 			} catch (ParseException e) {
 			}
 
-			List<Object[]> queryDetails = PersistenceUtil
-					.findNumberOfFailures(imsi, fdate, tdate);
+			List<Object[]> queryDetails = PersistenceUtil.findNumberOfFailures(imsi, fdate, tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
 		<h3 class="text-center">
