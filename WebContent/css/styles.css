@@ -50,9 +50,12 @@
 			}
 			#loggedinastext{
 				margin-top:-20px;
-				margin-left:-20px;
+				margin-left:5px;
 				border-bottom:3px inset;
 				
+			}
+			#banner{
+				margin-left:25px;
 			}
 			.twitter-timeline{
 			clear:both;

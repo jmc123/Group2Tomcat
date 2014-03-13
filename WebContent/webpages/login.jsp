@@ -18,7 +18,7 @@
 			<div class="col-md-2 text-center">
 				<img src="images/logo.jpg" height="100" width="100" id="logo">
 			</div>
-			<div class="col-md-10"
+			<div class="col-md-10" id="banner"
 				style="background-image: url(images/banner.png); height: 120px; width: 950px;">
 			</div>
 			<div class="col-md-12">

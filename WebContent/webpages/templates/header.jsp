@@ -40,7 +40,7 @@
 			<div class="col-md-2 text-center">
 				<img src="../../images/logo.jpg" height="100" width="100" id="logo">
 			</div>
-			<div class="col-md-10" style="background-image: url(../../images/banner.png); height: 120px; width:950px;">
+			<div class="col-md-10" id="banner" style="background-image: url(../../images/banner.png); height: 120px; width:950px;">
 			<form method="POST" name="logout" action="/JPASprint1/LoginServlet" id="postionbt">
 					<button class="btn btn-danger right" type="submit">
 						<span class="glyphicon glyphicon-log-out"></span><%=Strings.LOGOUT%></button>
