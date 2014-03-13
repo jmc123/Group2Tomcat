@@ -223,11 +223,11 @@ public class PersistenceUtil implements Serializable {
 	}
 
 	
-	public static List<Object[]> findNumberOfFailuresAndDuration(long imsi, Date fromDate, Date toDate){
+	public static List<Object[]> findNumberOfFailuresAndDuration(Date fromDate, Date toDate){
 		EntityManager em = emf.createEntityManager();
 		
 		List<Object[]> queryDetails = (List<Object[]>) em.createNamedQuery("ErrorEvent.NumOfFailuresAndDuration")
-				.setParameter("imsi", imsi).setParameter("fromDate",fromDate).setParameter("toDate",toDate).getResultList();
+				.setParameter("fromDate", fromDate).setParameter("toDate", toDate).getResultList();
 		em.close();
 		
 		return queryDetails;

@@ -15,12 +15,6 @@
 		action="/JPASprint1/webpages/networkManEng/nmeCountNumFailures.jsp"
 		class="form-horizontal">
 		<div class="form-group">
-			<div class="col-md-4">
-				<input type="text" class="form-control" id="imsi" name="imsi"
-					placeholder="IMSI" required />
-			</div>
-		</div>
-		<div class="form-group">
 			<label for="from" class="col-md-4 control-label">FROM:</label>
 			<div class="col-md-4">
 				<input type="datetime-local" class="form-control" id="from"
@@ -43,9 +37,8 @@
 		</div>
 	</form>
 	<%
-		if (request.getParameter("imsi") != null) {
+		if (request.getParameter("imsito") != null && request.getParameter("imsifrom") != null) {
 			long startTime = System.nanoTime();
-			long imsi = Long.parseLong(request.getParameter("imsi"));
 			String fromdate = PersistenceUtil.returnDate(request
 					.getParameter("imsifrom"));
 			String todate = PersistenceUtil.returnDate(request
@@ -59,18 +52,17 @@
 			} catch (ParseException e) {
 
 			}
-			List<Object[]> queryResults = PersistenceUtil
-					.findNumberOfFailuresAndDuration(imsi, fdate, tdate);
+			List<Object[]> queryResults = PersistenceUtil.findNumberOfFailuresAndDuration(fdate, tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
 		<h3 class="text-center">
-			The Number of Failures and Duration for <br />IMSI:<%=imsi%>
-			from <br />
+			The Number of Failures and Duration from <br />
 			<%=fdate%>
 			to:
 			<%=tdate%></h3>
 		<table class=" table table-striped table-bordered">
 			<tr>
+				<th class="text-center">IMSI</th>
 				<th class="text-center">Number Of Failures</th>
 				<th class="text-center">Duration in Milliseconds</th>
 			</tr>
@@ -78,8 +70,9 @@
 				for (Object[] object : queryResults) {
 			%>
 			<tr>
-				<td class="text-center"><%=new DecimalFormat("#,###,###").format(object[0])%></td>
+				<td class="text-center"><%=object[0]%></td>
 				<td class="text-center"><%=new DecimalFormat("#,###,###").format(object[1])%></td>
+				<td class="text-center"><%=new DecimalFormat("#,###,###").format(object[2])%></td>
 			</tr>
 			<%
 				}
