@@ -1,4 +1,4 @@
-
+<%@ page import="main.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="entity.*"%>
 <%@ page import="persistence.*"%>
@@ -6,7 +6,7 @@
 <!DOCTYPE>
 <html>
 <head>
-<title>Group 2 Web App</title>
+<title><%=Strings.TITLE%></title>
 <link rel="shortcut icon" type="image/x-icon"
 	href="../../images/favicon.ico">
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -43,8 +43,7 @@
 			<div class="col-md-10" style="background-image: url(../../images/banner.png); height: 120px; width:950px;">
 			<form method="POST" name="logout" action="/JPASprint1/LoginServlet" id="postionbt">
 					<button class="btn btn-danger right" type="submit">
-						<span class="glyphicon glyphicon-log-out"></span>Logout
-					</button>
+						<span class="glyphicon glyphicon-log-out"></span><%=Strings.LOGOUT%></button>
 				</form>
 			</div>
 			<div class="col-md-12" id="loggedinastext">
@@ -54,7 +53,7 @@
 					String userType = ((UserType) userDetails.get(0)[1]).getDesc();
 				%>
 				<p class="text-right center" id="margintext">
-					<span class="glyphicon glyphicon-user"></span> Logged in as <strong><%=userType%></strong>
+					<span class="glyphicon glyphicon-user"></span> <%=Strings.LOGGED_IN_AS%> <strong><%=userType%></strong>
 				</p>
 				<!-- get from session -->
 			</div>

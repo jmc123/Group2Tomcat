@@ -1,4 +1,4 @@
-
+<%@ page import="main.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="entity.*"%>
 <%@ page import="persistence.*"%>
@@ -8,8 +8,7 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h4 class=" col-md-12 text-center">Enter an IMSI for
-		EventID and Cause Code</h4>
+	<h4 class=" col-md-12 text-center"><%=Strings.UNIQUE_EVENTID_AND_CAUSECODE_COMBINATIONS_BY_IMSI%></h4>
 	<br />
 	<br />
 	<br />
@@ -21,10 +20,10 @@
 			<div class="col-md-3">
 				<input type="text" id="query" name="query" value="EventCauseByIMSI"
 					style="display: none" /> <input type="text" class="form-control"
-					id="IMSI" name="IMSI" placeholder="IMSI value" required />
+					id="IMSI" name="IMSI" placeholder="<%=Strings.PH_IMSI%>" title="<%=Strings.TT_IMSI%>" required />
 			</div>
 			<div class="col-md-4">
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
 			</div>
 		</div>
 
@@ -43,12 +42,12 @@
 					.findEventCauseByIMSI(imsi);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h4 class="text-center">IMSI:<%=imsi%></h4>
+		<h4 class="text-center"><%=Strings.RESULT_IMSI%><%=imsi%></h4>
 		<div style="max-height:200px; overflow:auto;">
 		<table class=" table table-striped table-bordered">
 			<tr>
-				<th class="text-center">Event ID</th>
-				<th class="text-center">Cause Code</th>
+				<th class="text-center"><%=Strings.EVENT_ID%></th>
+				<th class="text-center"><%=Strings.CAUSE_CODE%></th>
 			</tr>
 			<%
 				for (EventCause eventCause : eventCauses) {
@@ -61,7 +60,7 @@
 				}
 					long timeTakenInNanos = System.nanoTime() - startTime;
 					String timeTaken = String.format(
-							"<p>Query executed in %.2f ms<p>",
+							"<p>" + Strings.QUERY_EXECUTION_TIME + "<p>",
 							(double) timeTakenInNanos / 1000000);
 			%>
 

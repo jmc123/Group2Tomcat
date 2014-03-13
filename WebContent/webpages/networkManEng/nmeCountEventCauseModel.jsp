@@ -1,3 +1,4 @@
+<%@ page import="main.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.*"%>
 <%@ page import="entity.*"%>
@@ -8,8 +9,7 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-offset-2 col-md-7 text-center">Enter a phone
-		model for unique EventCauses and Occurances</h3>
+	<h3 class="col-md-offset-2 col-md-7 text-center"><%=Strings.UNIQUE_EVENTID_AND_CAUSECODE_COMBINATION_AND_OCCURANCES_BY_MODEL%></h3>
 	<br />
 	<br />
 	<br />
@@ -17,18 +17,18 @@
 		action="/JPASprint1/webpages/networkManEng/nmeCountEventCauseModel.jsp"
 		class="form-horizontal">
 		<div class="form-group">
-			<label for="imsi" class="col-md-4 control-label">Model:</label>
 			<div class="col-md-4">
 				<input type="text" id="query" name="query"
 					value="CountEventCauseByModel" style="display: none" /> <input
-					type="text" class="form-control" id="model" name="model">
+					type="text" class="form-control" id="model" name="model"
+					placeholder="<%=Strings.PH_PHONE_MODEL%>" title="<%=Strings.TT_PHONE_MODEL%>">
 			</div>
 		</div>
 
 		<br />
 		<div class="form-group">
 			<div class="col-md-offset-4 col-md-4">
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
 			</div>
 		</div>
 	</form>
@@ -40,14 +40,12 @@
 			List<Object[]> queryResults = PersistenceUtil.findUniqueEventCauseAndOccurancesByModel(model);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h3 class="text-center">
-			The EventID/CauseCode combinations and occurances for <br />Model:
-			<%=model%></h3>
+		<h4 class="text-center"><%=Strings.RESULT_PHONE_MODEL%> <%=model%></h4>
 		<table class=" table table-striped table-bordered">
 			<tr>
-				<th class="text-center">Event ID</th>
-				<th class="text-center">Cause Code</th>
-				<th class="text-center">Occurances</th>
+				<th class="text-center"><%=Strings.EVENT_ID%></th>
+				<th class="text-center"><%=Strings.CAUSE_CODE%></th>
+				<th class="text-center"><%=Strings.OCCURANCES%></th>
 			</tr>
 			<%
 				for (Object[] object : queryResults) {
@@ -63,7 +61,7 @@
 			<%
 				long timeTakenInNanos = System.nanoTime() - startTime;
 					String timeTaken = String.format(
-							"<p>Query executed in %.2f ms<p>",
+							"<p>" + Strings.QUERY_EXECUTION_TIME + "<p>",
 							(double) timeTakenInNanos / 1000000);
 			%>
 

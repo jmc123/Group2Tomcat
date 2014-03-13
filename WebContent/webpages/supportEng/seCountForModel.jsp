@@ -1,3 +1,4 @@
+<%@ page import="main.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.*"%>
 <%@ page import="entity.*"%>
@@ -8,10 +9,10 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-offset-2 col-md-7 text-center">Enter model of
-		phone for a count of call failures</h3>
+	<h3 class="col-md-offset-2 col-md-7 text-center"><%=Strings.NUM_FAILURES_BY_MODEL_BY_TIME_PERIOD%></h3>
 	<br /> <br /> <br />
-	<form method="get" action="/JPASprint1/webpages/supportEng/seCountForModel.jsp"
+	<form method="get"
+		action="/JPASprint1/webpages/supportEng/seCountForModel.jsp"
 		class="form-horizontal">
 		<div class="form-group">
 			<div class="col-md-4">
@@ -20,30 +21,27 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="from" class="col-md-4 control-label">FROM:</label>
 			<div class="col-md-4">
 				<input type="datetime-local" class="form-control" id="from"
 					name="from">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="to" class="col-md-4 control-label">TO:</label>
 			<div class="col-md-4">
-				<input type="datetime-local" class="form-control" id="to"
-					name="to">
+				<input type="datetime-local" class="form-control" id="to" name="to">
 			</div>
 		</div>
 
 		<br />
 		<div class="form-group">
 			<div class="col-md-offset-4 col-md-4">
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
 			</div>
 		</div>
 	</form>
 
 	<%
-	if (request.getParameter("model") != null) {
+		if (request.getParameter("model") != null) {
 			long startTime = System.nanoTime();
 			String model = request.getParameter("model");
 			String fromdate = PersistenceUtil.returnDate(request
@@ -59,16 +57,20 @@
 			} catch (ParseException e) {
 
 			}
-			List<Long> queryDetails = PersistenceUtil.findNumberOfFailuresByModelOverTime(model, fdate, tdate);
+			List<Long> queryDetails = PersistenceUtil
+					.findNumberOfFailuresByModelOverTime(model, fdate,
+							tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h3 class="text-center">Number of failues for <br /> Model: <%=model %> from <br />
+		<h4 class="text-center"><%=Strings.RESULT_PHONE_MODEL%>
+			<%=model%><br />
+			<%=Strings.RESULT_FROM%>
 			<%=fdate%>
-			to:
-			<%=tdate%></h3>
+			<%=Strings.RESULT_TO%>
+			<%=tdate%></h4>
 		<table class=" table table-striped table-bordered">
 			<tr>
-				<th class="text-center">Number of failures</th>
+				<th class="text-center"><%=Strings.NUM_FAILURES%></th>
 
 			</tr>
 			<%
@@ -83,8 +85,8 @@
 			%>
 			<%
 				long timeTakenInNanos = System.nanoTime() - startTime;
-					String timeTaken = String.format(
-							"<p>Query executed in %.2f ms<p>",
+					String timeTaken = String.format("<p>"
+							+ Strings.QUERY_EXECUTION_TIME + "<p>",
 							(double) timeTakenInNanos / 1000000);
 			%>
 

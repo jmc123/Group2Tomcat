@@ -1,10 +1,11 @@
+<%@ page import="main.*"%>
 <jsp:include page="../templates/header.jsp" />
 <jsp:include page="../templates/sysNav.jsp" />
 
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-offset-4 col-md-7 text-left">Import Dataset</h3>
+	<h3 class="col-md-offset-4 col-md-7 text-left"><%=Strings.IMPORT%></h3>
 	<br />
 	<br />
 	<br />
@@ -21,7 +22,7 @@
 		<br />
 		<div class="form-group">
 			<div class="col-md-offset-4 col-md-4">
-				<button type="submit" class="btn btn-primary">Upload dataset</button>
+				<button type="submit" class="btn btn-primary"><%=Strings.UPLOAD%></button>
 			</div>
 		</div>
 

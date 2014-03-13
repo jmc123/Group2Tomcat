@@ -1,4 +1,4 @@
-
+<%@ page import="main.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="entity.*"%>
 <%@ page import="persistence.*"%>
@@ -24,11 +24,12 @@
 %>
 <div class="col-md-offset-2 col-md-7">
 	<h3 class="text-center">
-		All Users <br /></h3>
+		<%=Strings.ALL_USERS%> <br />
+	</h3>
 	<table class=" table table-striped table-bordered">
 		<tr>
-			<th class="text-center">Username</th>
-			<th class="text-center">User Type</th>
+			<th class="text-center"><%=Strings.USERNAME%></th>
+			<th class="text-center"><%=Strings.USER_TYPE%></th>
 		</tr>
 		<%
 			for (User user : users) {
@@ -42,7 +43,7 @@
 		%>
 		<%
 			long timeTakenInNanos = System.nanoTime() - startTime;
-			String timeTaken = String.format("<p>Query executed in %.2f ms<p>",
+			String timeTaken = String.format("<p>" + Strings.QUERY_EXECUTION_TIME + "<p>",
 					(double) timeTakenInNanos / 1000000);
 		%>
 

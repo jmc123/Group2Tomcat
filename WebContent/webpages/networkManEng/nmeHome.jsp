@@ -1,3 +1,4 @@
+ <%@ page import="main.*"%>
  <%@ page import ="java.util.*" %>
  <%@ page import ="entity.*" %>
  <%@ page import ="persistence.*" %>
@@ -16,12 +17,12 @@
 	%>
 
 				<div class="col-md-9 text-center">
-					<h3 class="col-md-10 text-center">Profile Page</h3>
+					<h3 class="col-md-10 text-center"><%=Strings.PROFILE_PAGE%></h3>
 					<p style="padding:10px;" class="col-md-12"></p>
 					<dl class="dl-horizontal col-md-12">
-						<dt>Username:</dt>
+						<dt><%=Strings.PROFILE_USERNAME%></dt>
 						<dd style="padding-bottom:20px;"><%= userName %></dd>
-						<dt>Role:</dt>
+						<dt><%=Strings.PROFILE_ROLE%></dt>
 						<dd><%= userType %></dd>
 					</dl>
 				</div>

@@ -1,7 +1,8 @@
+<%@ page import="main.*"%>
 <!DOCTYPE>
 <html>
 	<head>
-		<title>Group2 Project Page</title>
+		<title><%=Strings.TITLE%></title>
 		
 
 		<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
@@ -27,7 +28,7 @@
 			<div class="row">
 
 				<div class="col-md-12 text-center">
-					<h3 class="col-md-offset-3 col-md-6 text-center">Login</h3>
+					<h3 class="col-md-offset-3 col-md-6 text-center"><%=Strings.LOGIN%></h3>
 					<br />
 					<br />
 					<br />
@@ -37,21 +38,21 @@
 							<label for="id" class="col-md-4 control-label"></label>
 							<div class="col-md-4">
 								<input type="text" class="form-control" id="userName"
-									name="userName" placeholder="Username" required />
+									name="userName" placeholder="<%=Strings.PH_USERNAME%>" required />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="pass" class="col-md-4 control-label"></label>
 							<div class="col-md-4">
 								<input type="password" class="form-control" id="pass"
-									name="password" placeholder="Password" required />
+									name="password" placeholder="<%=Strings.PH_PASSWORD%>" required />
 							</div>
 						</div>
 
 						<br />
 						<div class="form-group">
 							<div class="col-md-offset-4 col-md-4">
-								<button class="btn btn-primary" type="submit">Login</button>
+								<button class="btn btn-primary" type="submit"><%=Strings.LOGIN%></button>
 							</div>
 						</div>
 					</form>
@@ -63,7 +64,7 @@
 		<footer class="container">
 			<div class="col-md-12 text-left" id="text">
 			<img src="images/bottomlogo.png" height="50" width="50" id="bottomlogo">
-				<span>&copy; Jason Costello, Tim Coghlan, Danny Flynn, Gavin Hughes, James McManus, Arouge Mehdi.</span> 
+				<span><%=Strings.COPYRIGHT_AND_NAMES%></span> 
 			</div>
 				
 		</footer>

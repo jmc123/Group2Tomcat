@@ -1,3 +1,4 @@
+<%@ page import="main.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.*"%>
 <%@ page import="entity.*"%>
@@ -8,8 +9,7 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h4 class="col-md-12 text-center">Enter an IMSI and
-		time period for number of failures</h4>
+	<h4 class="col-md-12 text-center"><%=Strings.NUM_FAILURES_BY_IMSI_BY_TIME_PERIOD%></h4>
 	<br /> <br /> <br />
 	<form method="get"
 		action="/JPASprint1/webpages/customerRep/csNumOfFail.jsp"
@@ -17,20 +17,20 @@
 		<div class="form-group">
 			<div class="col-md-1">
 				<input type="text" class="form-control" id="imsi" name="imsi"
-					placeholder="IMSI" required title="Enter valid IMSI">
+					placeholder="<%=Strings.PH_IMSI%>" required title="<%=Strings.TT_IMSI%>">
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-1">
-				<input type="datetime-local" class="form-control" id="from" name="from" value="2013-01-01T12:00:00" step="1" required title="Enter from date">
+				<input type="datetime-local" class="form-control" id="from" name="from" value="2013-01-01T12:00:00" step="1" required title="<%=Strings.TT_FROM%>">
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-1">
-				<input type="datetime-local" class="form-control" id="to" value="2013-12-12T12:00:00" step="1" name="to" required title="Enter to date">
+				<input type="datetime-local" class="form-control" id="to" value="2013-12-12T12:00:00" step="1" name="to" required title="<%=Strings.TT_TO%>">
 			</div>
 		</div>
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
 	</form>
 
 	<%
@@ -55,10 +55,10 @@
 			List<Object[]> queryDetails = PersistenceUtil.findNumberOfFailures(imsi, fdate, tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-
+		<h4 class="text-center"><%=Strings.RESULT_IMSI%><%=imsi%></h4>
 		<table class=" table table-striped table-bordered">
 			<tr>
-				<th class="text-center">Number Of Failures for IMSI:<%=imsi%></th>
+				<th class="text-center"><%=Strings.NUM_FAILURES%></th>
 			</tr>
 			<%
 				for (Object[] object : queryDetails) {
@@ -72,7 +72,7 @@
 			<%
 				long timeTakenInNanos = System.nanoTime() - startTime;
 					String timeTaken = String.format(
-							"<p>Query executed in %.2f ms<p>",
+							"<p>" + Strings.QUERY_EXECUTION_TIME + "<p>",
 							(double) timeTakenInNanos / 1000000);
 			%>
 

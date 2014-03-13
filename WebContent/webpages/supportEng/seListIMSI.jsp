@@ -1,3 +1,4 @@
+<%@ page import="main.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.*"%>
 <%@ page import="entity.*"%>
@@ -8,43 +9,39 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-offset-2 col-md-7 text-center">See all the
-		IMSIs with call failures</h3>
+	<h3 class="col-md-offset-2 col-md-7 text-center"><%=Strings.ALL_IMSIS_BY_TIME_PERIOD%></h3>
 	<br /> <br /> <br />
 	<form method="get"
 		action="/JPASprint1/webpages/supportEng/seListIMSI.jsp"
 		class="form-horizontal">
 		<div class="form-group">
-			<label for="from" class="col-md-4 control-label">FROM:</label>
 			<div class="col-md-4">
-				<input type="datetime-local"
-					class="form-control" id="callfailfrom" name="callfailfrom" required />
+				<input type="datetime-local" class="form-control" id="from"
+					name="from" required title="<%=Strings.TT_FROM%>"/>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="to" class="col-md-4 control-label">TO:</label>
 			<div class="col-md-4">
-				<input type="datetime-local" class="form-control" id="callfailto"
-					name="callfailto" required />
+				<input type="datetime-local" class="form-control" id="to"
+					name="to" required title="<%=Strings.TT_TO%>"/>
 			</div>
 		</div>
 
 		<br />
 		<div class="form-group">
 			<div class="col-md-offset-4 col-md-4">
-				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
 			</div>
 		</div>
 	</form>
 
 	<%
-		if ((request.getParameter("callfailfrom") != null)
-				&& (request.getParameter("callfailto") != null)) {
+		if ((request.getParameter("from") != null) && (request.getParameter("to") != null)) {
 			long startTime = System.nanoTime();
 			String fromdate = PersistenceUtil.returnDate(request
-					.getParameter("callfailfrom"));
+					.getParameter("from"));
 			String todate = PersistenceUtil.returnDate(request
-					.getParameter("callfailto"));
+					.getParameter("to"));
 			SimpleDateFormat currentParsed = new SimpleDateFormat(
 					"yyyy-MM-dd HH:mm:ss");
 			Date fdate = null, tdate = null;
@@ -58,15 +55,14 @@
 					.findCallFailuresBetweenDates(fdate, tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h3 class="text-center">
-			Call Failures from <br />
+		<h4 class="text-center">
+			<%=Strings.RESULT_FROM%>
 			<%=fdate%>
-			to:
-			<%=tdate%></h3>
+			<%=Strings.RESULT_TO%>
+			<%=tdate%></h4>
 		<table class=" table table-striped table-bordered">
 			<tr>
-				<th class="text-center">IMSI</th>
-
+				<th class="text-center"><%=Strings.IMSI%></th>
 			</tr>
 			<%
 				for (Long object : queryDetails) {
@@ -81,7 +77,7 @@
 			<%
 				long timeTakenInNanos = System.nanoTime() - startTime;
 					String timeTaken = String.format(
-							"<p>Query executed in %.2f ms<p>",
+							"<p>" + Strings.QUERY_EXECUTION_TIME + "<p>",
 							(double) timeTakenInNanos / 1000000);
 			%>
 

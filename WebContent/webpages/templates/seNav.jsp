@@ -1,20 +1,19 @@
+<%@ page import="main.*"%>
 <div class="row">
 	<div class="col-md-3 text-center panel-group" id="accordion">
 		<ul class="nav nav-pills nav-stacked">
 			<li><a href="seHome.jsp"><span
-					class="glyphicon glyphicon-home"></span> Home</a></li>
+					class="glyphicon glyphicon-home"></span> <%=Strings.HOME%></a></li>
 			<li><a data-toggle="collapse" data-parent="#accordion"
 				href="#collapseOne"><span class="glyphicon glyphicon-stats"></span>
-					Queries</a></li>
+					<%=Strings.QUERIES%></a></li>
 
 			<div id="collapseOne" class="panel-collapse collapse ">
 				<ul class="nav nav-pills nav-stacked text-left">
 					<li><a href="seListIMSI.jsp"><span
-							class="glyphicon glyphicon-arrow-right"></span> List all IMSIs
-							over a time period</a></li>
+							class="glyphicon glyphicon-arrow-right"></span> <%=Strings.ALL_IMSIS_BY_TIME_PERIOD%></a></li>
 					<li><a href="seCountForModel.jsp"><span
-							class="glyphicon glyphicon-arrow-right"></span> Number of Call
-							Failures over a time period by Phone Model</a></li>
+							class="glyphicon glyphicon-arrow-right"></span> <%=Strings.NUM_FAILURES_BY_MODEL_BY_TIME_PERIOD%></a></li>
 				</ul>
 			</div>
 		</ul>
