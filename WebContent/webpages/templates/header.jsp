@@ -16,10 +16,10 @@
 <script src="../../js/validation.js"></script>
 <script>
 		$(function() {
-			$("#to, #from, #imsi").tooltip({
-		    	position: "center bottom",
+			$("#to, #from").tooltip({
+		    	position: "right center",
 		    	offset: [-2, 10],
-		    	effect: "fade",
+		    	effect: "explode",
 		    	opacity: 0.7
 		    });
 		});

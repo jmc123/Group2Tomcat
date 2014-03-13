@@ -1,6 +1,6 @@
 <%@ page import="main.*"%>
 <div class="row">
-				<div class="col-md-3 text-center panel-group" id="accordion">
+				<div class="col-md-3 text-left panel-group" id="accordion">
 					<ul class="nav nav-pills nav-stacked">
 						<li><a href="csHome.jsp"><span class="glyphicon glyphicon-home"></span>  <%=Strings.HOME%></a></li>
 						<li><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-stats"></span><%=Strings.QUERIES%></a></li>

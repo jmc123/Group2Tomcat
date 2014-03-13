@@ -1,6 +1,6 @@
 <%@ page import="main.*"%>
 <div class="row">
-	<div class="col-md-3 text-center">
+	<div class="col-md-3 text-left" id="border">
 		<ul class="nav nav-pills nav-stacked">
 			<li><a href="sysHome.jsp"><span
 					class="glyphicon glyphicon-home"></span> <%=Strings.HOME%></a></li>

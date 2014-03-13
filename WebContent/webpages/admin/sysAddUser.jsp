@@ -5,12 +5,12 @@
 <!-- content here -->
 
 				<div class="col-md-9 text-center">
-					<h3 class="col-md-offset-4 col-md-7 text-left"><%=Strings.CREATE_USER%></h3>
+					<h3 class="col-md-offset-5 col-md-8 text-left"><%=Strings.CREATE_USER%></h3>
 					<br /><br /><br />
 					<form method="POST" name="register" action="/JPASprint1/RegisterServlet"
 							onsubmit="return validateInputsAreValid()" class="form-horizontal" >
 						<div class="form-group">
-							<div class="col-md-4">
+							<div class="col-md-offset-4 col-md-4">
 								<select class="form-control" name="role" id="role">
 									<option value="0"><%=Strings.SELECT_ROLE%></option>
 									<option value="2"><%=Strings.NME%></option>

@@ -13,26 +13,22 @@
 	<br /> <br /> <br />
 	<form method="get"
 		action="/JPASprint1/webpages/networkManEng/nmeCountNumFailures.jsp"
-		class="form-horizontal">
+		class="form-inline">
 		<div class="form-group">
-			<div class="col-md-4">
+			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="from"
-					name="from" title="<%=Strings.TT_FROM%>">
+					name="from" title="<%=Strings.TT_FROM%>" data-toggle="tooltip" data-placement="bottom" value="2013-01-01T12:00:00" step="1">
 			</div>
 		</div>
+		<span class="glyphicon glyphicon-arrow-right"></span>
 		<div class="form-group">
-			<div class="col-md-4">
+			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="to"
-					name="to" title="<%=Strings.TT_TO%>">
+					name="to" title="<%=Strings.TT_TO%>" data-toggle="tooltip" data-placement="bottom" value="2013-12-12T12:00:00" step="1">
 			</div>
 		</div>
-
-		<br />
-		<div class="form-group">
-			<div class="col-md-offset-4 col-md-4">
 				<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
-			</div>
-		</div>
+
 	</form>
 	<%
 		if (request.getParameter("to") != null && request.getParameter("from") != null) {

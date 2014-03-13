@@ -17,7 +17,7 @@
 		<div class="form-group">
 			<div class="col-md-1">
 				<input type="text" class="form-control" id="imsi" name="imsi"
-					placeholder="<%=Strings.PH_IMSI%>" required title="<%=Strings.TT_IMSI%>">
+					placeholder="<%=Strings.PH_IMSI%>" required >
 			</div>
 		</div>
 		<div class="form-group">
@@ -25,6 +25,7 @@
 				<input type="datetime-local" class="form-control" id="from" name="from" value="2013-01-01T12:00:00" step="1" required title="<%=Strings.TT_FROM%>">
 			</div>
 		</div>
+		<span class="glyphicon glyphicon-arrow-right"></span>
 		<div class="form-group">
 			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="to" value="2013-12-12T12:00:00" step="1" name="to" required title="<%=Strings.TT_TO%>">

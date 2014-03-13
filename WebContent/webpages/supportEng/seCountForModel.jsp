@@ -9,35 +9,30 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-offset-2 col-md-7 text-center"><%=Strings.NUM_FAILURES_BY_MODEL_BY_TIME_PERIOD%></h3>
+	<h3 class="col-md-12 text-center"><%=Strings.NUM_FAILURES_BY_MODEL_BY_TIME_PERIOD%></h3>
 	<br /> <br /> <br />
 	<form method="get"
 		action="/JPASprint1/webpages/supportEng/seCountForModel.jsp"
-		class="form-horizontal">
+		class="form-inline">
 		<div class="form-group">
-			<div class="col-md-4">
+			<div class="col-md-1">
 				<input type="text" class="form-control" id="model" name="model"
 					placeholder="Phone Model" required />
 			</div>
 		</div>
 		<div class="form-group">
-			<div class="col-md-4">
+			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="from"
-					name="from">
+					name="from" value="2013-01-01T12:00:00" step="1"  data-toggle="tooltip" data-placement="bottom" required title="<%=Strings.TT_FROM%>">
 			</div>
 		</div>
+		<span class="glyphicon glyphicon-arrow-right"></span>
 		<div class="form-group">
-			<div class="col-md-4">
-				<input type="datetime-local" class="form-control" id="to" name="to">
+			<div class="col-md-1">
+				<input type="datetime-local" class="form-control" id="to" name="to" value="2013-12-12T12:00:00" step="1" data-toggle="tooltip" data-placement="bottom" required title="<%=Strings.TT_TO%>">
 			</div>
 		</div>
-
-		<br />
-		<div class="form-group">
-			<div class="col-md-offset-4 col-md-4">
 				<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
-			</div>
-		</div>
 	</form>
 
 	<%

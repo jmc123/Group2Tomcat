@@ -9,13 +9,13 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-offset-2 col-md-7 text-center"><%=Strings.UNIQUE_EVENTID_AND_CAUSECODE_COMBINATION_AND_OCCURANCES_BY_MODEL%></h3>
+	<h3 class="col-md-12 text-center"><%=Strings.UNIQUE_EVENTID_AND_CAUSECODE_COMBINATION_AND_OCCURANCES_BY_MODEL%></h3>
 	<br />
 	<br />
 	<br />
 	<form method="get"
 		action="/JPASprint1/webpages/networkManEng/nmeCountEventCauseModel.jsp"
-		class="form-horizontal">
+		class="form-inline">
 		<div class="form-group">
 			<div class="col-md-4">
 				<input type="text" id="query" name="query"
@@ -24,13 +24,7 @@
 					placeholder="<%=Strings.PH_PHONE_MODEL%>" title="<%=Strings.TT_PHONE_MODEL%>">
 			</div>
 		</div>
-
-		<br />
-		<div class="form-group">
-			<div class="col-md-offset-4 col-md-4">
 				<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
-			</div>
-		</div>
 	</form>
 	<%
 		if (request.getParameter("model") != null) {

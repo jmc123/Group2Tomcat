@@ -22,7 +22,8 @@
 	long startTime = System.nanoTime();
 	List<User> users = PersistenceUtil.findAllUsers();
 %>
-<div class="col-md-offset-2 col-md-7">
+<div class="col-md-9 text-center">
+<div class="col-md-10 text-center">
 	<h3 class="text-center">
 		<%=Strings.ALL_USERS%> <br />
 	</h3>
@@ -49,5 +50,6 @@
 
 	</table>
 	<h3 class="text-center"><%=timeTaken%></h3>
+</div>
 </div>
 <jsp:include page="../templates/footer.jsp" />

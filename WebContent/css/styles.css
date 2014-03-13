@@ -42,12 +42,16 @@
 				height: auto !important;
 				display:inline;
   				height:50%;
-  				border-right:1px inset;
+  				border-right:3px inset;
+			}
+			#border{
+				height:60%;
+  				border-right:3px inset;
 			}
 			#loggedinastext{
 				margin-top:-20px;
 				margin-left:-20px;
-				border-bottom:1px inset;
+				border-bottom:3px inset;
 				
 			}
 			.twitter-timeline{

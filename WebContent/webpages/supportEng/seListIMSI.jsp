@@ -9,30 +9,28 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-offset-2 col-md-7 text-center"><%=Strings.ALL_IMSIS_BY_TIME_PERIOD%></h3>
+	<h3 class="col-md-12 text-center"><%=Strings.ALL_IMSIS_BY_TIME_PERIOD%></h3>
 	<br /> <br /> <br />
 	<form method="get"
 		action="/JPASprint1/webpages/supportEng/seListIMSI.jsp"
-		class="form-horizontal">
+		class="form-inline">
 		<div class="form-group">
-			<div class="col-md-4">
+			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="from"
-					name="from" required title="<%=Strings.TT_FROM%>"/>
+					name="from" data-toggle="tooltip" data-placement="bottom" required title="<%=Strings.TT_FROM%>" value="2013-01-01T12:00:00" step="1"/>
 			</div>
 		</div>
+		<span class="glyphicon glyphicon-arrow-right"></span>
 		<div class="form-group">
-			<div class="col-md-4">
+			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="to"
-					name="to" required title="<%=Strings.TT_TO%>"/>
+					name="to" data-toggle="tooltip" data-placement="bottom" required title="<%=Strings.TT_TO%>" value="2013-12-12T12:00:00" step="1"/>
 			</div>
 		</div>
 
-		<br />
-		<div class="form-group">
-			<div class="col-md-offset-4 col-md-4">
+		
 				<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
-			</div>
-		</div>
+
 	</form>
 
 	<%

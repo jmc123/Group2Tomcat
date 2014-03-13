@@ -14,25 +14,17 @@
 	<br />
 	<form method="get"
 		action="/JPASprint1/webpages/customerRep/csEventCause.jsp"
-		class="form-horizontal">
+		class="form-inline">
 		<div class="form-group">
-			<label for="imsi" class="col-md-3 control-label"></label>
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<input type="text" id="query" name="query" value="EventCauseByIMSI"
 					style="display: none" /> <input type="text" class="form-control"
 					id="IMSI" name="IMSI" placeholder="<%=Strings.PH_IMSI%>" title="<%=Strings.TT_IMSI%>" required />
 			</div>
-			<div class="col-md-4">
+			</div>
 				<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
-			</div>
-		</div>
 
-		<br />
-		<!--  ><div class="form-group">
-			<div class="col-md-offset-4 col-md-4">
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</div>
-		</div><-->
+
 	</form>
 	<%
 		if (request.getParameter("IMSI") != null) {
