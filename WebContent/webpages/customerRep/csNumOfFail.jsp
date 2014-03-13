@@ -8,40 +8,29 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-offset-2 col-md-7 text-center">Enter an IMSI and
-		time period for number of failures</h3>
+	<h4 class="col-md-12 text-center">Enter an IMSI and
+		time period for number of failures</h4>
 	<br /> <br /> <br />
 	<form method="get"
 		action="/JPASprint1/webpages/customerRep/csNumOfFail.jsp"
-		class="form-horizontal">
+		class="form-inline">
 		<div class="form-group">
-			<label for="imsi" class="col-md-4 control-label"></label>
-			<div class="col-md-4">
+			<div class="col-md-1">
 				<input type="text" class="form-control" id="imsi" name="imsi"
-					placeholder="IMSI" required>
+					placeholder="IMSI" required title="Enter valid IMSI">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="from" class="col-md-4 control-label">FROM:</label>
-			<div class="col-md-4">
-				<input type="datetime-local" class="form-control" id="from"
-					name="from" required>
+			<div class="col-md-1">
+				<input type="datetime-local" class="form-control" id="from" name="from" value="2013-01-01T12:00:00" step="1" required title="Enter from date">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="to" class="col-md-4 control-label">TO:</label>
-			<div class="col-md-4">
-				<input type="datetime-local" class="form-control" id="to"
-					name="to" required>
+			<div class="col-md-1">
+				<input type="datetime-local" class="form-control" id="to" value="2013-12-12T12:00:00" step="1" name="to" required title="Enter to date">
 			</div>
 		</div>
-
-		<br />
-		<div class="form-group">
-			<div class="col-md-offset-4 col-md-4">
 				<button type="submit" class="btn btn-primary">Submit</button>
-			</div>
-		</div>
 	</form>
 
 	<%
@@ -66,14 +55,10 @@
 			List<Object[]> queryDetails = PersistenceUtil.findNumberOfFailures(imsi, fdate, tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h3 class="text-center">
-			The Number of Failures for <br />IMSI:<%=imsi%><br /> from:
-			<%=fdate%>
-			to:
-			<%=tdate%></h3>
+
 		<table class=" table table-striped table-bordered">
 			<tr>
-				<th class="text-center">Number Of Failures</th>
+				<th class="text-center">Number Of Failures for IMSI:<%=imsi%></th>
 			</tr>
 			<%
 				for (Object[] object : queryDetails) {
@@ -92,12 +77,10 @@
 			%>
 
 		</table>
-		<h3 class="text-center"><%=timeTaken%></h3>
-	</div>
-	<%
-		}
-	%>
-</div>
+		<h3 class="text-center"><%=timeTaken%> </h3>
+		</div>
+		<%} %>
+		</div>
+		<jsp:include page="../templates/footer.jsp"/>
 
-<jsp:include page="../templates/footer.jsp" />
 

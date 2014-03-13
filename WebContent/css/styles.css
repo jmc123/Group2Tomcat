@@ -7,13 +7,22 @@
 			html, body, .container {
 				height: 100%; 
 			}
+			#logo{
+				margin-top:10px;
+			}
+			#bottomlogo{
+				margin-top:-15px;
+			}
+			#postionbt{
+				position: relative;
+				left:840px;
+				top:80px;
+			
+			}
 			#margintext{
-				margin-top:90px;
+				margin-top:25px;
 			}
 			#marginbt{
-				margin-top:75px;
-			}
-			#logo{
 				margin-top:10px;
 			}
 			footer.container  /* hereee */
@@ -29,12 +38,22 @@
 			#hero{
 				margin-top:100px;
 			}
-			
+			#accordion{
+				display:inline;
+  				height:50%;
+  				border-right:1px inset;
+			}
+			#loggedinastext{
+				margin-top:-20px;
+				margin-left:-20px;
+				
+			}
+	
 	
 			#main
 			{
 				overflow:auto;
-				padding-bottom:150px; /* this needs to be bigger than footer height*/
+				padding-bottom:60px; /* this needs to be bigger than footer height*/
 				
 				min-height: 100%;
 				height: auto !important;

@@ -8,8 +8,8 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-offset-2 col-md-7 text-center">Enter an IMSI for
-		EventID and Cause Code</h3>
+	<h4 class=" col-md-12 text-center">Enter an IMSI for
+		EventID and Cause Code</h4>
 	<br />
 	<br />
 	<br />
@@ -17,20 +17,23 @@
 		action="/JPASprint1/webpages/customerRep/csEventCause.jsp"
 		class="form-horizontal">
 		<div class="form-group">
-			<label for="imsi" class="col-md-4 control-label"></label>
-			<div class="col-md-4">
+			<label for="imsi" class="col-md-3 control-label"></label>
+			<div class="col-md-3">
 				<input type="text" id="query" name="query" value="EventCauseByIMSI"
 					style="display: none" /> <input type="text" class="form-control"
 					id="IMSI" name="IMSI" placeholder="IMSI value" required />
 			</div>
-		</div>
-
-		<br />
-		<div class="form-group">
-			<div class="col-md-offset-4 col-md-4">
+			<div class="col-md-4">
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</div>
 		</div>
+
+		<br />
+		<!--  ><div class="form-group">
+			<div class="col-md-offset-4 col-md-4">
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+		</div><-->
 	</form>
 	<%
 		if (request.getParameter("IMSI") != null) {
@@ -40,8 +43,8 @@
 					.findEventCauseByIMSI(imsi);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h3 class="text-center">
-			The Event IDs and Cause Codes for <br />IMSI:<%=imsi%></h3>
+		<h4 class="text-center">IMSI:<%=imsi%></h4>
+		<div style="max-height:200px; overflow:auto;">
 		<table class=" table table-striped table-bordered">
 			<tr>
 				<th class="text-center">Event ID</th>
@@ -63,7 +66,8 @@
 			%>
 
 		</table>
-		<h3 class="text-center"><%=timeTaken%></h3>
+		</div>
+		<h4 class="text-center"><%=timeTaken%></h4>
 	</div>
 	<%
 		}

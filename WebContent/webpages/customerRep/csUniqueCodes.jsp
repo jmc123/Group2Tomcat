@@ -8,25 +8,19 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-offset-2 col-md-7 text-center">Enter an IMSI for
-		all Unique Cause Codes for its Call Failures</h3>
+	<h4 class="col-md-12 text-center">Enter an IMSI for
+		all Unique Cause Codes for its Call Failures</h4>
 	<br /> <br /> <br />
 	<form method="get" action="/JPASprint1/webpages/customerRep/csUniqueCodes.jsp"
-		class="form-horizontal">
+		class="form-inline">
 		<div class="form-group">
-			<label for="imsi" class="col-md-4 control-label"></label>
 			<div class="col-md-4">
 				<input type="text" class="form-control" id="IMSI" name="IMSI"
 					placeholder="IMSI" required />
 			</div>
 		</div>
 
-		<br />
-		<div class="form-group">
-			<div class="col-md-offset-4 col-md-4">
 				<button type="submit" class="btn btn-primary">Submit</button>
-			</div>
-		</div>
 	</form>
 
 	<%

@@ -14,6 +14,17 @@
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/validation.js"></script>
+<script>
+		$(function() {
+			$("#to, #from, #imsi").tooltip({
+		    	position: "center bottom",
+		    	offset: [-2, 10],
+		    	effect: "fade",
+		    	opacity: 0.7
+		    });
+		});
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	</script>
 
 </head>
 <body>
@@ -26,29 +37,29 @@
 	%>
 	<div class="container" id="main">
 		<div class="row">
-			<div class="col-md-3 text-center">
+			<div class="col-md-2 text-center">
 				<img src="../../images/logo.jpg" height="100" width="100" id="logo">
 			</div>
-			<div class="col-md-7" id="margintext">
+			<div class="col-md-10" style="background-image: url(../../images/banner.png); height: 120px; width:950px;">
+			<form method="POST" name="logout" action="/JPASprint1/LoginServlet" id="postionbt">
+					<button class="btn btn-danger right" type="submit">
+						<span class="glyphicon glyphicon-log-out"></span>Logout
+					</button>
+				</form>
+			</div>
+			<div class="col-md-12" id="loggedinastext">
 				<%
 					List<Object[]> userDetails = PersistenceUtil
 							.findPasswordAndUserTypeByUsername(userName);
 					String userType = ((UserType) userDetails.get(0)[1]).getDesc();
 				%>
-				<p class="text-right center">
+				<p class="text-right center" id="margintext">
 					<span class="glyphicon glyphicon-user"></span> Logged in as <strong><%=userType%></strong>
 				</p>
 				<!-- get from session -->
 			</div>
-			<div class="col-md-2" id="marginbt">
-
-				<form method="POST" name="logout" action="/JPASprint1/LoginServlet">
-					<button class="btn btn-danger" type="submit">
-						<span class="glyphicon glyphicon-log-out"></span>Logout
-					</button>
-				</form>
-			</div>
+			
 		</div>
-		<div class="col-md-12">
+	
 			<hr />
-		</div>
+		
