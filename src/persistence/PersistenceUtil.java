@@ -276,8 +276,7 @@ public class PersistenceUtil implements Serializable {
 	public static List<Integer> findUniqueCauseByIMSI(long imsi){
 		EntityManager em = emf.createEntityManager();
 		List<Integer> uniqueCauses = (List<Integer>)
-				em.createNativeQuery("SELECT DISTINCT Cause_Code from errorevent  where IMSI= ? Order by Cause_Code;")
-							
+				em.createNativeQuery("SELECT DISTINCT Cause_Code FROM ErrorEvent WHERE IMSI= ? ORDER BY Cause_Code;")
 				.setParameter(1, imsi).getResultList();
 		em.close();
 
