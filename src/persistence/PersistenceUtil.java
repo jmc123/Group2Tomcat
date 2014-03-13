@@ -77,21 +77,6 @@ public class PersistenceUtil implements Serializable {
 	}
 
 	/**
-	 * Drops the following tables in the current database:<br />
-	 * <ul><li>EventCause</li>
-	 *     <li>FailureClass</li>
-	 *     <li>MCC_MNC</li>
-	 *     <li>UEType</li></ul>
-	 */
-	public static void dropSecondaryTables(){		
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		em.createNativeQuery("DROP TABLE IF EXISTS EventCause, FailureClass, MCC_MNC, UEType").executeUpdate();
-		em.getTransaction().commit();
-		em.close();
-	}
-
-	/**
 	 * Returns the total number of ErrorEvent entries in the ErrorEvent table in the database
 	 * 
 	 * @return	the number of ErrorEvents in the database
