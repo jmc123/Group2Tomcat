@@ -12,5 +12,5 @@
 							</ul>
 						</div>
 					</ul>
-					<a class="twitter-timeline" width="180" height "300" data-dnt="true" href="https://twitter.com/ericsson" data-widget-id="444114613219520513">Tweets by @ericsson</a>
+					<a class="twitter-timeline" width="250" height "250" data-dnt="true" href="https://twitter.com/ericsson" data-widget-id="444114613219520513">Tweets by @ericsson</a>
 				</div>

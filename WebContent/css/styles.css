@@ -39,6 +39,7 @@
 				margin-top:100px;
 			}
 			#accordion{
+				height: auto !important;
 				display:inline;
   				height:50%;
   				border-right:1px inset;
@@ -46,9 +47,13 @@
 			#loggedinastext{
 				margin-top:-20px;
 				margin-left:-20px;
+				border-bottom:1px inset;
 				
 			}
-	
+			.twitter-timeline{
+			clear:both;
+				margin-top:20px;
+			}
 	
 			#main
 			{
