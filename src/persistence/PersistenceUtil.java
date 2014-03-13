@@ -173,9 +173,10 @@ public class PersistenceUtil implements Serializable {
 		return userType;
 	}
 
-	public static void registerUser(String userName, String password, int userTypeId){
+	public static void registerUser(String userName, String password, int userTypeId, String firstName,
+									String lastName, String emailAddress, String phoneNumber){
 		EntityManager em = emf.createEntityManager();
-		User newUser = new User(userName, password, userTypeId);
+		User newUser = new User(userName, password, userTypeId, firstName, lastName, emailAddress, phoneNumber);
 
 		em.getTransaction().begin();
 		em.persist(newUser);

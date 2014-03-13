@@ -25,7 +25,10 @@ public class RegisterServlet extends HttpServlet {
 		String userName = request.getParameter("userName");
 		String password = DigestUtils.sha1Hex(request.getParameter("password"));
 		int usertype = Integer.parseInt(request.getParameter("role"));
-		
+		String firstName = request.getParameter("fName");
+		String lastName = request.getParameter("lName");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
 		List<String> userNamesFromDB = PersistenceUtil.findAllUserNames();
 
 		for(String userNameFromDB : userNamesFromDB){
@@ -36,7 +39,7 @@ public class RegisterServlet extends HttpServlet {
 		}
 
 		if(uniqueUsername){
-			PersistenceUtil.registerUser(userName, password,usertype);		
+			PersistenceUtil.registerUser(userName, password, usertype, firstName, lastName, email, phone);		
 			response.sendRedirect("webpages/admin/sysHome.jsp");
 		} else {
 			response.getWriter().print("<script>alert(\"Username taken!\");"

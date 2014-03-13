@@ -8,13 +8,14 @@
 					<h3 class="col-md-offset-4 col-md-7 text-left"><%=Strings.CREATE_USER%></h3>
 					<br /><br /><br />
 					<form method="POST" name="register" action="/JPASprint1/RegisterServlet"
-							onsubmit="return validatePasswordsMatch()" class="form-horizontal" >
+							onsubmit="return validateInputsAreValid()" class="form-horizontal" >
 						<div class="form-group">
 							<div class="col-md-4">
-								<select class="form-control" name="role">
-									<option value="4"><%=Strings.CSR%></option>
-									<option value="3"><%=Strings.SE%></option>
+								<select class="form-control" name="role" id="role">
+									<option value="0"><%=Strings.SELECT_ROLE%></option>
 									<option value="2"><%=Strings.NME%></option>
+									<option value="3"><%=Strings.SE%></option>
+									<option value="4"><%=Strings.CSR%></option>
 								</select>
 							</div>
 						</div>
@@ -34,6 +35,30 @@
 							<label for="pass" class="col-md-4 control-label"></label>
 							<div class="col-md-4">
 								<input type="password" class="form-control" id="confirm" name="confirm" placeholder="<%=Strings.PH_CONFIRM%>" required />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userid" class="col-md-4 control-label"></label>
+							<div class="col-md-4">
+								<input type="text" class="form-control" id="fname" name="fname" placeholder="<%=Strings.PH_FNAME%>" required />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userid" class="col-md-4 control-label"></label>
+							<div class="col-md-4">
+								<input type="text" class="form-control" id="lname" name="lname" placeholder="<%=Strings.PH_LNAME%>" required />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userid" class="col-md-4 control-label"></label>
+							<div class="col-md-4">
+								<input type="text" class="form-control" id="email" name="email" placeholder="<%=Strings.PH_EMAIL%>" required />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userid" class="col-md-4 control-label"></label>
+							<div class="col-md-4">
+								<input type="text" class="form-control" id="phone" name="phone" placeholder="<%=Strings.PH_PHONE%>" required />
 							</div>
 						</div>
 

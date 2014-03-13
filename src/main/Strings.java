@@ -66,6 +66,10 @@ public class Strings {
 	public static String PH_CONFIRM = "Confirm password";
 	public static String PH_IMSI = "IMSI Value";
 	public static String PH_PHONE_MODEL = "Phone Model";
+	public static String PH_LNAME = "First Name";
+	public static String PH_FNAME = "Last Name";
+	public static String PH_EMAIL = "Email Address";
+	public static String PH_PHONE = "Phone Number";
 	
 	//Form tootltips
 	public static String TT_IMSI = "Enter a valid IMSI";
@@ -76,6 +80,7 @@ public class Strings {
 		//SysAdmin
 	//Add User
 	public static String CREATE_USER = "Create user";
+	public static String SELECT_ROLE = "-- Select Role --";
 	public static String CSR = "Customer Service Rep";
 	public static String SE = "Support Engineer";
 	public static String NME = "Network Management Engineer";
