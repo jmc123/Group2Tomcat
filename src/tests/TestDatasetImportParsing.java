@@ -11,6 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import persistence.PersistenceUtil;
 import configs.ErrorEventConfig;
 import configs.EventCauseConfig;
 import configs.FailureClassConfig;
@@ -24,6 +25,8 @@ public class TestDatasetImportParsing {
 	
 	@BeforeClass
 	public static void setUp() throws InvalidFormatException, IOException{
+		PersistenceUtil.useLiveDatabase(false);
+
 		OPCPackage pkg = OPCPackage.open(new File(EXCEL_FILE));
 		excelData = new XSSFWorkbook(pkg);
 		pkg.close();
