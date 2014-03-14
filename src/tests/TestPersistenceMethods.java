@@ -1,6 +1,8 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,15 +22,19 @@ import configs.FailureClassConfig;
 import configs.MCC_MNCConfig;
 import configs.UETypeConfig;
 import entity.DatasetEntity;
+import entity.ErrorEvent;
+import entity.FailureClass;
 import entity.User;
 
+@SuppressWarnings("unused")
 public class TestPersistenceMethods {
 	private static final String EXCEL_FILE = "src/res/TestDataset.xlsx";
 	private static XSSFWorkbook excelData;
-
+	
 	@BeforeClass
 	public static void setUp() throws InvalidFormatException, IOException {
 		PersistenceUtil.useTestDatabase();
+		PersistenceUtil pu = new PersistenceUtil();
 		OPCPackage pkg = OPCPackage.open(new File(EXCEL_FILE));
 		excelData = new XSSFWorkbook(pkg);
 		pkg.close();
@@ -52,7 +58,7 @@ public class TestPersistenceMethods {
 				.sha1Hex("pass"), 1, "Test", "User", "test@email.com",
 				"01234567"));
 		long diff = PersistenceUtil.findAllUsers().size() - old;
-		assertEquals("Should be true", true, (diff > 0));
+		assertTrue(diff > 0);
 	}
 
 	@Test
@@ -61,7 +67,7 @@ public class TestPersistenceMethods {
 		PersistenceUtil.remove(PersistenceUtil
 				.getUserByUsername("userPersistTest"));
 		long diff = old - PersistenceUtil.findAllUsers().size();
-		assertEquals("Should be true", true, (diff > 0));
+		assertTrue(diff > 0);
 	}
 
 	@Test
@@ -128,10 +134,7 @@ public class TestPersistenceMethods {
 
 	@Test
 	public void testRegisterUser() {
-		int old = PersistenceUtil.findAllUsers().size();
-		PersistenceUtil.registerUser("userTest", DigestUtils.sha1Hex("pass"),
-				1, "Test", "User", "test@email.com", "01234567");
-		int diff = PersistenceUtil.findAllUsers().size() - old;
-		assertEquals("Should be true", true, (diff > 0));
+		PersistenceUtil.registerUser("userTest", DigestUtils.sha1Hex("pass"), 1, "Test", "User", "test@email.com", "01234567");
+		assertEquals("Should be 'test@email.com'", "test@email.com", PersistenceUtil.findUserByUsername("userTest").getEmailAddress());
 	}
 }

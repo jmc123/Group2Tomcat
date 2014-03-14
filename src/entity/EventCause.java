@@ -30,33 +30,17 @@ public class EventCause implements DatasetEntity{
 		return id.getEventId();
 	}
 
-	public void setEventId(int eventId) {
-		this.id.setEventId(eventId);
-	}
 	
 	public int getCauseCode() {
 		return id.getCauseCode();
 	}
 
-	public void setCauseCode(int causeCode) {
-		this.id.setCauseCode(causeCode);
-	}
 
 	public String getDesc() {
 		return desc;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-	
-	public List<ErrorEvent> getErrorEvents() {
-		return errorEvents;
-	}
 
-	public void setErrorEvents(List<ErrorEvent> errorEvents) {
-		this.errorEvents = errorEvents;
-	}
 
 	public EventCause(){
 		
@@ -66,15 +50,6 @@ public class EventCause implements DatasetEntity{
 		super();
 		this.id = new EventCauseComp(eventId, causeCode);
 		this.desc = desc;
-	}
-
-	public void print() {
-		if(desc == null)
-			System.out.println("No EventCause found!");
-		else{
-			System.out.println("EventID: " + id.getEventId() + "\tCause Code: " + id.getCauseCode() +
-							   "\nDescription: " + desc);
-		}
 	}
 
 	@Override

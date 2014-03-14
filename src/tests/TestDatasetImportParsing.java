@@ -20,6 +20,7 @@ import configs.MCC_MNCConfig;
 import configs.UETypeConfig;
 import entity.DatasetEntity;
 
+@SuppressWarnings("unused")
 public class TestDatasetImportParsing {
 
 	private static final String EXCEL_FILE = "src/res/TestDataset.xlsx";
@@ -33,6 +34,12 @@ public class TestDatasetImportParsing {
 		OPCPackage pkg = OPCPackage.open(new File(EXCEL_FILE));
 		excelData = new XSSFWorkbook(pkg);
 		pkg.close();
+		
+		ErrorEventConfig eec = new ErrorEventConfig();
+		EventCauseConfig ecc = new EventCauseConfig();
+		FailureClassConfig fcc = new FailureClassConfig();
+		MCC_MNCConfig mcc_mncc = new MCC_MNCConfig();
+		UETypeConfig uetc = new UETypeConfig();
 	}
 	
 	@Test

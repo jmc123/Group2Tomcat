@@ -21,7 +21,6 @@ public class RegisterServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean uniqueUsername = true;
 		
-		
 		String userName = request.getParameter("userName");
 		String password = DigestUtils.sha1Hex(request.getParameter("password"));
 		int usertype = Integer.parseInt(request.getParameter("role"));

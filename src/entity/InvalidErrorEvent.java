@@ -71,18 +71,6 @@ public class InvalidErrorEvent implements DatasetEntity{
 		this.hier321_id = hier321_id;
 	}
 
-	public void print(){
-		if(neVersion == null)
-			System.out.println("No InvalidErrorEvent found!");
-		else{
-			System.out.println("Date: " + date + "\tEvent ID: " + eventId + "\t\tFailure Class: " + failureClass + 
-							   "\nUE Type: " + ueType + "\t\tMarket: " + market + "\t\tOperator: " + operator + 
-							   "\nCell ID: " + cellId + "\t\t\tDuration: " + duration + "\t\tCause Code: " + causeCode + 
-							   "\nNE Version: " + neVersion + "\t\t\tIMSI: " + imsi + "\tHIER3_ID: " + hier3_id + 
-							   "\nHIER32_ID: " + hier32_id + "\tHIER321_ID: " + hier321_id);
-		}
-	}
-
 	@Override
 	public Object getPrimaryKey() {
 		return id;

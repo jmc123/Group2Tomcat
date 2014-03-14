@@ -23,7 +23,7 @@ import entity.UserType;
 @SuppressWarnings({"serial", "unchecked"})
 public class PersistenceUtil implements Serializable {
 	protected static EntityManagerFactory emf = Persistence.createEntityManagerFactory("dt340a");
-
+	
 	public static void useTestDatabase(){
 		emf = Persistence.createEntityManagerFactory("dt340atest");
 	}

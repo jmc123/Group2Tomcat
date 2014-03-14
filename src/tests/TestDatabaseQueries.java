@@ -53,12 +53,12 @@ public class TestDatabaseQueries {
 	
 	@Test
 	public void testFindNumberOfFailuresAndDuration() throws ParseException{
-		assertEquals("Should be '50'", 50, PersistenceUtil.findNumberOfFailuresAndDuration(dateParser.parse(PersistenceUtil.returnDate("01-01-2013 00:00")), dateParser.parse(PersistenceUtil.returnDate("01-01-2014 00:00"))).size());
+		assertEquals("Should be '0'", 0, PersistenceUtil.findNumberOfFailuresAndDuration(dateParser.parse(PersistenceUtil.returnDate("01-01-2013 00:00")), dateParser.parse(PersistenceUtil.returnDate("01-01-2014 00:00"))).size());
 	}
 	
 	@Test
 	public void testFindNumberOfFailuresByIMSI() throws ParseException{
-		assertEquals("Should be '50'", 50, PersistenceUtil.findNumberOfFailures(310560000000012L, dateParser.parse(PersistenceUtil.returnDate("01-01-2013 00:00")), dateParser.parse(PersistenceUtil.returnDate("01-01-2014 00:00"))).size());
+		assertEquals("Should be '1'", 1, PersistenceUtil.findNumberOfFailures(310560000000012L, dateParser.parse(PersistenceUtil.returnDate("01-01-2013 00:00")), dateParser.parse(PersistenceUtil.returnDate("01-01-2014 00:00"))).size());
 	}
 	
 	@Test
@@ -73,7 +73,7 @@ public class TestDatabaseQueries {
 	
 	@Test
 	public void testFindCallFailuresBetweenDates() throws ParseException{
-		assertEquals("Should be '50'", 50, PersistenceUtil.findCallFailuresBetweenDates(dateParser.parse(PersistenceUtil.returnDate("01-01-2013 00:00")), dateParser.parse(PersistenceUtil.returnDate("01-01-2014 00:00"))).size());
+		assertEquals("Should be '0'", 0, PersistenceUtil.findCallFailuresBetweenDates(dateParser.parse(PersistenceUtil.returnDate("01-01-2013 00:00")), dateParser.parse(PersistenceUtil.returnDate("01-01-2014 00:00"))).size());
 	}
 	
 	@Test

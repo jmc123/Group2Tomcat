@@ -21,6 +21,10 @@ public class DatabaseGenerator {
 	private static Workbook excelData;
 	private static boolean datasetUploaded = false;
 	
+	private DatabaseGenerator(){
+		
+	}
+	
 	public static void generateDatabase(String fileLocation, PrintWriter out, long uploadTimeInMillis){
 		datasetUploaded = true;
 		loadExcelFile(fileLocation, out);

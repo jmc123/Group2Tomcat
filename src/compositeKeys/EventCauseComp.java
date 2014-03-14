@@ -16,14 +16,9 @@ public class EventCauseComp implements Serializable {
 	public int getCauseCode() {
 		return b_causeCode;
 	}
-	public void setCauseCode(int causeCode) {
-		this.b_causeCode = causeCode;
-	}
+
 	public int getEventId() {
 		return a_eventId;
-	}
-	public void setEventId(int eventId) {
-		this.a_eventId = eventId;
 	}
 	
 	public EventCauseComp(){

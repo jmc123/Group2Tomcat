@@ -60,53 +60,25 @@ public class User implements DatasetEntity{
 	public String getUserName() {
 		return userName;
 	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
+	
 	public String getUserPassword() {
 		return userPassword;
 	}
-
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
-	}
-
-	public String getFirstName() {
+	
+	public String getFirstName(){
 		return firstName;
 	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
+	
+	public String getLastName(){
 		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public String getEmailAddress() {
 		return emailAddress;
 	}
-
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
-	}
-
-	public String getPhoneNumber() {
+	
+	public String getPhoneNumber(){
 		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public void setUserType(UserType userType) {
-		this.userType = userType;
 	}
 
 	@Override

@@ -16,14 +16,9 @@ public class MCCMNCComp implements Serializable{
 	public int getMcc() {
 		return mcc;
 	}
-	public void setMcc(int mcc) {
-		this.mcc = mcc;
-	}
+	
 	public int getMnc() {
 		return mnc;
-	}
-	public void setMnc(int mnc) {
-		this.mnc = mnc;
 	}
 	
 	public MCCMNCComp(){

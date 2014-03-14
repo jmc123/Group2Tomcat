@@ -32,41 +32,14 @@ public class MCC_MNC implements DatasetEntity{
 		return id.getMcc();
 	}
 
-	public void setMcc(int mcc) {
-		this.id.setMcc(mcc);
-	}
-
 	public int getMnc() {
 		return id.getMnc();
-	}
-
-	public void setMnc(int mnc) {
-		this.id.setMnc(mnc);
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
 	}
 
 	public String getOperator() {
 		return operator;
 	}
 
-	public void setOperator(String operator) {
-		this.operator = operator;
-	}
-	
-	public List<ErrorEvent> getErrorEvents() {
-		return errorEvents;
-	}
-
-	public void setErrorEvents(List<ErrorEvent> errorEvents) {
-		this.errorEvents = errorEvents;
-	}
 
 	public MCC_MNC(){
 		
@@ -77,16 +50,6 @@ public class MCC_MNC implements DatasetEntity{
 		this.id = new MCCMNCComp(mcc, mnc);
 		this.country = country;
 		this.operator = operator;
-	}
-	
-	public void print() {
-		if(operator == null)
-			System.out.println("No MCC_MNC found!");
-		else
-			System.out.println("MCC: " + id.getMcc() +
-							   "\tMNC: " + id.getMnc() +
-							   "\nCountry: " + country +
-							   "\tOperator: " + operator);
 	}
 
 	@Override

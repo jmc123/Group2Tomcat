@@ -45,14 +45,4 @@ public class TestServlets {
 
         assertEquals("Should be 'userMock'", "userMock", PersistenceUtil.findUserByUsername("userMock").getUserName());
 	}
-	
-	@Test
-	public void testLoginServletLogin(){
-		
-	}
-	
-	@Test
-	public void testLoginServletLogout(){
-		
-	}
 }

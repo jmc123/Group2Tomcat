@@ -40,80 +40,8 @@ public class UEType implements DatasetEntity{
 		return tac;
 	}
 
-	public void setTac(int tac) {
-		this.tac = tac;
-	}
-
-	public String getmName() {
-		return mName;
-	}
-
-	public void setmName(String mName) {
-		this.mName = mName;
-	}
-
-	public String getManu() {
-		return manu;
-	}
-
-	public void setManu(String manu) {
-		this.manu = manu;
-	}
-
-	public String getAccess() {
-		return access;
-	}
-
-	public void setAccess(String access) {
-		this.access = access;
-	}
-
 	public String getModel() {
 		return model;
-	}
-
-	public void setModel(String model) {
-		this.model = model;
-	}
-
-	public String getvName() {
-		return vName;
-	}
-
-	public void setvName(String vName) {
-		this.vName = vName;
-	}
-
-	public String getUeType() {
-		return ueType;
-	}
-
-	public void setUeType(String ueType) {
-		this.ueType = ueType;
-	}
-
-	public String getOs() {
-		return os;
-	}
-
-	public void setOs(String os) {
-		this.os = os;
-	}
-
-	public String getInputMode() {
-		return inputMode;
-	}
-
-	public void setInputMode(String inputMode) {
-		this.inputMode = inputMode;
-	}
-
-	public List<ErrorEvent> getErrorEvents() {
-		return errorEvents;
-	}
-
-	public void setErrorEvents(List<ErrorEvent> errorEvents) {
-		this.errorEvents = errorEvents;
 	}
 
 	public UEType(){
@@ -132,17 +60,6 @@ public class UEType implements DatasetEntity{
 		this.ueType = ueType;
 		this.os = os;
 		this.inputMode = inputMode;
-	}
-	
-	public void print() {
-		if(access == null)
-			System.out.println("No UE Type found!");
-		else{
-			System.out.println("UE Type: " + tac + "\tMarketing Name: " + mName + 
-							   "\nManufacturer: " + manu + "\tAccess Capability: " + access + 
-							   "\nModel: " + model + ", Vendor Name: " + vName + ", UE Type: " + ueType + 
-							   "\nOS: " + os + ", Input Mode: " + inputMode);
-		}
 	}
 
 	@Override

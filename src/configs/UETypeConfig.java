@@ -35,10 +35,10 @@ public class UETypeConfig {
 
 	private static void parseCells(Iterator<Cell> cellIterator) {
 		int tac;
-		String mName;
+		String mName = "";
 		String manu;
 		String access;
-		String model;
+		String model = "";
 		String vName;
 		String ueType;
 		String os;
@@ -56,7 +56,6 @@ public class UETypeConfig {
 			mName = String.valueOf(next.getNumericCellValue());
 		else if(nextType == Cell.CELL_TYPE_STRING)
 			mName = next.getStringCellValue();
-		else mName = "";
 		
 		manu = cellIterator.next().getStringCellValue();
 		access = cellIterator.next().getStringCellValue();
@@ -68,7 +67,6 @@ public class UETypeConfig {
 			model = String.valueOf(next.getNumericCellValue());
 		else if(nextType == Cell.CELL_TYPE_STRING)
 			model = next.getStringCellValue();
-		else model = "";
 		
 		vName = cellIterator.next().getStringCellValue();
 		ueType = cellIterator.next().getStringCellValue();
