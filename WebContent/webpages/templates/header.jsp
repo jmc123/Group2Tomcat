@@ -48,9 +48,8 @@
 			</div>
 			<div class="col-md-12" id="loggedinastext">
 				<%
-					List<Object[]> userDetails = PersistenceUtil
-							.findPasswordAndUserTypeByUsername(userName);
-					String userType = ((UserType) userDetails.get(0)[1]).getDesc();
+				User userDetails = PersistenceUtil.findUserByUsername(userName);
+				String userType = userDetails.getUserType().getDesc();
 				%>
 				<p class="text-right center" id="margintext">
 					<span class="glyphicon glyphicon-user"></span> <%=Strings.LOGGED_IN_AS%> <strong><%=userType%></strong>

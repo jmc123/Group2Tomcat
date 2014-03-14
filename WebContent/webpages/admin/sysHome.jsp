@@ -12,9 +12,9 @@
 	for (Cookie cookie : cookies) {
 		userName = cookie.getValue();
 	}
-	List<Object[]> userDetails = PersistenceUtil
-			.findPasswordAndUserTypeByUsername(userName);
-	String userType = ((UserType) userDetails.get(0)[1]).getDesc();
+	User userDetails = PersistenceUtil.findUserByUsername(userName);
+	String userType = userDetails.getUserType().getDesc();
+
 %>
 
 <div class="col-md-9 text-center">
