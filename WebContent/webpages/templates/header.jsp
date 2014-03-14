@@ -29,11 +29,18 @@
 </head>
 <body>
 	<%
-		String userName = null;
-		Cookie[] cookies = request.getCookies();
-		for (Cookie cookie : cookies) {
-			userName = cookie.getValue();
-		}
+	String userType ="";
+	String userName ="";
+	HttpSession sess = request.getSession(true);
+	//if(sess == null || !sess.isNew()){
+	//	response.getWriter().println("<script>window.location.replace(\"/JPASprint1\");</script>");	
+	//}
+	//else{
+	 userType = String.valueOf(sess.getAttribute("userType"));
+	 userName = String.valueOf(sess.getAttribute("userName"));
+
+	//}
+	
 	%>
 	<div class="container" id="main">
 		<div class="row">
@@ -47,12 +54,9 @@
 				</form>
 			</div>
 			<div class="col-md-12" id="loggedinastext">
-				<%
-				User userDetails = PersistenceUtil.findUserByUsername(userName);
-				String userType = userDetails.getUserType().getDesc();
-				%>
+				
 				<p class="text-right center" id="margintext">
-					<span class="glyphicon glyphicon-user"></span> <%=Strings.LOGGED_IN_AS%> <strong><%=userType%></strong>
+					<span class="glyphicon glyphicon-user"></span> <%=Strings.LOGGED_IN_AS%> <strong><%=userName +" " +"("+userType+")"%></strong>
 				</p>
 				<!-- get from session -->
 			</div>

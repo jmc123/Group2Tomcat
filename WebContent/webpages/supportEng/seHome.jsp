@@ -21,57 +21,100 @@
 				</ul>
 			</div>
 		</ul>
-		<a class="twitter-timeline" width="250" height "250" data-dnt="true" href="https://twitter.com/ericsson" data-widget-id="444114613219520513"><%=Strings.TWEETS%></a>
-		
+		<a class="twitter-timeline" width="250" height "250" data-dnt="true"
+			href="https://twitter.com/ericsson"
+			data-widget-id="444114613219520513"><%=Strings.TWEETS%></a>
+
 	</div>
 
 
-<!-- content here -->
-<%
-	String userName = null;
-	Cookie[] cookies = request.getCookies();
-	for (Cookie cookie : cookies) {
-		userName = cookie.getValue();
+	<!-- content here -->
+	<%
+HttpSession sess = request.getSession(false);
+String userId;
+String userName="";
+String password;
+String userType="";
+
+if (sess != null && !sess.isNew()) {
+	userId = (String.valueOf(sess.getAttribute("id")));
+	if (userId == null || userId.equals("")
+			|| userId.equals("null")) {
+		userName = String.valueOf(sess.getAttribute("userName"));
+		password = String.valueOf(sess.getAttribute("password"));
+		userType = String.valueOf(sess.getAttribute("userType"));
+
+		if (userName == null || userName.equals("") || userName.equals("null")
+				|| password == null || password.equals("")|| password.equals("null")) {
+			response.sendRedirect("/JPASprint1");
+		} else {
+			sess.setAttribute("id", userId);
+			sess.setAttribute("password", password);
+		}
+
 	}
-	User userDetails = PersistenceUtil.findUserByUsername(userName);
-	String userType = userDetails.getUserType().getDesc();
-	String fname = userDetails.getFirstName();
-	String lname = userDetails.getLastName();
-	String email = userDetails.getEmailAddress();
-	String phoneNum = userDetails.getPhoneNumber();
-%>
 
-<div class="col-md-9">
-					<h3 class="col-md-12 text-center"><strong><em><%=Strings.PROFILE_PAGE%></em></strong></h3>
-					<p style="padding:1px;" class="col-md-12"></p>
-					<div class="col-md-6">
-					<dl class="dl-horizontal">
-						<dt><%=Strings.PROFILE_USERNAME%></dt>
-						<dd style="padding-bottom:20px;"><%= userName %></dd>
-						<dt><%=Strings.PROFILE_ROLE%></dt>
-						<dd><%= userType %></dd>
-						
-					</dl>
-						<div class="col-md-offset-2 col-md-10 center">
-						<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
-						<script type="IN/JYMBII" data-companyid="1060" data-format="inline"></script>	
-						</div>				
-					</div>
-					<div class="col-md-6">
-					<dl class="dl-horizontal">
-						<dt><%=Strings.PROFILE_FIRSTNAME%></dt>
-						<dd style="padding-bottom:20px;"><%= fname %></dd>
-						<dt><%=Strings.PROFILE_LASTNAME%></dt>
-						<dd><%= lname %></dd>
-					</dl>
-					<h4 class="center col-md-offset-3" style="padding-top:20px; padding-bottom:20px;"><strong><em>Contact Details</em></strong></h4>
-					<dl class="dl-horizontal">
-						<dt><%=Strings.PROFILE_EMAIL%></dt>
-						<dd style="padding-bottom:20px;"><%= email %></dd>
-						<dt><%=Strings.PROFILE_PHONE%></dt>
-						<dd><%= phoneNum %></dd>
-					</dl>
-					</div>
-				</div>
+	else if (userId.equals("2")) {
+		response.sendRedirect(request.getContextPath()
+				+ "/webpages/networkManEng/nmeHome.jsp");
+	} else if (userId.equals("4")) {
+		response.sendRedirect(request.getContextPath()
+				+ "/webpages/customerRep/csHome.jsp");
+	} 
+}
+		userName = String.valueOf(sess.getAttribute("userName"));
+		userType = String.valueOf(sess.getAttribute("userType"));
 
-<jsp:include page="../templates/footer.jsp" />
+		User userDetails = PersistenceUtil.findUserByUsername(userName);
+		String fname ="";
+		String lname ="";
+		String email ="";
+		String phoneNum ="";
+		
+		if( userDetails != null){
+		fname = userDetails.getFirstName();
+		lname = userDetails.getLastName();
+		email = userDetails.getEmailAddress();
+		phoneNum = userDetails.getPhoneNumber();
+		}
+	%>
+
+	<div class="col-md-9">
+		<h3 class="col-md-12 text-center">
+			<strong><em><%=Strings.PROFILE_PAGE%></em></strong>
+		</h3>
+		<p style="padding: 1px;" class="col-md-12"></p>
+		<div class="col-md-6">
+			<dl class="dl-horizontal">
+				<dt><%=Strings.PROFILE_USERNAME%></dt>
+				<dd style="padding-bottom: 20px;"><%= userName %></dd>
+				<dt><%=Strings.PROFILE_ROLE%></dt>
+				<dd><%= userType %></dd>
+
+			</dl>
+			<div class="col-md-offset-2 col-md-10 center">
+				<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+				<script type="IN/JYMBII" data-companyid="1060" data-format="inline"></script>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<dl class="dl-horizontal">
+				<dt><%=Strings.PROFILE_FIRSTNAME%></dt>
+				<dd style="padding-bottom: 20px;"><%= fname %></dd>
+				<dt><%=Strings.PROFILE_LASTNAME%></dt>
+				<dd><%= lname %></dd>
+			</dl>
+			<h4 class="center col-md-offset-3"
+				style="padding-top: 20px; padding-bottom: 20px;">
+				<strong><em>Contact Details</em></strong>
+			</h4>
+			<dl class="dl-horizontal">
+				<dt><%=Strings.PROFILE_EMAIL%></dt>
+				<dd style="padding-bottom: 20px;"><%= email %></dd>
+				<dt><%=Strings.PROFILE_PHONE%></dt>
+				<dd><%= phoneNum %></dd>
+			</dl>
+		</div>
+	</div>
+
+	<jsp:include page="../templates/footer.jsp" />

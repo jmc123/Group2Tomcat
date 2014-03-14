@@ -25,18 +25,54 @@
 		<a class="twitter-timeline" width="250" height "250" data-dnt="true" href="https://twitter.com/ericsson" data-widget-id="444114613219520513"><%=Strings.TWEETS%></a>
 		
 	</div>
-	<%
-	String userName = null;
-	Cookie [] cookies = request.getCookies();
-	for(Cookie cookie : cookies){
-		userName = cookie.getValue();
+<%
+	HttpSession sess = request.getSession(false);
+	String userId;
+	String userName="";
+	String password;
+	String userType="";
+
+	if (sess != null && !sess.isNew()) {
+		userId = (String.valueOf(sess.getAttribute("id")));
+		if (userId == null || userId.equals("")
+				|| userId.equals("null")) {
+			userName = String.valueOf(sess.getAttribute("userName"));
+			password = String.valueOf(sess.getAttribute("password"));
+			userType = String.valueOf(sess.getAttribute("userType"));
+
+			if (userName == null || userName.equals("") || userName.equals("null")
+					|| password == null || password.equals("")|| password.equals("null")) {
+				response.sendRedirect("/JPASprint1");
+			} else {
+				sess.setAttribute("id", userId);
+				sess.setAttribute("password", password);
+			}
+
+		} else if (userId.equals("3")) {
+			response.sendRedirect(request.getContextPath()
+					+ "/webpages/supportEng/seHome.jsp");
+		} else if (userId.equals("4")) {
+			response.sendRedirect(request.getContextPath()
+					+ "/webpages/customerRep/csHome.jsp");
+		}
 	}
+
+
+	userName = String.valueOf(sess.getAttribute("userName"));
+	userType = String.valueOf(sess.getAttribute("userType"));
+
 	User userDetails = PersistenceUtil.findUserByUsername(userName);
-	String userType = userDetails.getUserType().getDesc();
-	String fname = userDetails.getFirstName();
-	String lname = userDetails.getLastName();
-	String email = userDetails.getEmailAddress();
-	String phoneNum = userDetails.getPhoneNumber();
+	String fname ="";
+	String lname ="";
+	String email ="";
+	String phoneNum ="";
+	
+	if( userDetails != null){
+	fname = userDetails.getFirstName();
+	lname = userDetails.getLastName();
+	email = userDetails.getEmailAddress();
+	phoneNum = userDetails.getPhoneNumber();
+	}
 	%>
 
 				<div class="col-md-9">

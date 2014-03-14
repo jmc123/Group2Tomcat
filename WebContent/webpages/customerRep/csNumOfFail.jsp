@@ -6,6 +6,41 @@
 <jsp:include page="../templates/header.jsp" />
 <jsp:include page="../templates/csrepNav.jsp" />
 
+<%
+	HttpSession sess = request.getSession(false);
+	String userId;
+	String userName = "";
+	String password;
+	String userType = "";
+
+	if (sess != null && !sess.isNew()) {
+		userId = (String.valueOf(sess.getAttribute("id")));
+		if (userId == null || userId.equals("")
+				|| userId.equals("null")) {
+			userName = String.valueOf(sess.getAttribute("userName"));
+			password = String.valueOf(sess.getAttribute("password"));
+			userType = String.valueOf(sess.getAttribute("userType"));
+
+			if (userName == null || userName.equals("")
+					|| userName.equals("null") || password == null
+					|| password.equals("") || password.equals("null")) {
+				response.sendRedirect("/JPASprint1");
+			} else {
+				sess.setAttribute("id", userId);
+				sess.setAttribute("password", password);
+			}
+
+		}
+
+		else if (userId.equals("2")) {
+			response.sendRedirect(request.getContextPath()
+					+ "/webpages/networkManEng/nmeHome.jsp");
+		} else if (userId.equals("3")) {
+			response.sendRedirect(request.getContextPath()
+					+ "/webpages/supportEng/seHome.jsp");
+		}
+	}
+%>
 <!-- content here -->
 
 <div class="col-md-9 text-center">
@@ -17,21 +52,25 @@
 		<div class="form-group">
 			<div class="col-md-1">
 				<input type="text" class="form-control" id="imsi" name="imsi"
-					placeholder="<%=Strings.PH_IMSI%>" required >
+					placeholder="<%=Strings.PH_IMSI%>" required>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-1">
-				<input type="datetime-local" class="form-control" id="from" name="from" value="2013-01-01T12:00:00" step="1" required title="<%=Strings.TT_FROM%>">
+				<input type="datetime-local" class="form-control" id="from"
+					name="from" value="2013-01-01T12:00:00" step="1" required
+					title="<%=Strings.TT_FROM%>">
 			</div>
 		</div>
 		<span class="glyphicon glyphicon-arrow-right"></span>
 		<div class="form-group">
 			<div class="col-md-1">
-				<input type="datetime-local" class="form-control" id="to" value="2013-12-12T12:00:00" step="1" name="to" required title="<%=Strings.TT_TO%>">
+				<input type="datetime-local" class="form-control" id="to"
+					value="2013-12-12T12:00:00" step="1" name="to" required
+					title="<%=Strings.TT_TO%>">
 			</div>
 		</div>
-				<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
+		<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
 	</form>
 
 	<%
@@ -53,7 +92,8 @@
 			} catch (ParseException e) {
 			}
 
-			List<Object[]> queryDetails = PersistenceUtil.findNumberOfFailures(imsi, fdate, tdate);
+			List<Object[]> queryDetails = PersistenceUtil
+					.findNumberOfFailures(imsi, fdate, tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
 		<h4 class="text-center"><%=Strings.RESULT_IMSI%><%=imsi%></h4>
@@ -65,23 +105,26 @@
 				for (Object[] object : queryDetails) {
 			%>
 			<tr>
-				<td class="text-center"><%= new DecimalFormat("#,###,###").format(object[0]) %></td>
+				<td class="text-center"><%=new DecimalFormat("#,###,###").format(object[0])%></td>
 			</tr>
 			<%
 				}
 			%>
 			<%
 				long timeTakenInNanos = System.nanoTime() - startTime;
-					String timeTaken = String.format(
-							"<p>" + Strings.QUERY_EXECUTION_TIME + "<p>",
+					String timeTaken = String.format("<p>"
+							+ Strings.QUERY_EXECUTION_TIME + "<p>",
 							(double) timeTakenInNanos / 1000000);
 			%>
 
 		</table>
-		<h4 class="text-center"><%=timeTaken%> </h4>
-		</div>
-		<%} %>
-		</div>
-		<jsp:include page="../templates/footer.jsp"/>
+		<h4 class="text-center"><%=timeTaken%>
+		</h4>
+	</div>
+	<%
+		}
+	%>
+</div>
+<jsp:include page="../templates/footer.jsp" />
 
 

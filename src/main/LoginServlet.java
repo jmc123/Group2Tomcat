@@ -1,17 +1,20 @@
 package main;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
 import persistence.PersistenceUtil;
 import entity.User;
+import entity.UserType;
 /**
  * 
  * @author Group2<br>
@@ -21,48 +24,64 @@ import entity.User;
  */
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
-	
+
 	private static final int SYSTEM_ADMINISTRATOR = 1;
 	private static final int NETWORK_MANAGEMENT_ENGINEER = 2;
 	private static final int SUPPORT_ENGINEER = 3;
 	private static final int CUSTOMER_SERVICE_REP = 4;
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	private HttpSession session;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
 		String inputUserName = request.getParameter("userName");
 		String inputUserPassword = DigestUtils.sha1Hex(request.getParameter("password"));
-		
-		User userDetails = PersistenceUtil.findUserByUsername(inputUserName);
-		
-		if(userDetails != null){
-			String userPassword = userDetails.getUserPassword();
-			int userTypeId = userDetails.getUserType().getId();			
-			
-			if(inputUserPassword.equals(userPassword)){
-				Cookie loginCookie = new Cookie("user", inputUserName);
-				loginCookie.setPath("/");
-				loginCookie.setMaxAge(30*60);
 
-				response.addCookie(loginCookie);
+		User user = PersistenceUtil.findUserByUsername(inputUserName);
+
+		if(user != null){
+			String userPassword = user.getUserPassword();
+			int userTypeId = user.getUserType().getId();		
+			String userType = user.getUserType().getDesc();	
+
+			if(inputUserPassword.equals(userPassword)){
+				
+
+				session = request.getSession(true);
+				session.setAttribute("id", userTypeId);
+				session.setAttribute("userName", inputUserName);
+				session.setAttribute("userType", userType);
+
+
 				if(userTypeId == SYSTEM_ADMINISTRATOR){
-					response.sendRedirect("webpages/admin/sysHome.jsp");
+					response.getWriter().print("<script>location.replace(\"webpages/admin/sysHome.jsp\");</script>");
+					
 				} else if(userTypeId == NETWORK_MANAGEMENT_ENGINEER){
-					response.sendRedirect("webpages/networkManEng/nmeHome.jsp");
+					
+					response.getWriter().print("<script>location.replace(\"webpages/networkManEng/nmeHome.jsp\");</script>");
+
 				} else if(userTypeId == SUPPORT_ENGINEER){
-					response.sendRedirect("webpages/supportEng/seHome.jsp");
+					response.getWriter().print("<script>location.replace(\"webpages/supportEng/seHome.jsp\");</script>");
+
 				} else if(userTypeId == CUSTOMER_SERVICE_REP){
-					response.sendRedirect("webpages/customerRep/csHome.jsp");
+					response.getWriter().print("<script>location.replace(\"webpages/customerRep/csHome.jsp\");</script>");
+
+
 				} else{
 					System.out.println("No UserType found for this user!");
-					response.sendRedirect("/JPASprint1");
+					response.getWriter().print("<script>location.replace(\"/JPASprint1\");</script>");
+
 				}
 			} else{
-				response.getWriter().print("<script>alert(\"Incorrect username and/or password!\");location.replace(\"/JPASprint1\");</script>");
+			
+				response.getWriter().print("<script>location.replace(\"/JPASprint1\");</script>");
 			}
 		} else{
-			response.getWriter().print("<script>alert(\"Incorrect username and/or password!\");location.replace(\"/JPASprint1\");</script>");
+			
+			response.getWriter().print("<script>location.replace(\"/JPASprint1\");</script>");
 		}
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)<br>	 
 	 * Requests cookies from browser, gets the G2user cookie and sets MaxAge to 0 forcing cookie to be destroyed.<br>
@@ -70,20 +89,14 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		response.setContentType("text/html");
-		Cookie loginCookie = null;
-		Cookie[] cookies = request.getCookies();
-		if(cookies != null){
-			for(Cookie cookie : cookies){
-				if(cookie.getName().equals("user")){
-					loginCookie = cookie;
-					break;
-				}
-			}
-		} 
-		if(loginCookie != null){
-			loginCookie.setMaxAge(0);
-			response.addCookie(loginCookie);
-		}
+
+		HttpSession sess =  request.getSession();
+		session.removeAttribute("id");
+		session.removeAttribute("username");
+		session.removeAttribute("userType");
+		sess.invalidate();
+ 
 		response.sendRedirect("/JPASprint1");
 	}
+
 }
