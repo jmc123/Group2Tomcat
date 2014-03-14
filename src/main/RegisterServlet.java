@@ -18,7 +18,7 @@ import persistence.PersistenceUtil;
 @SuppressWarnings("serial")
 public class RegisterServlet extends HttpServlet {
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean uniqueUsername = true;
 		
 		
