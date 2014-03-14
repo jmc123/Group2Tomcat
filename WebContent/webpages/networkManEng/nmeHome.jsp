@@ -25,7 +25,7 @@
 		<a class="twitter-timeline" width="250" height "250" data-dnt="true" href="https://twitter.com/ericsson" data-widget-id="444114613219520513"><%=Strings.TWEETS%></a>
 		
 	</div>
-<%
+	<%
 	String userName = null;
 	Cookie [] cookies = request.getCookies();
 	for(Cookie cookie : cookies){
@@ -35,10 +35,21 @@
 	String userType = ((UserType) userDetails.get(0)[1]).getDesc();
 	%>
 
-				<div class="col-md-9 text-center">
-					<h3 class="col-md-10 text-center"><%=Strings.PROFILE_PAGE%></h3>
+				<div class="col-md-9">
+					<h3 class="col-md-12 text-center"><%=Strings.PROFILE_PAGE%></h3>
 					<p style="padding:10px;" class="col-md-12"></p>
-					<dl class="dl-horizontal col-md-12">
+					<div class="col-md-6">
+					<dl class="dl-horizontal">
+						<dt><%=Strings.PROFILE_USERNAME%></dt>
+						<dd style="padding-bottom:20px;"><%= userName %></dd>
+						<dt><%=Strings.PROFILE_ROLE%></dt>
+						<dd><%= userType %></dd>
+						
+					</dl>
+					<a class="twitter-timeline" width="250" height "250" data-dnt="true" href="https://twitter.com/ericsson" data-widget-id="444114613219520513"><%=Strings.TWEETS%></a>
+					
+					</div>
+					<dl class="dl-horizontal col-md-6">
 						<dt><%=Strings.PROFILE_USERNAME%></dt>
 						<dd style="padding-bottom:20px;"><%= userName %></dd>
 						<dt><%=Strings.PROFILE_ROLE%></dt>
