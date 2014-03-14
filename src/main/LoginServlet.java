@@ -56,10 +56,10 @@ public class LoginServlet extends HttpServlet {
 					response.sendRedirect("/JPASprint1");
 				}
 			} else{
-				response.getWriter().print("<script>location.replace(\"/JPASprint1\");</script>");
+				response.getWriter().print("<script>alert(\"Incorrect username and/or password!\");location.replace(\"/JPASprint1\");</script>");
 			}
 		} else{
-			response.getWriter().print("<script>location.replace(\"/JPASprint1\");</script>");
+			response.getWriter().print("<script>alert(\"Incorrect username and/or password!\");location.replace(\"/JPASprint1\");</script>");
 		}
 	}
 	

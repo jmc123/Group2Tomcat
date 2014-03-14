@@ -25,8 +25,8 @@ public class RegisterServlet extends HttpServlet {
 		String userName = request.getParameter("userName");
 		String password = DigestUtils.sha1Hex(request.getParameter("password"));
 		int usertype = Integer.parseInt(request.getParameter("role"));
-		String firstName = request.getParameter("fName");
-		String lastName = request.getParameter("lName");
+		String firstName = request.getParameter("fname");
+		String lastName = request.getParameter("lname");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		List<String> userNamesFromDB = PersistenceUtil.findAllUserNames();
