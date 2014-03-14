@@ -27,6 +27,11 @@ public class Strings {
 	public static String PROFILE_PAGE = "Profile Page";
 	public static String PROFILE_USERNAME = "Username:";
 	public static String PROFILE_ROLE = "Role:";
+	public static String PROFILE_FIRSTNAME = "Firstname:";
+	public static String PROFILE_LASTNAME = "Lastname:";
+	public static String PROFILE_EMAIL = "Email:";
+	public static String PROFILE_PHONE = "Phone Number:";
+	
 	
 	//Table headers
 	
@@ -66,8 +71,8 @@ public class Strings {
 	public static String PH_CONFIRM = "Confirm password";
 	public static String PH_IMSI = "IMSI Value";
 	public static String PH_PHONE_MODEL = "Phone Model";
-	public static String PH_LNAME = "First Name";
-	public static String PH_FNAME = "Last Name";
+	public static String PH_LNAME = "Last Name";
+	public static String PH_FNAME = "First Name";
 	public static String PH_EMAIL = "Email Address";
 	public static String PH_PHONE = "Phone Number";
 	
