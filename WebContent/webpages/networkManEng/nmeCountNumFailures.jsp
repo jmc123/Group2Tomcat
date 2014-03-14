@@ -9,7 +9,7 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-offset-2 col-md-7 text-center"><%=Strings.NUM_FAILURES_FOR_EACH_IMSI_BY_TIME_PERIOD%></h3>
+	<h4 class="col-md-offset-2 col-md-7 text-center"><%=Strings.NUM_FAILURES_FOR_EACH_IMSI_BY_TIME_PERIOD%></h4>
 	<br /> <br /> <br />
 	<form method="get"
 		action="/JPASprint1/webpages/networkManEng/nmeCountNumFailures.jsp"
@@ -49,11 +49,7 @@
 			List<Object[]> queryResults = PersistenceUtil.findNumberOfFailuresAndDuration(fdate, tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h4 class="text-center">
-			<%=Strings.RESULT_FROM%>
-			<%=fdate%>
-			<%=Strings.RESULT_TO%>
-			<%=tdate%></h4>
+	<div style="max-height:250px; overflow:auto;">
 		<table class=" table table-striped table-bordered">
 			<tr>
 				<th class="text-center"><%=Strings.IMSI%></th>
@@ -79,7 +75,8 @@
 			%>
 
 		</table>
-		<h3 class="text-center"><%=timeTaken%></h3>
+		</div>
+		<h4 class="text-center"><%=timeTaken%></h4>
 	</div>
 	<%
 		}

@@ -59,10 +59,7 @@
 	<div class="col-md-offset-2 col-md-7">
 		<h4 class="text-center"><%=Strings.RESULT_PHONE_MODEL%>
 			<%=model%><br />
-			<%=Strings.RESULT_FROM%>
-			<%=fdate%>
-			<%=Strings.RESULT_TO%>
-			<%=tdate%></h4>
+			</h4>
 		<table class=" table table-striped table-bordered">
 			<tr>
 				<th class="text-center"><%=Strings.NUM_FAILURES%></th>
@@ -86,7 +83,7 @@
 			%>
 
 		</table>
-		<h3 class="text-center"><%=timeTaken%></h3>
+		<h4 class="text-center"><%=timeTaken%></h4>
 	</div>
 	<%
 		}

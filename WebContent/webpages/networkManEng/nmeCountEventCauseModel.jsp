@@ -9,7 +9,7 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-12 text-center"><%=Strings.UNIQUE_EVENTID_AND_CAUSECODE_COMBINATION_AND_OCCURANCES_BY_MODEL%></h3>
+	<h4 class="col-md-12 text-center"><%=Strings.UNIQUE_EVENTID_AND_CAUSECODE_COMBINATION_AND_OCCURANCES_BY_MODEL%></h4>
 	<br />
 	<br />
 	<br />
@@ -60,7 +60,7 @@
 			%>
 
 		</table>
-		<h3 class="text-center"><%=timeTaken%></h3>
+		<h4 class="text-center"><%=timeTaken%></h4>
 	</div>
 	<%
 		}

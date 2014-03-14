@@ -78,7 +78,7 @@
 			%>
 
 		</table>
-		<h3 class="text-center"><%=timeTaken%> </h3>
+		<h4 class="text-center"><%=timeTaken%> </h4>
 		</div>
 		<%} %>
 		</div>

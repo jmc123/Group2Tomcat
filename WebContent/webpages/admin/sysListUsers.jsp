@@ -23,8 +23,8 @@
 %>
 <div class="col-md-9 text-center">
 <div class="col-md-10 text-center">
-	<h3 class="text-center">
-		<%=Strings.ALL_USERS%> <br />
+	<h3 class="text-center"><em>
+		<%=Strings.ALL_USERS%></em> <br />
 	</h3>
 	<table class=" table table-striped table-bordered">
 		<tr>
@@ -48,7 +48,7 @@
 		%>
 
 	</table>
-	<h3 class="text-center"><%=timeTaken%></h3>
+	<h4 class="text-center"><%=timeTaken%></h4>
 </div>
 </div>
 <jsp:include page="../templates/footer.jsp" />

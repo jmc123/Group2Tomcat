@@ -53,11 +53,7 @@
 					.findCallFailuresBetweenDates(fdate, tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h4 class="text-center">
-			<%=Strings.RESULT_FROM%>
-			<%=fdate%>
-			<%=Strings.RESULT_TO%>
-			<%=tdate%></h4>
+			<div style="max-height:250px; overflow:auto;">
 		<table class=" table table-striped table-bordered">
 			<tr>
 				<th class="text-center"><%=Strings.IMSI%></th>
@@ -80,7 +76,8 @@
 			%>
 
 		</table>
-		<h3 class="text-center"><%=timeTaken%></h3>
+		</div>
+		<h4 class="text-center"><%=timeTaken%></h4>
 	</div>
 	<%
 		}

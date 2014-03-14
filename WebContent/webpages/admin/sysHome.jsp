@@ -18,7 +18,7 @@
 %>
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-9 text-center"><%=Strings.PROFILE_PAGE%></h3>
+	<h3 class="col-md-9 text-center"><em><%=Strings.PROFILE_PAGE%></em></h3>
 	<p style="padding: 10px;" class="col-md-12"></p>
 	<dl class="dl-horizontal col-md-12">
 		<dt><%=Strings.PROFILE_USERNAME%></dt>
