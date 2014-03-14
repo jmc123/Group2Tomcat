@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
@@ -17,15 +18,17 @@ import configs.EventCauseConfig;
 import configs.FailureClassConfig;
 import configs.MCC_MNCConfig;
 import configs.UETypeConfig;
+import entity.DatasetEntity;
 
 public class TestDatasetImportParsing {
 
 	private static final String EXCEL_FILE = "src/res/TestDataset.xlsx";
+	private static List<DatasetEntity> eventCauses, failureClasses, mcc_mncs, uetypes;
 	private static XSSFWorkbook excelData;
 	
 	@BeforeClass
 	public static void setUp() throws InvalidFormatException, IOException{
-		PersistenceUtil.useLiveDatabase(false);
+		PersistenceUtil.useTestDatabase();
 
 		OPCPackage pkg = OPCPackage.open(new File(EXCEL_FILE));
 		excelData = new XSSFWorkbook(pkg);
@@ -33,33 +36,33 @@ public class TestDatasetImportParsing {
 	}
 	
 	@Test
-	public void testErrorEvents() {
-		ErrorEventConfig.parseExcelData(excelData.getSheetAt(0), null, null, null, null);
-		assertEquals("There should be 80 ErrorEvents.", 80, ErrorEventConfig.numberOfErrorEvents());
-		assertEquals("There should be 20 InvalidErrorEvents.", 20, ErrorEventConfig.numberOfInvalidErrorEvents());
-	}
-	
-	@Test
 	public void testEventCauses(){
-		EventCauseConfig.parseExcelData(excelData.getSheetAt(1));
+		eventCauses = EventCauseConfig.parseExcelData(excelData.getSheetAt(1));
 		assertEquals("There should be 80 EventCauses.", 80, EventCauseConfig.numberOfEventCauses());
 	}
 	
 	@Test
 	public void testFailureClasses(){
-		FailureClassConfig.parseExcelData(excelData.getSheetAt(2));
+		failureClasses = FailureClassConfig.parseExcelData(excelData.getSheetAt(2));
 		assertEquals("There should be 5 FailureClasses.", 5, FailureClassConfig.numberOfFailureClasses());
 	}
 	
 	@Test
 	public void testMCC_MNCs(){
-		MCC_MNCConfig.parseExcelData(excelData.getSheetAt(4));
+		mcc_mncs = MCC_MNCConfig.parseExcelData(excelData.getSheetAt(4));
 		assertEquals("There should be 41 MCC_MNCs.", 41, MCC_MNCConfig.numberOfMCC_MNCs());
 	}
 	
 	@Test
 	public void testUETypes(){
-		UETypeConfig.parseExcelData(excelData.getSheetAt(3));
+		uetypes = UETypeConfig.parseExcelData(excelData.getSheetAt(3));
 		assertEquals("There should be 99 UETypes.", 99, UETypeConfig.numberOfUETypes());		
+	}
+	
+	@Test
+	public void testErrorEvents() {
+		ErrorEventConfig.parseExcelData(excelData.getSheetAt(0), eventCauses, failureClasses, mcc_mncs, uetypes);
+		assertEquals("There should be 80 ErrorEvents.", 80, ErrorEventConfig.numberOfErrorEvents());
+		assertEquals("There should be 20 InvalidErrorEvents.", 20, ErrorEventConfig.numberOfInvalidErrorEvents());
 	}
 }

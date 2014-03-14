@@ -23,20 +23,16 @@ public class TestDatasetImportTiming {
 	private static XSSFWorkbook excelData;
 
 	@BeforeClass
-	public static void setUp() throws InvalidFormatException, IOException{
-		PersistenceUtil.useLiveDatabase(false);
+	public static void setUp(){
+		PersistenceUtil.useTestDatabase();
 	}
 	
 	@Test(timeout=120000)
-	public void test30kRecordsImport(){
-		try {
-			OPCPackage pkg = OPCPackage.open(new File(EXCEL_FILE));
-			excelData = new XSSFWorkbook(pkg);
-			pkg.close();
-		} catch (InvalidFormatException | IOException e) {
-			System.out.println("Can't load database!");
-			System.exit(-1);
-		}
+	public void test30kRecordsImport() throws InvalidFormatException, IOException{
+		OPCPackage pkg = OPCPackage.open(new File(EXCEL_FILE));
+		excelData = new XSSFWorkbook(pkg);
+		pkg.close();
+		
 		List<DatasetEntity> eventCauses = EventCauseConfig.parseExcelData(excelData.getSheetAt(1));
 		List<DatasetEntity> failureClasses = FailureClassConfig.parseExcelData(excelData.getSheetAt(2));
 		List<DatasetEntity> ueTypes = UETypeConfig.parseExcelData(excelData.getSheetAt(3));

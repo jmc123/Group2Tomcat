@@ -46,7 +46,7 @@ public class User implements DatasetEntity{
 				String emailAddress, String phoneNumber){
 		this.userName = userName;
 		this.userPassword = userPassword;
-		this.userType = PersistenceUtil.findUserTypeById(userType);
+		this.userType = PersistenceUtil.getUserTypeById(userType);
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailAddress = emailAddress;
@@ -113,5 +113,4 @@ public class User implements DatasetEntity{
 	public Object getPrimaryKey() {
 		return userName;
 	}
-	
 }
