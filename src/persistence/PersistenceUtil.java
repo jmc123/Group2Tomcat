@@ -24,10 +24,8 @@ import entity.UserType;
 public class PersistenceUtil implements Serializable {
 	protected static EntityManagerFactory emf = Persistence.createEntityManagerFactory("dt340a");
 
-	public static void useLiveDatabase(boolean usingLiveDatabase){
-		if(!usingLiveDatabase){
-			emf = Persistence.createEntityManagerFactory("dt340atest");
-		}
+	public static void useTestDatabase(){
+		emf = Persistence.createEntityManagerFactory("dt340atest");
 	}
 
 	public static void persist(Object entity) {
@@ -121,36 +119,16 @@ public class PersistenceUtil implements Serializable {
 
 		return ueType;
 	}
-
-	public static EventCause findEventCauseByEventIdAndCauseCode(int eventId, int causeCode){
+	
+	public static User getUserByUsername(String userName){
 		EntityManager em = emf.createEntityManager();
-		List<EventCause> eventCauses = (List<EventCause>) em.createNamedQuery("EventCause.findByEventIdAndCauseCode")
-				.setParameter("id", new EventCauseComp(eventId, causeCode))
-				.getResultList();
+		User user = em.find(User.class, userName);
 		em.close();
-
-		if(eventCauses.isEmpty()){
-			return null;
-		} else{
-			return eventCauses.get(0);
-		}
+	
+		return user;
 	}
-
-	public static MCC_MNC findMCCMNCByMCCAndMNC(int mcc, int mnc){
-		EntityManager em = emf.createEntityManager();
-		List<MCC_MNC> mcc_mncs = (List<MCC_MNC>) em.createNamedQuery("MCC_MNC.findByMCCANDMNC")
-				.setParameter("id", new MCCMNCComp(mcc, mnc))
-				.getResultList();
-		em.close();
-
-		if(mcc_mncs.isEmpty()){
-			return null;
-		} else{
-			return mcc_mncs.get(0);
-		}
-	}
-
-	public static UserType findUserTypeById(int userTypeId){
+	
+	public static UserType getUserTypeById(int userTypeId){
 		EntityManager em = emf.createEntityManager();
 		UserType userType = em.find(UserType.class, userTypeId);
 		em.close();
@@ -158,15 +136,24 @@ public class PersistenceUtil implements Serializable {
 		return userType;
 	}
 
-	public static void registerUser(String userName, String password, int userTypeId, String firstName,
-									String lastName, String emailAddress, String phoneNumber){
+	public static EventCause getEventCauseByEventIdAndCauseCode(int eventId, int causeCode){
 		EntityManager em = emf.createEntityManager();
-		User newUser = new User(userName, password, userTypeId, firstName, lastName, emailAddress, phoneNumber);
-
-		em.getTransaction().begin();
-		em.persist(newUser);
-		em.getTransaction().commit();
+		List<EventCause> eventCauses = (List<EventCause>) em.createNamedQuery("EventCause.findByEventIdAndCauseCode")
+				.setParameter("id", new EventCauseComp(eventId, causeCode))
+				.getResultList();
 		em.close();
+		
+		return eventCauses.get(0);
+	}
+
+	public static MCC_MNC getMCC_MNCByMCCAndMNC(int mcc, int mnc){
+		EntityManager em = emf.createEntityManager();
+		List<MCC_MNC> mcc_mncs = (List<MCC_MNC>) em.createNamedQuery("MCC_MNC.findByMCCANDMNC")
+				.setParameter("id", new MCCMNCComp(mcc, mnc))
+				.getResultList();
+		em.close();
+
+		return mcc_mncs.get(0);
 	}
 
 	public static List<String> findAllUserNames(){
@@ -183,6 +170,17 @@ public class PersistenceUtil implements Serializable {
 		em.close();
 		
 		return users;
+	}
+	
+	public static void registerUser(String userName, String password, int userTypeId, String firstName,
+									String lastName, String emailAddress, String phoneNumber){
+		EntityManager em = emf.createEntityManager();
+		User newUser = new User(userName, password, userTypeId, firstName, lastName, emailAddress, phoneNumber);
+
+		em.getTransaction().begin();
+		em.persist(newUser);
+		em.getTransaction().commit();
+		em.close();
 	}
 
 	/**
@@ -223,7 +221,7 @@ public class PersistenceUtil implements Serializable {
 		EntityManager em = emf.createEntityManager();
 		
 		List<Object[]> queryDetails = em.createNamedQuery("ErrorEvent.NumOfFailuresAndDuration")
-				.setParameter("imsi", imsi).setParameter("fromDate",fromDate).setParameter("toDate",toDate).getResultList();
+				.setParameter("fromDate",fromDate).setParameter("toDate",toDate).getResultList();
 		
 		em.close();
 		return queryDetails;
@@ -278,6 +276,4 @@ public class PersistenceUtil implements Serializable {
 		
 		return queryDetails;
 	}
-
-
 }

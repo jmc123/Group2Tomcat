@@ -97,7 +97,7 @@ public class ImportServlet extends HttpServlet {
 			}
 			loadExcelFile(file.getAbsolutePath(), out);
 
-			PersistenceUtil.useLiveDatabase(true);
+			PersistenceUtil.useTestDatabase();
 			generateDatabase();
 			long timeTakenInMillis = (System.nanoTime()-startTime)/1000000;
 

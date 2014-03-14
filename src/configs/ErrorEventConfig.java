@@ -242,8 +242,8 @@ public class ErrorEventConfig {
 		
 		FailureClass failureClass = PersistenceUtil.getFailureClass(failureClassId);
 		UEType ueType = PersistenceUtil.getUEType(ueTypeId);
-		EventCause event = PersistenceUtil.findEventCauseByEventIdAndCauseCode(eventId, causeCode);
-		MCC_MNC mcc_mnc = PersistenceUtil.findMCCMNCByMCCAndMNC(market, operator);	
+		EventCause event = PersistenceUtil.getEventCauseByEventIdAndCauseCode(eventId, causeCode);
+		MCC_MNC mcc_mnc = PersistenceUtil.getMCC_MNCByMCCAndMNC(market, operator);	
 		
 		errorEvents.add(new ErrorEvent(date, event, failureClass, ueType, mcc_mnc, cellId, duration,
 									   neVersion, imsi, hier3_id, hier32_id, hier321_id));
