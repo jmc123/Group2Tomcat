@@ -1,7 +1,6 @@
 package main;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import persistence.PersistenceUtil;
-import entity.UserType;
+import entity.User;
 /**
  * 
  * @author Group2<br>
@@ -28,21 +27,15 @@ public class LoginServlet extends HttpServlet {
 	private static final int SUPPORT_ENGINEER = 3;
 	private static final int CUSTOMER_SERVICE_REP = 4;
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Would be nice if we could run these two, but errors with it adding to the database too many times.
-		//For now, will use an SQL script, and go ahead as if DB is persistent, but can look into it later.
-		//Sorry, Tim. :(
-//		UserType.createTypes();
-//		User.createAdmin();
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		String inputUserName = request.getParameter("userName");
 		String inputUserPassword = DigestUtils.sha1Hex(request.getParameter("password"));
 		
-		List<Object[]> userDetails = PersistenceUtil.findPasswordAndUserTypeByUsername(inputUserName);
+		User userDetails = PersistenceUtil.findUserByUsername(inputUserName);
 		
-		if(!userDetails.isEmpty()){
-			String userPassword = String.valueOf(userDetails.get(0)[0]);
-			int userTypeId = ((UserType) userDetails.get(0)[1]).getId();			
+		if(userDetails != null){
+			String userPassword = userDetails.getUserPassword();
+			int userTypeId = userDetails.getUserType().getId();			
 			
 			if(inputUserPassword.equals(userPassword)){
 				Cookie loginCookie = new Cookie("user", inputUserName);
@@ -63,11 +56,9 @@ public class LoginServlet extends HttpServlet {
 					response.sendRedirect("/JPASprint1");
 				}
 			} else{
-//				response.sendRedirect("webpages/login.jsp");
 				response.getWriter().print("<script>location.replace(\"/JPASprint1\");</script>");
 			}
 		} else{
-//			response.sendRedirect("webpages/login.jsp"); //Redirect, or give alert?
 			response.getWriter().print("<script>location.replace(\"/JPASprint1\");</script>");
 		}
 	}

@@ -196,16 +196,13 @@ public class PersistenceUtil implements Serializable {
 		return eventCauses;
 	}
 
-	public static List<Object[]> findPasswordAndUserTypeByUsername(String userName){
+	public static User findUserByUsername(String userName){
 		EntityManager em = emf.createEntityManager();
 
-		List<Object[]> userDetails = (List<Object[]>) em.createNamedQuery("User.findPasswordAndUserTypeByUsername")
-				.setParameter("userName", userName).getResultList();
-		em.close();
+		User user = em.find(User.class, userName);
 
-		return userDetails;
+		return user;
 	}
-
 	
 	public static List<Object[]> findNumberOfFailuresAndDuration(Date fromDate, Date toDate){
 		EntityManager em = emf.createEntityManager();
@@ -220,8 +217,8 @@ public class PersistenceUtil implements Serializable {
 	public static List<Object[]> findNumberOfFailures(long imsi, Date fromDate, Date toDate){
 		EntityManager em = emf.createEntityManager();
 		
-		List<Object[]> queryDetails = em.createNamedQuery("ErrorEvent.NumOfFailuresAndDuration")
-				.setParameter("fromDate",fromDate).setParameter("toDate",toDate).getResultList();
+		List<Object[]> queryDetails = em.createNamedQuery("ErrorEvent.NumOfFailures")
+				.setParameter("imsi", imsi).setParameter("fromDate",fromDate).setParameter("toDate",toDate).getResultList();
 		
 		em.close();
 		return queryDetails;

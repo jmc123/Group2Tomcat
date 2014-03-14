@@ -1,4 +1,7 @@
 <%@ page import="main.*"%>
+<%@ page import="configs.*"%>
+<%@ page import="persistence.*"%>
+<%@ page import="java.text.DecimalFormat"%>
 <jsp:include page="../templates/header.jsp" />
 <jsp:include page="../templates/sysNav.jsp" />
 
@@ -6,28 +9,44 @@
 
 <div class="col-md-9 text-center">
 	<h3 class="col-md-offset-4 col-md-7 text-left"><%=Strings.IMPORT%></h3>
-	<br />
-	<br />
-	<br />
+	<br /> <br /> <br />
 
 	<form name="upload" method="post" action="/JPASprint1/ImportServlet"
 		enctype="multipart/form-data">
 		<div class="form-group">
 			<div class="col-md-offset-4 col-md-4">
 				<input type="file" value="Import" name="ImportFile"
-					accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required/>
+					accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+					required />
 			</div>
 		</div>
-		<br />
-		<br />
+		<br /> <br />
 		<div class="form-group">
 			<div class="col-md-offset-4 col-md-4">
 				<button type="submit" class="btn btn-primary"><%=Strings.UPLOAD%></button>
 			</div>
 		</div>
-
-
 	</form>
+
+	<%
+		if (DatabaseGenerator.datasetUploaded()) {
+			DecimalFormat dFormatter = new DecimalFormat("#,###,###");
+	%>
+	<br />
+	<p>Successfully imported the database.</p>
+	<br />
+	<p><%=dFormatter.format(ErrorEventConfig.errorEvents.size())%>
+		ErrorEvents added to database. (Total: <%=dFormatter.format(PersistenceUtil.numberOfErrorEvents())%>+ )
+	<br />
+		<%=dFormatter.format(ErrorEventConfig.invalidErrorEvents
+						.size())%>
+		ErrorEvents removed due to inconsistencies. (Total:
+		<%=dFormatter.format(PersistenceUtil
+						.numberOfInvalidErrorEvents())%></p>
+	<%
+		}
+	DatabaseGenerator.datasetConfirmed();
+	%>
 
 </div>
 

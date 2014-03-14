@@ -47,8 +47,8 @@ public class TestDatabaseQueries {
 	}
 	
 	@Test
-	public void testFindPasswordAndUserTypeByUserName(){
-		assertEquals("Should be '1'", 1, PersistenceUtil.findPasswordAndUserTypeByUsername("user").size());
+	public void testFindUserByUserName(){
+		assertEquals("Should be '1'", 1, PersistenceUtil.findUserByUsername("user").getUserType().getId());
 	}
 	
 	@Test
