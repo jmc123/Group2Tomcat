@@ -13,7 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import persistence.PersistenceUtil;
-import configs.ErrorEventConfig;
+import configs.CallFailureConfig;
 import configs.EventCauseConfig;
 import configs.FailureClassConfig;
 import configs.MCC_MNCConfig;
@@ -35,7 +35,7 @@ public class TestDatasetImportParsing {
 		excelData = new XSSFWorkbook(pkg);
 		pkg.close();
 		
-		ErrorEventConfig eec = new ErrorEventConfig();
+		CallFailureConfig eec = new CallFailureConfig();
 		EventCauseConfig ecc = new EventCauseConfig();
 		FailureClassConfig fcc = new FailureClassConfig();
 		MCC_MNCConfig mcc_mncc = new MCC_MNCConfig();
@@ -45,31 +45,31 @@ public class TestDatasetImportParsing {
 	@Test
 	public void testEventCauses(){
 		eventCauses = EventCauseConfig.parseExcelData(excelData.getSheetAt(1));
-		assertEquals("There should be 80 EventCauses.", 80, EventCauseConfig.numberOfEventCauses());
+		assertEquals("There should be 80 EventCauses", 80, EventCauseConfig.numberOfEventCauses());
 	}
 	
 	@Test
 	public void testFailureClasses(){
 		failureClasses = FailureClassConfig.parseExcelData(excelData.getSheetAt(2));
-		assertEquals("There should be 5 FailureClasses.", 5, FailureClassConfig.numberOfFailureClasses());
+		assertEquals("There should be 5 FailureClasses", 5, FailureClassConfig.numberOfFailureClasses());
 	}
 	
 	@Test
 	public void testMCC_MNCs(){
 		mcc_mncs = MCC_MNCConfig.parseExcelData(excelData.getSheetAt(4));
-		assertEquals("There should be 41 MCC_MNCs.", 41, MCC_MNCConfig.numberOfMCC_MNCs());
+		assertEquals("There should be 41 MCC_MNCs", 41, MCC_MNCConfig.numberOfMCC_MNCs());
 	}
 	
 	@Test
 	public void testUETypes(){
 		uetypes = UETypeConfig.parseExcelData(excelData.getSheetAt(3));
-		assertEquals("There should be 99 UETypes.", 99, UETypeConfig.numberOfUETypes());		
+		assertEquals("There should be 99 UETypes", 99, UETypeConfig.numberOfUETypes());		
 	}
 	
 	@Test
 	public void testErrorEvents() {
-		ErrorEventConfig.parseExcelData(excelData.getSheetAt(0), eventCauses, failureClasses, mcc_mncs, uetypes);
-		assertEquals("There should be 80 ErrorEvents.", 80, ErrorEventConfig.numberOfErrorEvents());
-		assertEquals("There should be 20 InvalidErrorEvents.", 20, ErrorEventConfig.numberOfInvalidErrorEvents());
+		CallFailureConfig.parseExcelData(excelData.getSheetAt(0), eventCauses, failureClasses, mcc_mncs, uetypes);
+		assertEquals("There should be 80 CallFailures", 80, CallFailureConfig.numberOfCallFailures());
+		assertEquals("There should be 20 InvalidCallFailures", 20, CallFailureConfig.numberOfInvalidCallFailures());
 	}
 }

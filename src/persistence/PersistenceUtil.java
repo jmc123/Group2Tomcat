@@ -75,14 +75,14 @@ public class PersistenceUtil implements Serializable {
 	}
 
 	/**
-	 * Returns the total number of ErrorEvent entries in the ErrorEvent table in the database
+	 * Returns the total number of CallFailure entries in the CallFailure table in the database
 	 * 
 	 * @return	the number of ErrorEvents in the database
 	 */
-	public static long numberOfErrorEvents(){
+	public static long numberOfCallFailures(){
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		long count = ((BigInteger) em.createNativeQuery("SELECT COUNT(*) FROM ErrorEvent").getSingleResult()).longValue();
+		long count = ((BigInteger) em.createNativeQuery("SELECT COUNT(*) FROM CallFailure").getSingleResult()).longValue();
 		em.getTransaction().commit();
 		em.close();
 
@@ -94,10 +94,10 @@ public class PersistenceUtil implements Serializable {
 	 * 
 	 * @return	the number of InvalidErrorEvents in the database
 	 */
-	public static long numberOfInvalidErrorEvents(){
+	public static long numberOfInvalidCallFailures(){
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		long count = ((BigInteger) em.createNativeQuery("SELECT COUNT(*) FROM InvalidErrorEvent").getSingleResult()).longValue();
+		long count = ((BigInteger) em.createNativeQuery("SELECT COUNT(*) FROM InvalidCallFailure").getSingleResult()).longValue();
 		em.getTransaction().commit();
 		em.close();
 
@@ -189,7 +189,7 @@ public class PersistenceUtil implements Serializable {
 
 	public static List<EventCause> findEventCauseByIMSI(long imsi){
 		EntityManager em = emf.createEntityManager();
-		List<EventCause> eventCauses = (List<EventCause>) em.createNamedQuery("ErrorEvent.EventCauseByIMSI")
+		List<EventCause> eventCauses = (List<EventCause>) em.createNamedQuery("CallFailure.EventCauseByIMSI")
 				.setParameter("imsi", imsi).getResultList();
 		em.close();
 
@@ -207,7 +207,7 @@ public class PersistenceUtil implements Serializable {
 	public static List<Object[]> findNumberOfFailuresAndDuration(Date fromDate, Date toDate){
 		EntityManager em = emf.createEntityManager();
 		
-		List<Object[]> queryDetails = (List<Object[]>) em.createNamedQuery("ErrorEvent.NumOfFailuresAndDuration")
+		List<Object[]> queryDetails = (List<Object[]>) em.createNamedQuery("CallFailure.NumOfFailuresAndDuration")
 				.setParameter("fromDate", fromDate).setParameter("toDate", toDate).getResultList();
 		em.close();
 		
@@ -217,7 +217,7 @@ public class PersistenceUtil implements Serializable {
 	public static List<Object[]> findNumberOfFailures(long imsi, Date fromDate, Date toDate){
 		EntityManager em = emf.createEntityManager();
 		
-		List<Object[]> queryDetails = em.createNamedQuery("ErrorEvent.NumOfFailures")
+		List<Object[]> queryDetails = em.createNamedQuery("CallFailure.NumOfFailures")
 				.setParameter("imsi", imsi).setParameter("fromDate",fromDate).setParameter("toDate",toDate).getResultList();
 		
 		em.close();
@@ -237,7 +237,7 @@ public class PersistenceUtil implements Serializable {
 	
 	public static List<Object[]> findUniqueEventCauseAndOccurancesByModel(String model){
 		EntityManager em = emf.createEntityManager();
-		List<Object[]> eventCauses = (List<Object[]>) em.createNamedQuery("ErrorEvent.UniqueEventCauseAndOccurancesByModel")
+		List<Object[]> eventCauses = (List<Object[]>) em.createNamedQuery("CallFailure.UniqueEventCauseAndOccurancesByModel")
 					.setParameter("model", model).getResultList();
 		em.close();
 
@@ -247,7 +247,7 @@ public class PersistenceUtil implements Serializable {
 	public static List<Long> findCallFailuresBetweenDates(Date fromDate, Date toDate){
 		EntityManager em = emf.createEntityManager();
 		
-		List<Long> queryDetails = (List<Long>) em.createNamedQuery("ErrorEvent.ListIMSIFail")
+		List<Long> queryDetails = (List<Long>) em.createNamedQuery("CallFailure.ListIMSIFail")
 				.setParameter("fromDate",fromDate).setParameter("toDate",toDate).getResultList();
 		em.close();
 		
@@ -257,7 +257,7 @@ public class PersistenceUtil implements Serializable {
 	public static List<Integer> findUniqueCauseByIMSI(long imsi){
 		EntityManager em = emf.createEntityManager();
 		List<Integer> uniqueCauses = (List<Integer>)
-				em.createNativeQuery("SELECT DISTINCT Cause_Code FROM ErrorEvent WHERE IMSI= ? ORDER BY Cause_Code;")
+				em.createNativeQuery("SELECT DISTINCT Cause_Code FROM CallFailure WHERE IMSI= ? ORDER BY Cause_Code;")
 				.setParameter(1, imsi).getResultList();
 		em.close();
 
@@ -267,7 +267,7 @@ public class PersistenceUtil implements Serializable {
 	public static List<Long> findNumberOfFailuresByModelOverTime(String model, Date fromDate, Date toDate){
 		EntityManager em = emf.createEntityManager();
 
-		List<Long> queryDetails = (List<Long>) em.createNamedQuery("ErrorEvent.ErrorsByModelOverTime")
+		List<Long> queryDetails = (List<Long>) em.createNamedQuery("CallFailure.FailuresByModelOverTime")
 				.setParameter("model", model).setParameter("fromDate",fromDate).setParameter("toDate",toDate).getResultList();
 		em.close();
 		

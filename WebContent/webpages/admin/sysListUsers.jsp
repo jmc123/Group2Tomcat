@@ -67,14 +67,7 @@
 		<%
 			}
 		%>
-		<%
-			long timeTakenInNanos = System.nanoTime() - startTime;
-			String timeTaken = String.format("<p>" + Strings.QUERY_EXECUTION_TIME + "<p>",
-					(double) timeTakenInNanos / 1000000);
-		%>
-
 	</table>
-	<h4 class="text-center"><%=timeTaken%></h4>
 </div>
 </div>
 <jsp:include page="../templates/footer.jsp" />

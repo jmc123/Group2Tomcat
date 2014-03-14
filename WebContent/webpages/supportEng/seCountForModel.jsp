@@ -66,7 +66,7 @@
 		<div class="form-group">
 			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="to" name="to"
-					value="2013-12-12T12:00:00" step="1" data-toggle="tooltip"
+					value="2013-12-31T23:59:00" step="1" data-toggle="tooltip"
 					data-placement="bottom" required title="<%=Strings.TT_TO%>">
 			</div>
 		</div>
@@ -95,9 +95,7 @@
 							tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h4 class="text-center"><%=Strings.RESULT_PHONE_MODEL%>
-			<%=model%><br />
-		</h4>
+		<h4 class="text-center"><%=Strings.RESULT_PHONE_MODEL%><strong> <%=model%></strong></h4>
 		<table class=" table table-striped table-bordered">
 			<tr>
 				<th class="text-center"><%=Strings.NUM_FAILURES%></th>

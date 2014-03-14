@@ -12,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import main.ImportServlet;
+import main.LoginServlet;
 import main.RegisterServlet;
 
 import org.junit.BeforeClass;
@@ -24,6 +26,8 @@ public class TestServlets {
 	@BeforeClass
 	public static void setUp(){
 		PersistenceUtil.useTestDatabase();
+		new ImportServlet();
+		new LoginServlet();
 	}
 
 	@Test

@@ -15,7 +15,7 @@ public class FailureClass implements DatasetEntity{
 	@Column(name="Description")
 	private String desc;
 	@OneToMany(mappedBy="failureClass")
-	private List<ErrorEvent> errorEvents;
+	private List<CallFailure> callFailures;
 
 	public int getFailureClass() {
 		return failureClass;

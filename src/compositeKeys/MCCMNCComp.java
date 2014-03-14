@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
 public class MCCMNCComp implements Serializable{
 	@Column(name="MCC")
 	private int mcc;
-	@Column(name="MNC")	//"Operator" in main sheet
+	@Column(name="MNC")
 	private int mnc;
 	
 	public int getMcc() {

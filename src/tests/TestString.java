@@ -21,7 +21,7 @@ public class TestString {
 		assertEquals(Strings.EVENT_ID, "Event ID");
 		assertEquals(Strings.IMSI, "IMSI");
 		assertEquals(Strings.CAUSE_CODE, "Cause Code");
-		assertEquals(Strings.DURATION, "Duration (in ms)");
+		assertEquals(Strings.DURATION, "Total Duration (ms)");
 		assertEquals(Strings.OCCURANCES, "Occurances");
 		assertEquals(Strings.NUM_FAILURES, "Number of failures");
 		assertEquals(Strings.SUBMIT, "Submit");
@@ -37,11 +37,11 @@ public class TestString {
 		assertEquals(Strings.QUERIES, "Queries");
 		assertEquals(Strings.TWEETS, "Tweets by @ericsson");
 		assertEquals(Strings.UNIQUE_EVENTID_AND_CAUSECODE_COMBINATIONS_BY_IMSI, "Event ID and Cause Code combinations by IMSI");
-		assertEquals(Strings.NUM_FAILURES_BY_IMSI_BY_TIME_PERIOD, "Count failures by IMSI in a given period");
+		assertEquals(Strings.NUM_FAILURES_BY_IMSI_BY_TIME_PERIOD, "Failures by IMSI in a given period");
 		assertEquals(Strings.UNIQUE_CAUSECODES_BY_IMSI, "Unique Cause Codes by IMSI");
 		assertEquals(Strings.ALL_IMSIS_BY_TIME_PERIOD, "List all IMSIs in a given period");
-		assertEquals(Strings.NUM_FAILURES_BY_MODEL_BY_TIME_PERIOD, "Count failures by phone model in a given period");
-		assertEquals(Strings.NUM_FAILURES_FOR_EACH_IMSI_BY_TIME_PERIOD, "Count failures and their duration for each IMSI");
+		assertEquals(Strings.NUM_FAILURES_BY_MODEL_BY_TIME_PERIOD, "Failures by phone model in a given period");
+		assertEquals(Strings.NUM_FAILURES_FOR_EACH_IMSI_BY_TIME_PERIOD, "Failures and their duration for each IMSI");
 		assertEquals(Strings.UNIQUE_EVENTID_AND_CAUSECODE_COMBINATION_AND_OCCURANCES_BY_MODEL, "List unique Event ID and Cause Code combinations and their occurances by phone model");
 		assertEquals(Strings.IMPORT, "Import dataset");
 		assertEquals(Strings.ADD_USER, "Add user");
@@ -51,8 +51,8 @@ public class TestString {
 		assertEquals(Strings.PH_CONFIRM, "Confirm password");
 		assertEquals(Strings.PH_IMSI, "IMSI Value");
 		assertEquals(Strings.PH_PHONE_MODEL, "Phone Model");
-		assertEquals(Strings.PH_LNAME, "First Name");
-		assertEquals(Strings.PH_FNAME, "Last Name");
+		assertEquals(Strings.PH_FNAME, "First Name");
+		assertEquals(Strings.PH_LNAME, "Last Name");
 		assertEquals(Strings.PH_EMAIL, "Email Address");
 		assertEquals(Strings.PH_PHONE, "Phone Number");
 		assertEquals(Strings.TT_IMSI, "Enter a valid IMSI");
@@ -67,5 +67,4 @@ public class TestString {
 		assertEquals(Strings.UPLOAD, "Upload dataset");
 		assertEquals(Strings.ALL_USERS, "All users");		
 	}
-
 }

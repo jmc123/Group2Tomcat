@@ -70,15 +70,15 @@
 	<br />
 	<p>Successfully imported the database.</p>
 	<br />
-	<p><%=dFormatter.format(ErrorEventConfig.errorEvents.size())%>
+	<p><%=dFormatter.format(CallFailureConfig.callFailures.size())%>
 		ErrorEvents added to database. (Total:
 		<%=dFormatter.format(PersistenceUtil
-						.numberOfErrorEvents())%>+ ) <br />
-		<%=dFormatter.format(ErrorEventConfig.invalidErrorEvents
+						.numberOfCallFailures())%>+ ) <br />
+		<%=dFormatter.format(CallFailureConfig.invalidCallFailures
 						.size())%>
 		ErrorEvents removed due to inconsistencies. (Total:
 		<%=dFormatter.format(PersistenceUtil
-						.numberOfInvalidErrorEvents())%></p>
+						.numberOfInvalidCallFailures())%></p>
 	<%
 		}
 		DatabaseGenerator.datasetConfirmed();

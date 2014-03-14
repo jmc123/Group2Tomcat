@@ -56,7 +56,7 @@
 		<div class="form-group">
 			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="to"
-					name="to" title="<%=Strings.TT_TO%>" data-toggle="tooltip" data-placement="bottom" value="2013-12-12T12:00:00" step="1">
+					name="to" title="<%=Strings.TT_TO%>" data-toggle="tooltip" data-placement="bottom" value="2013-12-31T23:59:00" step="1">
 			</div>
 		</div>
 				<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>

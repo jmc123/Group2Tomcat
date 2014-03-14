@@ -8,13 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-//@NamedQueries( {
-//	@NamedQuery(name = "InvalidErrorEvent.findAll", query = "SELECT o FROM InvalidErrorEvent o"),
-//	@NamedQuery(name = "InvalidErrorEvent.findInvalidErrorEventByEventId", query = "SELECT o FROM InvalidErrorEvent o WHERE o.eventId=:eventId"),
-//})
-
 @Entity
-public class InvalidErrorEvent implements DatasetEntity{
+public class InvalidCallFailure implements DatasetEntity{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID")
@@ -48,11 +43,11 @@ public class InvalidErrorEvent implements DatasetEntity{
 	@Column(name="HIER321_ID")
 	private long hier321_id;
 	
-	public InvalidErrorEvent(){
+	public InvalidCallFailure(){
 		
 	}
 	
-	public InvalidErrorEvent(Date date, int eventId, String failureClass, int ueType, int market, int operator, int cellId, int duration,
+	public InvalidCallFailure(Date date, int eventId, String failureClass, int ueType, int market, int operator, int cellId, int duration,
 						String causeCode, String neVersion, long imsi, long hier3_id, long hier32_id, long hier321_id){
 		super();
 		this.date = date;

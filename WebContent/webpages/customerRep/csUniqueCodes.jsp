@@ -69,7 +69,7 @@
 					.findUniqueCauseByIMSI(imsi);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h4 class="text-center"><%=Strings.RESULT_IMSI%><%=imsi%></h4>
+		<h4 class="text-center"><%=Strings.RESULT_IMSI%><strong> <%=imsi%></strong></h4>
 		<div style="max-height: 250px; overflow: auto;">
 			<table class=" table table-striped table-bordered">
 				<tr>

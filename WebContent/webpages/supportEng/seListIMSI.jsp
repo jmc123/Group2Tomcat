@@ -60,7 +60,7 @@
 			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="to" name="to"
 					data-toggle="tooltip" data-placement="bottom" required
-					title="<%=Strings.TT_TO%>" value="2013-12-12T12:00:00" step="1" />
+					title="<%=Strings.TT_TO%>" value="2013-12-31T23:59:00" step="1" />
 			</div>
 		</div>
 

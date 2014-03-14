@@ -1,10 +1,8 @@
 package main;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +12,6 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 import persistence.PersistenceUtil;
 import entity.User;
-import entity.UserType;
 /**
  * 
  * @author Group2<br>
@@ -32,8 +29,6 @@ public class LoginServlet extends HttpServlet {
 	private HttpSession session;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
 		String inputUserName = request.getParameter("userName");
 		String inputUserPassword = DigestUtils.sha1Hex(request.getParameter("password"));
 
@@ -46,12 +41,10 @@ public class LoginServlet extends HttpServlet {
 
 			if(inputUserPassword.equals(userPassword)){
 				
-
 				session = request.getSession(true);
 				session.setAttribute("id", userTypeId);
 				session.setAttribute("userName", inputUserName);
 				session.setAttribute("userType", userType);
-
 
 				if(userTypeId == SYSTEM_ADMINISTRATOR){
 					response.getWriter().print("<script>location.replace(\"webpages/admin/sysHome.jsp\");</script>");
@@ -65,27 +58,19 @@ public class LoginServlet extends HttpServlet {
 
 				} else if(userTypeId == CUSTOMER_SERVICE_REP){
 					response.getWriter().print("<script>location.replace(\"webpages/customerRep/csHome.jsp\");</script>");
-
-
 				} else{
 					System.out.println("No UserType found for this user!");
 					response.getWriter().print("<script>location.replace(\"/JPASprint1\");</script>");
 
 				}
 			} else{
-			
 				response.getWriter().print("<script>location.replace(\"/JPASprint1\");</script>");
 			}
 		} else{
-			
 			response.getWriter().print("<script>location.replace(\"/JPASprint1\");</script>");
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)<br>	 
-	 * Requests cookies from browser, gets the G2user cookie and sets MaxAge to 0 forcing cookie to be destroyed.<br>
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		response.setContentType("text/html");
@@ -98,5 +83,4 @@ public class LoginServlet extends HttpServlet {
  
 		response.sendRedirect("/JPASprint1");
 	}
-
 }

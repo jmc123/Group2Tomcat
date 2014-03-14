@@ -14,23 +14,23 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @NamedQueries( {
-	@NamedQuery(name = "ErrorEvent.EventCauseByIMSI",
-				query = "SELECT o.eventCause FROM ErrorEvent o WHERE o.imsi=:imsi GROUP BY o.eventCause"),
-	@NamedQuery(name = "ErrorEvent.NumOfFailuresAndDuration",
-				query= "SELECT o.imsi, COUNT(o.imsi), SUM(o.duration) FROM ErrorEvent o WHERE o.date>=:fromDate and o.date<=:toDate GROUP BY o.imsi"),
-	@NamedQuery(name = "ErrorEvent.NumOfFailures",
-				query= "SELECT COUNT(o), SUM(o.duration) FROM ErrorEvent o WHERE o.imsi=:imsi and o.date>=:fromDate and o.date<=:toDate"),
-	@NamedQuery(name = "ErrorEvent.UniqueEventCauseAndOccurancesByModel",
-				query = "SELECT o.eventCause, COUNT(o) FROM ErrorEvent o JOIN o.ueType d WHERE d.model=:model GROUP BY o.eventCause"),
-	@NamedQuery(name = "ErrorEvent.ListIMSIFail",
-				query= "SELECT o.imsi FROM ErrorEvent o WHERE o.date>=:fromDate and o.date<=:toDate GROUP BY o.imsi"),
-	@NamedQuery(name = "ErrorEvent.ErrorsByModelOverTime",
-				query = "SELECT COUNT(o) FROM ErrorEvent o JOIN o.ueType d WHERE d.model=:model AND o.date>=:fromDate AND o.date<=:toDate"),		
+	@NamedQuery(name = "CallFailure.EventCauseByIMSI",
+				query = "SELECT o.eventCause FROM CallFailure o WHERE o.imsi=:imsi GROUP BY o.eventCause"),
+	@NamedQuery(name = "CallFailure.NumOfFailuresAndDuration",
+				query= "SELECT o.imsi, COUNT(o.imsi), SUM(o.duration) FROM CallFailure o WHERE o.date>=:fromDate and o.date<=:toDate GROUP BY o.imsi"),
+	@NamedQuery(name = "CallFailure.NumOfFailures",
+				query= "SELECT COUNT(o), SUM(o.duration) FROM CallFailure o WHERE o.imsi=:imsi and o.date>=:fromDate and o.date<=:toDate"),
+	@NamedQuery(name = "CallFailure.UniqueEventCauseAndOccurancesByModel",
+				query = "SELECT o.eventCause, COUNT(o) FROM CallFailure o JOIN o.ueType d WHERE d.model=:model GROUP BY o.eventCause"),
+	@NamedQuery(name = "CallFailure.ListIMSIFail",
+				query= "SELECT o.imsi FROM CallFailure o WHERE o.date>=:fromDate and o.date<=:toDate GROUP BY o.imsi"),
+	@NamedQuery(name = "CallFailure.FailuresByModelOverTime",
+				query = "SELECT COUNT(o) FROM CallFailure o JOIN o.ueType d WHERE d.model=:model AND o.date>=:fromDate AND o.date<=:toDate"),		
 })
 
 
 @Entity
-public class ErrorEvent implements DatasetEntity{
+public class CallFailure implements DatasetEntity{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID")
@@ -68,11 +68,11 @@ public class ErrorEvent implements DatasetEntity{
 	@Column(name="HIER321_ID")
 	private long hier321_id;
 
-	public ErrorEvent(){
+	public CallFailure(){
 
 	}
 
-	public ErrorEvent(Date date, EventCause eventCause, FailureClass failureClass, UEType ueType, MCC_MNC mcc_mnc, int cellId,
+	public CallFailure(Date date, EventCause eventCause, FailureClass failureClass, UEType ueType, MCC_MNC mcc_mnc, int cellId,
 			int duration, String neVersion, long imsi, long hier3_id, long hier32_id, long hier321_id){
 		super();
 		this.date = date;

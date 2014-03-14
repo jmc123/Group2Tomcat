@@ -18,7 +18,7 @@ public class Strings {
 	public static String EVENT_ID = "Event ID";
 	public static String IMSI = "IMSI";
 	public static String CAUSE_CODE = "Cause Code";
-	public static String DURATION = "Duration (in ms)";
+	public static String DURATION = "Total Duration (ms)";
 	public static String OCCURANCES = "Occurances";
 	public static String NUM_FAILURES = "Number of failures";
 	public static String SUBMIT = "Submit";
@@ -31,9 +31,6 @@ public class Strings {
 	public static String PROFILE_LASTNAME = "Lastname:";
 	public static String PROFILE_EMAIL = "Email:";
 	public static String PROFILE_PHONE = "Phone Number:";
-	
-	
-	//Table headers
 	
 	//Query results
 	public static String RESULT_IMSI = "IMSI:";
@@ -49,15 +46,15 @@ public class Strings {
 	
 	//Navigation - CSRep
 	public static String UNIQUE_EVENTID_AND_CAUSECODE_COMBINATIONS_BY_IMSI = "Event ID and Cause Code combinations by IMSI";
-	public static String NUM_FAILURES_BY_IMSI_BY_TIME_PERIOD = "Count failures by IMSI in a given period";
+	public static String NUM_FAILURES_BY_IMSI_BY_TIME_PERIOD = "Failures by IMSI in a given period";
 	public static String UNIQUE_CAUSECODES_BY_IMSI = "Unique Cause Codes by IMSI";
 	
 	//Navigation - SEng
 	public static String ALL_IMSIS_BY_TIME_PERIOD = "List all IMSIs in a given period";
-	public static String NUM_FAILURES_BY_MODEL_BY_TIME_PERIOD = "Count failures by phone model in a given period";	
+	public static String NUM_FAILURES_BY_MODEL_BY_TIME_PERIOD = "Failures by phone model in a given period";	
 	
 	//Navigation - NME
-	public static String NUM_FAILURES_FOR_EACH_IMSI_BY_TIME_PERIOD = "Count failures and their duration for each IMSI";
+	public static String NUM_FAILURES_FOR_EACH_IMSI_BY_TIME_PERIOD = "Failures and their duration for each IMSI";
 	public static String UNIQUE_EVENTID_AND_CAUSECODE_COMBINATION_AND_OCCURANCES_BY_MODEL = "List unique Event ID and Cause Code combinations and their occurances by phone model";
 	
 	//Navigation - SysAdmin

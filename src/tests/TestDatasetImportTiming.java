@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import persistence.PersistenceUtil;
-import configs.ErrorEventConfig;
+import configs.CallFailureConfig;
 import configs.EventCauseConfig;
 import configs.FailureClassConfig;
 import configs.MCC_MNCConfig;
@@ -37,6 +37,6 @@ public class TestDatasetImportTiming {
 		List<DatasetEntity> failureClasses = FailureClassConfig.parseExcelData(excelData.getSheetAt(2));
 		List<DatasetEntity> ueTypes = UETypeConfig.parseExcelData(excelData.getSheetAt(3));
 		List<DatasetEntity> mcc_mncs = MCC_MNCConfig.parseExcelData(excelData .getSheetAt(4));
-		ErrorEventConfig.parseExcelData(excelData.getSheetAt(0), eventCauses, failureClasses, mcc_mncs, ueTypes);
+		CallFailureConfig.parseExcelData(excelData.getSheetAt(0), eventCauses, failureClasses, mcc_mncs, ueTypes);
 	}
 }

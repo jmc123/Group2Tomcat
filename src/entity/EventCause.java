@@ -24,7 +24,7 @@ public class EventCause implements DatasetEntity{
 	@Column(name="Description")
 	private String desc;
 	@OneToMany(mappedBy="eventCause")
-	private List<ErrorEvent> errorEvents;
+	private List<CallFailure> callFailures;
 
 	public int getEventId() {
 		return id.getEventId();

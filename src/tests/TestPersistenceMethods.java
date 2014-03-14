@@ -16,13 +16,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import persistence.PersistenceUtil;
-import configs.ErrorEventConfig;
+import configs.CallFailureConfig;
 import configs.EventCauseConfig;
 import configs.FailureClassConfig;
 import configs.MCC_MNCConfig;
 import configs.UETypeConfig;
 import entity.DatasetEntity;
-import entity.ErrorEvent;
+import entity.CallFailure;
 import entity.FailureClass;
 import entity.User;
 
@@ -47,7 +47,7 @@ public class TestPersistenceMethods {
 				.getSheetAt(3));
 		List<DatasetEntity> mcc_mncs = MCC_MNCConfig.parseExcelData(excelData
 				.getSheetAt(4));
-		ErrorEventConfig.parseExcelData(excelData.getSheetAt(0), eventCauses,
+		CallFailureConfig.parseExcelData(excelData.getSheetAt(0), eventCauses,
 				failureClasses, mcc_mncs, ueTypes);
 	}
 
@@ -71,15 +71,15 @@ public class TestPersistenceMethods {
 	}
 
 	@Test
-	public void testNumberOfErrorEvents() {
-		assertEquals("There should be 24160 ErrorEvents", 24160,
-				PersistenceUtil.numberOfErrorEvents());
+	public void testNumberOfCallFailures() {
+		assertEquals("There should be 24160 CallFailures", 24160,
+				PersistenceUtil.numberOfCallFailures());
 	}
 
 	@Test
-	public void testNumberOfInvalidErrorEvents() {
-		assertEquals("There should be 6040 InvalidErrorEvents", 6040,
-				PersistenceUtil.numberOfInvalidErrorEvents());
+	public void testNumberOfInvalidCallFailures() {
+		assertEquals("There should be 6040 InvalidCallFailures", 6040,
+				PersistenceUtil.numberOfInvalidCallFailures());
 	}
 
 	@Test

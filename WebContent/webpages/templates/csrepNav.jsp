@@ -40,7 +40,7 @@ if (sess != null && !sess.isNew()) {
 			<li><a href="csHome.jsp"><span
 					class="glyphicon glyphicon-home"></span> <%=Strings.HOME%></a></li>
 			<li><a data-toggle="collapse" data-parent="#accordion"
-				href="#collapseOne"><span class="glyphicon glyphicon-stats"></span><%=Strings.QUERIES%></a></li>
+				href="#collapseOne"><span class="glyphicon glyphicon-stats"></span> <%=Strings.QUERIES%></a></li>
 
 			<div id="collapseOne" class="panel-collapse collapse in">
 				<ul class="nav nav-pills nav-stacked text-left">

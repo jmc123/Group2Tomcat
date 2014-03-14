@@ -66,7 +66,7 @@
 		<div class="form-group">
 			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="to"
-					value="2013-12-12T12:00:00" step="1" name="to" required
+					value="2013-12-31T23:59:00" step="1" name="to" required
 					title="<%=Strings.TT_TO%>">
 			</div>
 		</div>
@@ -96,28 +96,30 @@
 					.findNumberOfFailures(imsi, fdate, tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h4 class="text-center"><%=Strings.RESULT_IMSI%><%=imsi%></h4>
-		<table class=" table table-striped table-bordered">
-			<tr>
-				<th class="text-center"><%=Strings.NUM_FAILURES%></th>
-			</tr>
-			<%
-				for (Object[] object : queryDetails) {
-			%>
-			<tr>
-				<td class="text-center"><%=new DecimalFormat("#,###,###").format(object[0])%></td>
-			</tr>
-			<%
-				}
-			%>
-			<%
-				long timeTakenInNanos = System.nanoTime() - startTime;
-					String timeTaken = String.format("<p>"
-							+ Strings.QUERY_EXECUTION_TIME + "<p>",
-							(double) timeTakenInNanos / 1000000);
-			%>
+		<div style="max-height: 250px; overflow: auto;">
+			<h4 class="text-center"><%=Strings.RESULT_IMSI%><strong> <%=imsi%></strong></h4>
+			<table class=" table table-striped table-bordered">
+				<tr>
+					<th class="text-center"><%=Strings.NUM_FAILURES%></th>
+				</tr>
+				<%
+					for (Object[] object : queryDetails) {
+				%>
+				<tr>
+					<td class="text-center"><%=new DecimalFormat("#,###,###").format(object[0])%></td>
+				</tr>
+				<%
+					}
+				%>
+				<%
+					long timeTakenInNanos = System.nanoTime() - startTime;
+						String timeTaken = String.format("<p>"
+								+ Strings.QUERY_EXECUTION_TIME + "<p>",
+								(double) timeTakenInNanos / 1000000);
+				%>
 
-		</table>
+			</table>
+		</div>
 		<h4 class="text-center"><%=timeTaken%>
 		</h4>
 	</div>

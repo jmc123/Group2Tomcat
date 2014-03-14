@@ -26,7 +26,7 @@ public class MCC_MNC implements DatasetEntity{
 	@Column(name="Operator")
 	private String operator;
 	@OneToMany(mappedBy="mcc_mnc")
-	private List<ErrorEvent> errorEvents;
+	private List<CallFailure> callFailures;
 
 	public int getMcc() {
 		return id.getMcc();
