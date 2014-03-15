@@ -86,13 +86,15 @@
 						<div class="form-group">
 							
 							<div class="col-md-offset-1 col-md-8">
-								<input type="text" class="form-control" id="email" name="email" placeholder="<%=Strings.PH_EMAIL%>" required />
+								<input type="text" class="form-control" id="email" name="email" placeholder="<%=Strings.PH_EMAIL%>" required 
+									title="<%=Strings.TT_EMAIL%>"/>
 							</div>
 						</div>
 						<div class="form-group">
 							
 							<div class="col-md-offset-1 col-md-8">
-								<input type="text" class="form-control" id="phone" name="phone" placeholder="<%=Strings.PH_PHONE%>" required />
+								<input type="text" class="form-control" id="phone" name="phone" placeholder="<%=Strings.PH_PHONE%>" required
+								title="<%=Strings.TT_PHONE%>"/>
 							</div>
 						</div>
 						</div>

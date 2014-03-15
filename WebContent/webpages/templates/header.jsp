@@ -16,7 +16,7 @@
 <script src="../../js/validation.js"></script>
 <script>
 		$(function() {
-			$("#to, #from").tooltip({
+			$("#to, #from", '#email', '#phone').tooltip({
 		    	position: "right center",
 		    	offset: [-2, 10],
 		    	effect: "explode",

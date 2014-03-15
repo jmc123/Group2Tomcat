@@ -78,6 +78,8 @@ public class Strings {
 	public static String TT_PHONE_MODEL = "Enter a valid phone model";
 	public static String TT_FROM = "From";
 	public static String TT_TO = "To";
+	public static String TT_EMAIL = "Must be in form 'email@address.com'";
+	public static String TT_PHONE = "Must be between 7-10 digits";
 	
 		//SysAdmin
 	//Add User
