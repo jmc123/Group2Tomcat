@@ -21,8 +21,7 @@ import configs.UETypeConfig;
 import entity.DatasetEntity;
 
 @SuppressWarnings("unused")
-public class TestDatasetImportParsing {
-
+public class TestConfigs {
 	private static final String EXCEL_FILE = "src/res/TestDataset.xlsx";
 	private static List<DatasetEntity> eventCauses, failureClasses, mcc_mncs, uetypes;
 	private static XSSFWorkbook excelData;

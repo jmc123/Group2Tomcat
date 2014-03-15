@@ -172,10 +172,9 @@ public class PersistenceUtil implements Serializable {
 		return users;
 	}
 	
-	public static void registerUser(String userName, String password, int userTypeId, String firstName,
-									String lastName, String emailAddress, String phoneNumber){
+	
+	public static void registerUser(User newUser){
 		EntityManager em = emf.createEntityManager();
-		User newUser = new User(userName, password, userTypeId, firstName, lastName, emailAddress, phoneNumber);
 
 		em.getTransaction().begin();
 		em.persist(newUser);
@@ -198,8 +197,8 @@ public class PersistenceUtil implements Serializable {
 
 	public static User findUserByUsername(String userName){
 		EntityManager em = emf.createEntityManager();
-
 		User user = em.find(User.class, userName);
+		em.close();
 
 		return user;
 	}

@@ -30,8 +30,6 @@ public class ImportServlet extends HttpServlet {
 	private int maxFileSize = 100*200*1024;
 	private int maxMemSize = 4*1024;
 	
-	
-	
 	/**
 	 * Initializes context-parameter to get file-path.
 	 */

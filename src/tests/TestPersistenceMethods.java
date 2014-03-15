@@ -58,7 +58,7 @@ public class TestPersistenceMethods {
 				.sha1Hex("pass"), 1, "Test", "User", "test@email.com",
 				"01234567"));
 		long diff = PersistenceUtil.findAllUsers().size() - old;
-		assertTrue(diff > 0);
+		assertEquals("Should be '1'", 1, diff);
 	}
 
 	@Test
@@ -66,8 +66,8 @@ public class TestPersistenceMethods {
 		long old = PersistenceUtil.findAllUsers().size();
 		PersistenceUtil.remove(PersistenceUtil
 				.getUserByUsername("userPersistTest"));
-		long diff = old - PersistenceUtil.findAllUsers().size();
-		assertTrue(diff > 0);
+		long diff = PersistenceUtil.findAllUsers().size()-old;
+		assertEquals("Should be '-1'", -1, diff);
 	}
 
 	@Test
@@ -134,7 +134,7 @@ public class TestPersistenceMethods {
 
 	@Test
 	public void testRegisterUser() {
-		PersistenceUtil.registerUser("userTest", DigestUtils.sha1Hex("pass"), 1, "Test", "User", "test@email.com", "01234567");
+		PersistenceUtil.registerUser(new User("userTest", DigestUtils.sha1Hex("pass"), 1, "Test", "User", "test@email.com", "01234567"));
 		assertEquals("Should be 'test@email.com'", "test@email.com", PersistenceUtil.findUserByUsername("userTest").getEmailAddress());
 	}
 }
