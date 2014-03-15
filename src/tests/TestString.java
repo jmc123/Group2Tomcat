@@ -27,7 +27,7 @@ public class TestString {
 		assertEquals(Strings.SUBMIT, "Submit");
 		assertEquals(Strings.PROFILE_PAGE, "Profile Page");
 		assertEquals(Strings.PROFILE_USERNAME, "Username:");
-		assertEquals(Strings.PROFILE_ROLE, "Role:");
+		assertEquals(Strings.PROFILE_ROLE, "User Role:");
 		assertEquals(Strings.RESULT_IMSI, "IMSI:");
 		assertEquals(Strings.RESULT_PHONE_MODEL, "Model:");
 		assertEquals(Strings.RESULT_FROM, "From:");

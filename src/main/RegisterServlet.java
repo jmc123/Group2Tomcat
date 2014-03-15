@@ -39,7 +39,7 @@ public class RegisterServlet extends HttpServlet {
 		}
 
 		if(uniqueUsername){
-			PersistenceUtil.registerUser(new User(userName, DigestUtils.sha1Hex(password), usertype, firstName, lastName, email, phone));		
+			PersistenceUtil.registerUser(new User(userName, password, usertype, firstName, lastName, email, phone));		
 			response.sendRedirect("webpages/admin/sysListUsers.jsp");
 		} else {
 			response.getWriter().print("<script>alert(\"Username taken!\");"
