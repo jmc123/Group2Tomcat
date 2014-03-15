@@ -87,14 +87,14 @@
 							
 							<div class="col-md-offset-1 col-md-8">
 								<input type="text" class="form-control" id="email" name="email" placeholder="<%=Strings.PH_EMAIL%>" required 
-									title="<%=Strings.TT_EMAIL%>"/>
+									title="<%=Strings.TT_EMAIL%>" data-toggle="tooltip" data-placement="bottom" />
 							</div>
 						</div>
 						<div class="form-group">
 							
 							<div class="col-md-offset-1 col-md-8">
 								<input type="text" class="form-control" id="phone" name="phone" placeholder="<%=Strings.PH_PHONE%>" required
-								title="<%=Strings.TT_PHONE%>"/>
+								title="<%=Strings.TT_PHONE%>" data-toggle="tooltip" data-placement="bottom" />
 							</div>
 						</div>
 						</div>
