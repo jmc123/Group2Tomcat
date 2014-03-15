@@ -48,10 +48,11 @@
 	List<User> users = PersistenceUtil.findAllUsers();
 %>
 <div class="col-md-9 text-center">
-<div class="col-md-10 text-center">
+<div class="col-md-offset-2 col-md-8 text-center">
 	<h3 class="text-center"><em>
 		<%=Strings.ALL_USERS%></em> <br />
 	</h3>
+	<div style="max-height: 400px; overflow: auto;">
 	<table class=" table table-striped table-bordered">
 		<tr>
 			<th class="text-center"><%=Strings.USERNAME%></th>
@@ -68,6 +69,7 @@
 			}
 		%>
 	</table>
+	</div>
 </div>
 </div>
 <jsp:include page="../templates/footer.jsp" />

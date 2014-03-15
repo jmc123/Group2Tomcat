@@ -7,7 +7,7 @@
 
 <!-- content here -->
 <%
-HttpSession sess = request.getSession(false);
+	HttpSession sess = request.getSession(false);
 String userId;
 String userName="";
 String password;
@@ -15,35 +15,38 @@ String userType="";
 if (sess != null && !sess.isNew()) {
 	userId = (String.valueOf(sess.getAttribute("id")));
 	if (userId == null || userId.equals("")
-			|| userId.equals("null")) {
+	|| userId.equals("null")) {
 		userName = String.valueOf(sess.getAttribute("userName"));
 		password = String.valueOf(sess.getAttribute("password"));
 		userType = String.valueOf(sess.getAttribute("userType"));
 		if (userName == null || userName.equals("") || userName.equals("null")
-				|| password == null || password.equals("")|| password.equals("null")) {
-			response.sendRedirect("/JPASprint1");
+		|| password == null || password.equals("")|| password.equals("null")) {
+	response.sendRedirect("/JPASprint1");
 		} else {
-			sess.setAttribute("id", userId);
-			sess.setAttribute("password", password);
+	sess.setAttribute("id", userId);
+	sess.setAttribute("password", password);
 		}
 
 	}
 
 	else if (userId.equals("2")) {
 		response.sendRedirect(request.getContextPath()
-				+ "/webpages/networkManEng/nmeHome.jsp");
+		+ "/webpages/networkManEng/nmeHome.jsp");
 	} else if (userId.equals("3")) {
 		response.sendRedirect(request.getContextPath()
-				+ "/webpages/supportEng/seHome.jsp");
+		+ "/webpages/supportEng/seHome.jsp");
 	} else if (userId.equals("4")) {
 		response.sendRedirect(request.getContextPath()
-				+ "/webpages/customerRep/csHome.jsp");
+		+ "/webpages/customerRep/csHome.jsp");
 	} 
 	userName = String.valueOf(sess.getAttribute("userName"));
 	userType = String.valueOf(sess.getAttribute("userType"));
-
-	
 }
+	User userDetails = PersistenceUtil.findUserByUsername(userName);
+	String fname = userDetails.getFirstName();
+	String lname = userDetails.getLastName();
+	String email = userDetails.getEmailAddress();
+	String phoneNum = userDetails.getPhoneNumber();
 %>
 
 <div class="col-md-9 text-center">
@@ -51,9 +54,17 @@ if (sess != null && !sess.isNew()) {
 	<p style="padding: 10px;" class="col-md-12"></p>
 	<dl class="dl-horizontal col-md-12">
 		<dt><%=Strings.PROFILE_USERNAME%></dt>
-		<dd style="padding-bottom: 20px;"><%=userName%></dd>
+		<dd><%=userName%></dd>
 		<dt><%=Strings.PROFILE_ROLE%></dt>
-		<dd><%=userType%></dd>
+		<dd style="padding-bottom: 20px;"><%=userType%></dd>
+		<dt><%=Strings.PROFILE_FIRSTNAME%></dt>
+		<dd><%= fname %></dd>
+		<dt><%=Strings.PROFILE_LASTNAME%></dt>
+		<dd style="padding-bottom: 20px;"><%= lname %></dd>
+		<dt><%=Strings.PROFILE_EMAIL%></dt>
+		<dd><%= email %></dd>
+		<dt><%=Strings.PROFILE_PHONE%></dt>
+		<dd><%= phoneNum %></dd>
 	</dl>
 </div>
 

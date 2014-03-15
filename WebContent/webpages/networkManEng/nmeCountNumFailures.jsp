@@ -59,7 +59,7 @@
 					name="to" title="<%=Strings.TT_TO%>" data-toggle="tooltip" data-placement="bottom" value="2013-12-31T23:59:00" step="1">
 			</div>
 		</div>
-				<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
+				<span style="display:inline"><button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button></span>
 
 	</form>
 	<%
@@ -81,7 +81,7 @@
 			List<Object[]> queryResults = PersistenceUtil.findNumberOfFailuresAndDuration(fdate, tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-	<div style="max-height:250px; overflow:auto;">
+	<div style="max-height:400px; overflow:auto;">
 		<table class=" table table-striped table-bordered">
 			<tr>
 				<th class="text-center"><%=Strings.IMSI%></th>

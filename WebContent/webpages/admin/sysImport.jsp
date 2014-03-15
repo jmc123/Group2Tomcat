@@ -43,7 +43,7 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-offset-4 col-md-7 text-left"><%=Strings.IMPORT%></h3>
+	<h3 class="col-md-offset-4 col-md-7 text-left"><em><%=Strings.IMPORT%></em></h3>
 	<br /> <br /> <br />
 
 	<form name="upload" method="post" action="/JPASprint1/ImportServlet"
@@ -57,7 +57,7 @@
 		</div>
 		<br /> <br />
 		<div class="form-group">
-			<div class="col-md-offset-4 col-md-4">
+			<div class="col-md-offset-3 col-md-4">
 				<button type="submit" class="btn btn-primary"><%=Strings.UPLOAD%></button>
 			</div>
 		</div>

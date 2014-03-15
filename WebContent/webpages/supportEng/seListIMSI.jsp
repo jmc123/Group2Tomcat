@@ -43,7 +43,7 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-12 text-center"><%=Strings.ALL_IMSIS_BY_TIME_PERIOD%></h3>
+	<h4 class="col-md-12 text-center"><%=Strings.ALL_IMSIS_BY_TIME_PERIOD%></h4>
 	<br /> <br /> <br />
 	<form method="get"
 		action="/JPASprint1/webpages/supportEng/seListIMSI.jsp"
@@ -65,7 +65,7 @@
 		</div>
 
 
-		<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
+		<span style="display:inline"><button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button></span>
 
 	</form>
 
@@ -90,7 +90,7 @@
 					.findCallFailuresBetweenDates(fdate, tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<div style="max-height: 250px; overflow: auto;">
+		<div style="max-height: 400px; overflow: auto;">
 			<table class=" table table-striped table-bordered">
 				<tr>
 					<th class="text-center"><%=Strings.IMSI%></th>

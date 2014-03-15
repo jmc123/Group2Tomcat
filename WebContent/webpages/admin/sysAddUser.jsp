@@ -39,7 +39,7 @@
 <!-- content here -->
 
 				<div class="col-md-9 text-center">
-					<h3 class="col-md-offset-5 col-md-8 text-left"><%=Strings.CREATE_USER%></h3>
+					<h3 class="col-md-offset-5 col-md-8 text-left"><em><%=Strings.CREATE_USER%></em></h3>
 					<br /><br /><br />
 					<form method="POST" name="register" action="/JPASprint1/RegisterServlet"
 							onsubmit="return validateInputsAreValid()" class="form-horizontal" >

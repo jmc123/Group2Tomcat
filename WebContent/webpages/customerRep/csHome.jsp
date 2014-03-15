@@ -89,22 +89,10 @@
 		<div class="col-md-6">
 			<dl class="dl-horizontal">
 				<dt><%=Strings.PROFILE_USERNAME%></dt>
-				<dd style="padding-bottom: 20px;"><%=userName%></dd>
+				<dd style="padding-bottom: 20px;"><%= userName %></dd>
 				<dt><%=Strings.PROFILE_ROLE%></dt>
-				<dd><%=userType%></dd>
+				<dd><%= userType %></dd>
 
-			</dl>
-			<div class="col-md-offset-2 col-md-10 center">
-				<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
-				<script type="IN/JYMBII" data-companyid="1060" data-format="inline"></script>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<dl class="dl-horizontal">
-				<dt><%=Strings.PROFILE_FIRSTNAME%></dt>
-				<dd style="padding-bottom: 20px;"><%=fname%></dd>
-				<dt><%=Strings.PROFILE_LASTNAME%></dt>
-				<dd><%=lname%></dd>
 			</dl>
 			<h4 class="center col-md-offset-3"
 				style="padding-top: 20px; padding-bottom: 20px;">
@@ -112,10 +100,23 @@
 			</h4>
 			<dl class="dl-horizontal">
 				<dt><%=Strings.PROFILE_EMAIL%></dt>
-				<dd style="padding-bottom: 20px;"><%=email%></dd>
+				<dd style="padding-bottom: 20px;"><%= email %></dd>
 				<dt><%=Strings.PROFILE_PHONE%></dt>
-				<dd><%=phoneNum%></dd>
+				<dd><%= phoneNum %></dd>
 			</dl>
+
+		</div>
+		<div class="col-md-6">
+			<dl class="dl-horizontal">
+				<dt><%=Strings.PROFILE_FIRSTNAME%></dt>
+				<dd style="padding-bottom: 20px;"><%= fname %></dd>
+				<dt><%=Strings.PROFILE_LASTNAME%></dt>
+				<dd><%= lname %></dd>
+			</dl>
+			<div class=" col-md-12 center">
+				<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+				<script type="IN/JYMBII" data-companyid="1060" data-format="inline"></script>
+			</div>
 		</div>
 	</div>
 

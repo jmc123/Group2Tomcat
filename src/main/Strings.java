@@ -26,11 +26,11 @@ public class Strings {
 	//Profile page
 	public static String PROFILE_PAGE = "Profile Page";
 	public static String PROFILE_USERNAME = "Username:";
-	public static String PROFILE_ROLE = "Role:";
-	public static String PROFILE_FIRSTNAME = "Firstname:";
-	public static String PROFILE_LASTNAME = "Lastname:";
+	public static String PROFILE_ROLE = "User Role:";
+	public static String PROFILE_FIRSTNAME = "First Name:";
+	public static String PROFILE_LASTNAME = "Last Name:";
 	public static String PROFILE_EMAIL = "Email:";
-	public static String PROFILE_PHONE = "Phone Number:";
+	public static String PROFILE_PHONE = "Number:";
 	
 	//Query results
 	public static String RESULT_IMSI = "IMSI:";

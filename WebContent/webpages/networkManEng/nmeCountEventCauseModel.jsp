@@ -67,7 +67,7 @@
 	%>
 	<div class="col-md-offset-2 col-md-7">
 		<h4 class="text-center"><%=Strings.RESULT_PHONE_MODEL%><strong> <%=model%></strong></h4>
-		<div style="max-height:250px; overflow:auto;">
+		<div style="max-height:400px; overflow:auto;">
 		<table class=" table table-striped table-bordered">
 			<tr>
 				<th class="text-center"><%=Strings.EVENT_ID%></th>

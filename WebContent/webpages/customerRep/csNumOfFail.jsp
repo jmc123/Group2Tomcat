@@ -70,7 +70,7 @@
 					title="<%=Strings.TT_TO%>">
 			</div>
 		</div>
-		<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
+		<span style="display:inline"><button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button></span>
 	</form>
 
 	<%

@@ -43,7 +43,7 @@
 <!-- content here -->
 
 <div class="col-md-9 text-center">
-	<h3 class="col-md-12 text-center"><%=Strings.NUM_FAILURES_BY_MODEL_BY_TIME_PERIOD%></h3>
+	<h4 class="col-md-12 text-center"><%=Strings.NUM_FAILURES_BY_MODEL_BY_TIME_PERIOD%></h4>
 	<br /> <br /> <br />
 	<form method="get"
 		action="/JPASprint1/webpages/supportEng/seCountForModel.jsp"
@@ -70,7 +70,7 @@
 					data-placement="bottom" required title="<%=Strings.TT_TO%>">
 			</div>
 		</div>
-		<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
+		<span style="display:inline"><button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button></span>
 	</form>
 
 	<%

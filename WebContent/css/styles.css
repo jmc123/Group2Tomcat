@@ -17,7 +17,6 @@
 				position: relative;
 				left:840px;
 				top:80px;
-			
 			}
 			#margintext{
 				margin-top:25px;
@@ -53,6 +52,12 @@
 				margin-left:5px;
 				border-bottom:3px inset;
 				
+			}
+			.table-striped tbody tr:nth-child(odd) th{ /* header color for tables (change if necessary) */
+				background-color: #428bca;
+			} 
+			.table-striped tbody tr:nth-child(odd) td { /* alternating row color for tables (change if necessary) */
+    			background-color: #A3C6E5;
 			}
 			#banner{
 				margin-left:25px;
