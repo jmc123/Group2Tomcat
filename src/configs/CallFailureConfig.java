@@ -24,8 +24,8 @@ import entity.MCC_MNC;
 import entity.UEType;
 
 public class CallFailureConfig {
-	public static List<DatasetEntity> callFailures;
-	public static List<DatasetEntity> invalidCallFailures;
+	private static List<DatasetEntity> callFailures;
+	private static List<DatasetEntity> invalidCallFailures;
 	private static List<DatasetEntity> mcc_mncs;
 	private static List<DatasetEntity> eventCauses;
 	private static List<DatasetEntity> failureClasses;
@@ -266,5 +266,9 @@ public class CallFailureConfig {
 	
 	public static int numberOfInvalidCallFailures(){
 		return invalidCallFailures.size();
+	}
+	
+	public static List<DatasetEntity> getInvalidFailures(){
+		return invalidCallFailures;
 	}
 }

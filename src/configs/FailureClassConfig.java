@@ -28,8 +28,7 @@ public class FailureClassConfig {
         	parseCells(cellIterator);
         }
 		
-		int objectsPersisted = PersistenceUtil.persistMany(failureClasses);
-		System.out.println(objectsPersisted + " FailureClasses added to database.");
+		PersistenceUtil.persistMany(failureClasses);
 		return failureClasses;
 	}
 

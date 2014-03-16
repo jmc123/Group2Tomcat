@@ -28,8 +28,7 @@ public class MCC_MNCConfig {
             parseCells(cellIterator);
         }
 		
-        int objectsPersisted = PersistenceUtil.persistMany(mcc_mncs);;
-		System.out.println(objectsPersisted + " MCC_MNCs added to database.");
+        PersistenceUtil.persistMany(mcc_mncs);;
 		return mcc_mncs;
 	}
 

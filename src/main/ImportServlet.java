@@ -75,7 +75,7 @@ public class ImportServlet extends HttpServlet {
 				}
 			}
 			
-			DatabaseGenerator.generateDatabase(file.getAbsolutePath(), out, (System.nanoTime()-startTime)/1000000);		
+			DatabaseGenerator.generateDatabase(file, out, (System.nanoTime()-startTime)/1000000);		
 			out.println("<script>window.location.replace(\"webpages/admin/sysImport.jsp\");</script>");
 			out.close();
 			

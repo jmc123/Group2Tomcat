@@ -30,17 +30,12 @@ public class LoginServlet extends HttpServlet {
 			String userPassword = user.getUserPassword();
 			int userTypeId = user.getUserType().getId();		
 			String userType = user.getUserType().getDesc();
-			
-			
-			System.out.println("Logging in");
 
 			if(inputUserPassword.equals(userPassword)){
 				HttpSession session = request.getSession(true);
 				session.setAttribute("id", userTypeId);
 				session.setAttribute("userName", user.getUserName());
 				session.setAttribute("userType", userType);
-				
-				System.out.println("Logged in!");
 				
 				if(userTypeId == SYSTEM_ADMINISTRATOR){
 					response.getWriter().print("<script>location.replace(\"webpages/admin/sysHome.jsp\");</script>");

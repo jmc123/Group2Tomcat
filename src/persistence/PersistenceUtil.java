@@ -36,9 +36,8 @@ public class PersistenceUtil implements Serializable {
 		em.close();
 	}
 
-	public static int persistMany(List<DatasetEntity> entities){
+	public static void persistMany(List<DatasetEntity> entities){
 		EntityManager em = emf.createEntityManager();
-		int count = 0;
 		
 		for(DatasetEntity entity : entities){
 			Object primaryKey = em.find(entity.getClass(), entity.getPrimaryKey());
@@ -47,11 +46,9 @@ public class PersistenceUtil implements Serializable {
 				em.getTransaction().begin();
 				em.persist(entity);
 				em.getTransaction().commit();
-				count++;
 			}
 		}
 		em.close();
-		return count;
 	}
 	
 	public static void persistManyFailures(List<DatasetEntity> entities){

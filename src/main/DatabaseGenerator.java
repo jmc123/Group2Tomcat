@@ -1,5 +1,6 @@
 package main;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,11 +21,22 @@ import entity.DatasetEntity;
 public class DatabaseGenerator {
 	private static Workbook excelData;
 	private static boolean datasetUploaded = false;
+	private static long totalTime;
 	
-	public static void generateDatabase(String fileLocation, PrintWriter out, long uploadTimeInMillis){
+	public static String fileName = null;
+	
+	private DatabaseGenerator(File uploadedFile){
+		totalTime = 0;
+		fileName = uploadedFile.getName();
 		datasetUploaded = true;
-		loadExcelFile(fileLocation, out);
+	}
+	
+	public static void generateDatabase(File uploadedFile, PrintWriter out, long uploadTimeInMillis){
+		long startTime = System.nanoTime();
+		new DatabaseGenerator(uploadedFile);
+		loadExcelFile(uploadedFile.getAbsolutePath(), out);
 		generateDatabase();
+		totalTime = ((System.nanoTime()-startTime)/1000000) + uploadTimeInMillis;
 	}
 	
 	private static void loadExcelFile(String fileLocation, PrintWriter out) {
@@ -56,7 +68,8 @@ public class DatabaseGenerator {
 		return datasetUploaded;
 	}
 	
-	public static void datasetConfirmed(){
+	public static long datasetConfirmed(){
 		datasetUploaded = false;
+		return totalTime;
 	}
 }

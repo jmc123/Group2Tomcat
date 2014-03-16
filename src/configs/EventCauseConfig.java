@@ -28,8 +28,7 @@ public class EventCauseConfig {
         	parseCells(cellIterator);
         }
 		
-		int objectsPersisted = PersistenceUtil.persistMany(eventCauses);
-		System.out.println(objectsPersisted + " EventCauses added to database.");
+		PersistenceUtil.persistMany(eventCauses);
 		return eventCauses;
 	}
 	

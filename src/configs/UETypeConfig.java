@@ -28,8 +28,7 @@ public class UETypeConfig {
             parseCells(cellIterator);
         }
 		
-        int objectsPersisted = PersistenceUtil.persistMany(ueTypes);
-		System.out.println(objectsPersisted + " UETypes added to database.");
+        PersistenceUtil.persistMany(ueTypes);
 		return ueTypes;
 	}
 

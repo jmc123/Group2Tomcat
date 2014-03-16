@@ -13,35 +13,35 @@ public class InvalidCallFailure implements DatasetEntity{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID")
-	private int id;
+	public int id;
 	@Column(name="Date")
-	private Date date;
+	public Date date;
 	@Column(name="Event_ID")
-	private int eventId;
+	public int eventId;
 	@Column(name="Failure_Class")
-	private String failureClass;
+	public String failureClass;
 	@Column(name="UE_Type")
-	private int ueType;
+	public int ueType;
 	@Column(name="Market")
-	private int market;
+	public int market;
 	@Column(name="Operator")
-	private int operator;
+	public int operator;
 	@Column(name="Cell_ID")
-	private int cellId;
+	public int cellId;
 	@Column(name="Duration")
-	private int duration;
+	public int duration;
 	@Column(name="Cause_Code")
-	private String causeCode;
+	public String causeCode;
 	@Column(name="NE_Version")
-	private String neVersion;
+	public String neVersion;
 	@Column(name="IMSI")
-	private long imsi;
+	public long imsi;
 	@Column(name="HIER3_ID")
-	private long hier3_id;
+	public long hier3_id;
 	@Column(name="HIER32_ID")
-	private long hier32_id;
+	public long hier32_id;
 	@Column(name="HIER321_ID")
-	private long hier321_id;
+	public long hier321_id;
 	
 	public InvalidCallFailure(){
 		

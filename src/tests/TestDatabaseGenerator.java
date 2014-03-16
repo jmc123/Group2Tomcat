@@ -2,6 +2,7 @@ package tests;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -17,17 +18,15 @@ import persistence.PersistenceUtil;
 
 @SuppressWarnings("unused")
 public class TestDatabaseGenerator {
-	private static final String EXCEL_FILE_XLSX = "src/res/TestDataset.xlsx";
-	private static final String EXCEL_FILE_XLS = "src/res/TestDataset.xls";
-	private static final String EXCEL_FILE_INVALID = "src/res/TestDataset.invalid";
+	private static final File EXCEL_FILE_XLSX = new File("src/res/TestDataset.xlsx");
+	private static final File EXCEL_FILE_XLS = new File("src/res/TestDataset.xls");
+	private static final File EXCEL_FILE_INVALID = new File("src/res/TestDataset.invalid");
 	private static XSSFWorkbook excelData;
 	
 	
 	@BeforeClass
 	public static void setUp() throws InvalidFormatException, IOException{
 		PersistenceUtil.useTestDatabase();
-
-		DatabaseGenerator dbG = new DatabaseGenerator();
 	}
 
 	@Test
