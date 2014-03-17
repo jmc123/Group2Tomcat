@@ -16,7 +16,7 @@
 <script src="../../js/validation.js"></script>
 <script>
 		$(function() {
-			$("#to, #from", "#email", "#phone").tooltip({
+			$("#to, #from, #email, #phone").tooltip({
 		    	position: "right center",
 		    	offset: [-2, 10],
 		    	effect: "explode",
@@ -24,7 +24,22 @@
 		    });
 		});
 		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-	</script>
+
+		$(document).ready(function(){
+			$("#importTable").hide();
+			$("#importTableBt").click(function(){
+				var buttonText = $(this);
+				$("#importTable").toggle(function(){
+					if($(this).css('display')=='none'){
+						buttonText.html('Show Table');
+					}
+					else{
+						buttonText.html('Hide Table');
+					}
+				});
+			});
+		});
+		</script>
 
 </head>
 <body>

@@ -42,21 +42,6 @@
 	}
 %>
 <!-- content here -->
-<script type="text/javascript">
-
-function toggle_visibility(tbid,lnkid)
-
-{
-
-  if(document.all){document.getElementById(tbid).style.display = document.getElementById(tbid).style.display == "block" ? "none" : "block";}
-
-  else{document.getElementById(tbid).style.display = document.getElementById(tbid).style.display == "table" ? "none" : "table";}
-
-  document.getElementById(lnkid).value = document.getElementById(lnkid).value == "[-] Collapse" ? "[+] Expand" : "[-] Collapse";
-
- }
-
-</script>
 
 <div class="col-md-9 text-center">
 	<h3 class="col-md-offset-4 col-md-7 text-left"><em><%=Strings.IMPORT%></em></h3>
@@ -96,8 +81,8 @@ function toggle_visibility(tbid,lnkid)
 			<strong><%=dFormatter.format(MCC_MNCConfig.numberOfMCC_MNCs())%></strong> Market/Operator combinations added<br />
 			<strong><%=dFormatter.format(UETypeConfig.numberOfUETypes())%></strong> TAC IDs added<br />
 			<strong><%=dFormatter.format(CallFailureConfig.numberOfInvalidCallFailures())%></strong> Call Failures removed due to inconsistencies<br />
-		
-			<div class="span4" style="max-height: 400px; overflow: auto;">
+			<button class="btn btn-success" id="importTableBt">Show Table</button>
+			<div class="span4" id="importTable" style="max-height: 400px; overflow: auto;">
 			<table class=" table table-striped table-bordered">
 				<tr>
 					<th class="text-center">ID</th>
