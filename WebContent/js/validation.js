@@ -13,7 +13,12 @@ function validateInputsAreValid(){
 		return false;
 	}
 	
-	v.replace(/[^0-9]/g, '');
+	var RE = /^-{0,1}\d*\.{0,1}\d+$/;
+	if(!RE.test(v)){
+    	alert("Invalid phone number!");
+    	document.forms["register"]["phone"].focus();
+    	return false;
+    }
 	if(v.length < 7 || v.length > 10) { 
 		alert("Invalid phone number!");
         document.forms["register"]["phone"].focus();

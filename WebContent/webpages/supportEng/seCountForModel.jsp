@@ -70,35 +70,43 @@
 					data-placement="bottom" required title="<%=Strings.TT_TO%>">
 			</div>
 		</div>
-		<span style="display:inline"><button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button></span>
+		<span style="display: inline"><button type="submit"
+				class="btn btn-primary"><%=Strings.SUBMIT%></button></span>
 	</form>
 
 	<%
 		if (request.getParameter("model") != null) {
 			long startTime = System.nanoTime();
 			String model = request.getParameter("model");
-			String fromdate = PersistenceUtil.returnDate(request
-					.getParameter("from"));
-			String todate = PersistenceUtil.returnDate(request
-					.getParameter("to"));
-			SimpleDateFormat currentParsed = new SimpleDateFormat(
-					"yyyy-MM-dd HH:mm:ss");
-			Date fdate = null, tdate = null;
-			try {
-				fdate = currentParsed.parse(fromdate);
-				tdate = currentParsed.parse(todate);
-			} catch (ParseException e) {
 
-			}
-			List<Long> queryDetails = PersistenceUtil
-					.findNumberOfFailuresByModelOverTime(model, fdate,
-							tdate);
-			String fDateOut = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(fdate);
-			String tDateOut = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(tdate);
+			if (PersistenceUtil.isModelValid(model)) {
+				String fromdate = PersistenceUtil.returnDate(request
+						.getParameter("from"));
+				String todate = PersistenceUtil.returnDate(request
+						.getParameter("to"));
+				SimpleDateFormat currentParsed = new SimpleDateFormat(
+						"yyyy-MM-dd HH:mm:ss");
+				Date fdate = null, tdate = null;
+				try {
+					fdate = currentParsed.parse(fromdate);
+					tdate = currentParsed.parse(todate);
+				} catch (ParseException e) {
+
+				}
+				List<Long> queryDetails = PersistenceUtil
+						.findNumberOfFailuresByModelOverTime(model, fdate,
+								tdate);
+				String fDateOut = new SimpleDateFormat("dd/MM/yyyy HH:mm")
+						.format(fdate);
+				String tDateOut = new SimpleDateFormat("dd/MM/yyyy HH:mm")
+						.format(tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h4 class="text-center"><%=Strings.RESULT_PHONE_MODEL%><strong> <%=model%></strong><br />
-		<%=Strings.DATE_RANGE%> <strong><%=fDateOut%> - <%=tDateOut%></strong></h4>
+		<h4 class="text-center"><%=Strings.RESULT_PHONE_MODEL%><strong>
+				<%=model%></strong><br />
+			<%=Strings.DATE_RANGE%>
+			<strong><%=fDateOut%> - <%=tDateOut%></strong>
+		</h4>
 		<table class=" table table-striped table-bordered">
 			<tr>
 				<th class="text-center"><%=Strings.NUM_FAILURES%></th>
@@ -116,15 +124,18 @@
 			%>
 			<%
 				long timeTakenInNanos = System.nanoTime() - startTime;
-					String timeTaken = String.format("<p>"
-							+ Strings.QUERY_EXECUTION_TIME + "<p>",
-							(double) timeTakenInNanos / 1000000);
+						String timeTaken = String.format("<p>"
+								+ Strings.QUERY_EXECUTION_TIME + "<p>",
+								(double) timeTakenInNanos / 1000000);
 			%>
 
 		</table>
 		<h4 class="text-center"><%=timeTaken%></h4>
 	</div>
 	<%
+		} else {
+				//Alert invalid model
+			}
 		}
 	%>
 

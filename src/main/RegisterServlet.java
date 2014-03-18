@@ -41,9 +41,10 @@ public class RegisterServlet extends HttpServlet {
 		if(uniqueUsername){
 			PersistenceUtil.registerUser(new User(userName, password, usertype, firstName, lastName, email, phone));		
 			response.sendRedirect("webpages/admin/sysListUsers.jsp");
+			response.getWriter().print("<script>alert();</script>");
 		} else {
 			response.getWriter().print("<script>alert(\"Username taken!\");"
-					+ "window.location.replace(\"webpages/admin/sysAddUser.jsp\");"
+					+ "location.replace(\"webpages/admin/sysAddUser.jsp\");"
 					+ "document.forms[\"register\"][\"userName\"].focus();</script>");
 		}
 	}

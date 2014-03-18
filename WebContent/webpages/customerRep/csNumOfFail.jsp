@@ -46,11 +46,9 @@
 <div class="col-md-9 text-center">
 	<h4 class="col-md-12 text-center"><%=Strings.NUM_FAILURES_BY_IMSI_BY_TIME_PERIOD%></h4>
 	<br /> <br /> <br />
-	<form method="get"
-	name="imsiform" id="imsiform" 
+	<form method="get" name="imsiform" id="imsiform"
 		action="/JPASprint1/webpages/customerRep/csNumOfFail.jsp"
-		onsubmit="return validateIMSI()"
-		class="form-inline">
+		onsubmit="return validateIMSI()" class="form-inline">
 		<div class="form-group">
 			<div class="col-md-1">
 				<input type="text" class="form-control" id="imsi" name="imsi"
@@ -72,37 +70,45 @@
 					title="<%=Strings.TT_TO%>">
 			</div>
 		</div>
-		<span style="display:inline"><button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button></span>
+		<span style="display: inline"><button type="submit"
+				class="btn btn-primary"><%=Strings.SUBMIT%></button></span>
 	</form>
 
 	<%
 		if (request.getParameter("imsi") != null) {
 			long startTime = System.nanoTime();
 			long imsi = Long.parseLong(request.getParameter("imsi"));
-			String fromdate = PersistenceUtil.returnDate(request
-					.getParameter("from"));
-			String todate = PersistenceUtil.returnDate(request
-					.getParameter("to"));
 
-			SimpleDateFormat currentParsed = new SimpleDateFormat(
-					"yyyy-MM-dd HH:mm:ss");
-			Date fdate = null, tdate = null;
+			if (PersistenceUtil.isIMSIValid(imsi)) {
 
-			try {
-				fdate = currentParsed.parse(fromdate);
-				tdate = currentParsed.parse(todate);
-			} catch (ParseException e) {
-			}
+				String fromdate = PersistenceUtil.returnDate(request
+						.getParameter("from"));
+				String todate = PersistenceUtil.returnDate(request
+						.getParameter("to"));
 
-			List<Object[]> queryDetails = PersistenceUtil
-					.findNumberOfFailures(imsi, fdate, tdate);
-			String fDateOut = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(fdate);
-			String tDateOut = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(tdate);
+				SimpleDateFormat currentParsed = new SimpleDateFormat(
+						"yyyy-MM-dd HH:mm:ss");
+				Date fdate = null, tdate = null;
+
+				try {
+					fdate = currentParsed.parse(fromdate);
+					tdate = currentParsed.parse(todate);
+				} catch (ParseException e) {
+				}
+
+				List<Object[]> queryDetails = PersistenceUtil
+						.findNumberOfFailures(imsi, fdate, tdate);
+				String fDateOut = new SimpleDateFormat("dd/MM/yyyy HH:mm")
+						.format(fdate);
+				String tDateOut = new SimpleDateFormat("dd/MM/yyyy HH:mm")
+						.format(tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
 		<div style="max-height: 250px; overflow: auto;">
-			<h4 class="text-center"><%=Strings.RESULT_IMSI%><strong> <%=imsi%></strong><br />
-			<%=Strings.DATE_RANGE%><strong> <%=fDateOut%> - <%=tDateOut%></strong></h4>
+			<h4 class="text-center"><%=Strings.RESULT_IMSI%><strong>
+					<%=imsi%></strong><br />
+				<%=Strings.DATE_RANGE%><strong> <%=fDateOut%> - <%=tDateOut%></strong>
+			</h4>
 			<table class=" table table-striped table-bordered">
 				<tr>
 					<th class="text-center"><%=Strings.NUM_FAILURES%></th>
@@ -111,16 +117,17 @@
 					for (Object[] object : queryDetails) {
 				%>
 				<tr>
-					<td class="text-center"><%=new DecimalFormat("#,###,###").format(object[0])%></td>
+					<td class="text-center"><%=new DecimalFormat("#,###,###")
+								.format(object[0])%></td>
 				</tr>
 				<%
 					}
 				%>
 				<%
 					long timeTakenInNanos = System.nanoTime() - startTime;
-						String timeTaken = String.format("<p>"
-								+ Strings.QUERY_EXECUTION_TIME + "<p>",
-								(double) timeTakenInNanos / 1000000);
+							String timeTaken = String.format("<p>"
+									+ Strings.QUERY_EXECUTION_TIME + "<p>",
+									(double) timeTakenInNanos / 1000000);
 				%>
 
 			</table>
@@ -129,6 +136,9 @@
 		</h4>
 	</div>
 	<%
+		} else {
+															//Alert invalid IMSI
+			}
 		}
 	%>
 </div>

@@ -46,11 +46,9 @@
 <div class="col-md-9 text-center">
 	<h4 class="col-md-11 text-center"><%=Strings.UNIQUE_CAUSECODES_BY_IMSI%></h4>
 	<br /> <br /> <br />
-	<form name="imsiform" id="imsiform" 
-	method="get"
+	<form name="imsiform" id="imsiform" method="get"
 		action="/JPASprint1/webpages/customerRep/csUniqueCodes.jsp"
-		onsubmit="return validateIMSI()"
-		class="form-inline">
+		onsubmit="return validateIMSI()" class="form-inline">
 		<div class="form-group">
 			<div class="col-md-4">
 				<input type="text" class="form-control" id="imsi" name="imsi"
@@ -63,15 +61,19 @@
 	</form>
 
 	<%
-		if (request.getParameter("IMSI") != null) {
+		if (request.getParameter("imsi") != null) {
 			long startTime = System.nanoTime();
-			long imsi = Long.parseLong(request.getParameter("IMSI"));
+			long imsi = Long.parseLong(request.getParameter("imsi"));
 
-			List<Integer> uniqueCauseCodes = PersistenceUtil
-					.findUniqueCauseByIMSI(imsi);
+			if (PersistenceUtil.isIMSIValid(imsi)) {
+
+				List<Integer> uniqueCauseCodes = PersistenceUtil
+						.findUniqueCauseByIMSI(imsi);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h4 class="text-center"><%=Strings.RESULT_IMSI%><strong> <%=imsi%></strong></h4>
+		<h4 class="text-center"><%=Strings.RESULT_IMSI%><strong>
+				<%=imsi%></strong>
+		</h4>
 		<div style="max-height: 400px; overflow: auto;">
 			<table class=" table table-striped table-bordered">
 				<tr>
@@ -88,9 +90,9 @@
 				%>
 				<%
 					long timeTakenInNanos = System.nanoTime() - startTime;
-						String timeTaken = String.format("<p>"
-								+ Strings.QUERY_EXECUTION_TIME + "<p>",
-								(double) timeTakenInNanos / 1000000);
+							String timeTaken = String.format("<p>"
+									+ Strings.QUERY_EXECUTION_TIME + "<p>",
+									(double) timeTakenInNanos / 1000000);
 				%>
 
 			</table>
@@ -98,6 +100,9 @@
 		<h4 class="text-center"><%=timeTaken%></h4>
 	</div>
 	<%
+		} else {
+														//Alert for invalid IMSI
+			}
 		}
 	%>
 </div>

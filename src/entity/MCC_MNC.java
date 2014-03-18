@@ -40,7 +40,6 @@ public class MCC_MNC implements DatasetEntity{
 		return operator;
 	}
 
-
 	public MCC_MNC(){
 		
 	}

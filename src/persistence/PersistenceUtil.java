@@ -178,6 +178,22 @@ public class PersistenceUtil implements Serializable {
 		em.getTransaction().commit();
 		em.close();
 	}
+	
+	public static boolean isIMSIValid(long imsi){
+		EntityManager em = emf.createEntityManager();
+		List<BigInteger> count = (List<BigInteger>) em.createNativeQuery("SELECT COUNT(IMSI) FROM CallFailure WHERE IMSI= ?;").setParameter(1, imsi).getResultList();
+		em.close();
+		
+		return (count.get(0).longValue() > 0);
+	}
+	
+	public static boolean isModelValid(String model){
+		EntityManager em = emf.createEntityManager();
+		List<BigInteger> count = (List<BigInteger>) em.createNativeQuery("SELECT COUNT(Model) FROM UEType WHERE Model= ?;").setParameter(1, model).getResultList();
+		em.close();
+		
+		return (count.get(0).longValue() > 0);
+	}
 
 	/**
 	 * Queries

@@ -45,32 +45,32 @@
 <div class="col-md-9 text-center">
 	<h4 class=" col-md-12 text-center"><%=Strings.UNIQUE_EVENTID_AND_CAUSECODE_COMBINATIONS_BY_IMSI%></h4>
 	<br /> <br /> <br />
-	<form method="get"
-	name="imsiform" id="imsiform" 
+	<form method="get" name="imsiform" id="imsiform"
 		action="/JPASprint1/webpages/customerRep/csEventCause.jsp"
-		onsubmit="return validateIMSI()"
-		class="form-inline">
+		onsubmit="return validateIMSI()" class="form-inline">
 		<div class="form-group">
 			<div class="col-md-4">
-				<input type="text" id="query" name="query" value="EventCauseByIMSI"
-					style="display: none" /> <input type="text" class="form-control"
-					id="imsi" name="imsi" placeholder="<%=Strings.PH_IMSI%>"
-					title="<%=Strings.TT_IMSI%>" required />
+				<input type="text" class="form-control" id="imsi" name="imsi"
+					placeholder="<%=Strings.PH_IMSI%>" title="<%=Strings.TT_IMSI%>"
+					required />
 			</div>
 		</div>
 		<button type="submit" class="btn btn-primary"><%=Strings.SUBMIT%></button>
-
-
 	</form>
 	<%
-		if (request.getParameter("IMSI") != null) {
+		if (request.getParameter("imsi") != null) {
 			long startTime = System.nanoTime();
-			long imsi = Long.parseLong(request.getParameter("IMSI"));
-			List<EventCause> eventCauses = PersistenceUtil
-					.findEventCauseByIMSI(imsi);
+			long imsi = Long.parseLong(request.getParameter("imsi"));
+
+			if (PersistenceUtil.isIMSIValid(imsi)) {
+
+				List<EventCause> eventCauses = PersistenceUtil
+						.findEventCauseByIMSI(imsi);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-		<h4 class="text-center"><%=Strings.RESULT_IMSI%><strong> <%=imsi%></strong></h4>
+		<h4 class="text-center"><%=Strings.RESULT_IMSI%><strong>
+				<%=imsi%></strong>
+		</h4>
 		<div style="max-height: 400px; overflow: auto;">
 			<table class=" table table-striped table-bordered">
 				<tr>
@@ -86,10 +86,10 @@
 				</tr>
 				<%
 					}
-						long timeTakenInNanos = System.nanoTime() - startTime;
-						String timeTaken = String.format("<p>"
-								+ Strings.QUERY_EXECUTION_TIME + "<p>",
-								(double) timeTakenInNanos / 1000000);
+							long timeTakenInNanos = System.nanoTime() - startTime;
+							String timeTaken = String.format("<p>"
+									+ Strings.QUERY_EXECUTION_TIME + "<p>",
+									(double) timeTakenInNanos / 1000000);
 				%>
 
 			</table>
@@ -97,6 +97,9 @@
 		<h4 class="text-center"><%=timeTaken%></h4>
 	</div>
 	<%
+		} else {
+															//Alert Invalid IMSI
+			}
 		}
 	%>
 </div>
