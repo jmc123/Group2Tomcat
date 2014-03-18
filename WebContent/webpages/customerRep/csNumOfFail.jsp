@@ -97,7 +97,8 @@
 	%>
 	<div class="col-md-offset-2 col-md-7">
 		<div style="max-height: 250px; overflow: auto;">
-			<h4 class="text-center"><%=Strings.RESULT_IMSI%><strong> <%=imsi%></strong></h4>
+			<h4 class="text-center"><%=Strings.RESULT_IMSI%><strong> <%=imsi%></strong><br />
+			<%=Strings.DATE_RANGE%><strong> <%=fdate%> - <%=tdate%></strong></h4>
 			<table class=" table table-striped table-bordered">
 				<tr>
 					<th class="text-center"><%=Strings.NUM_FAILURES%></th>

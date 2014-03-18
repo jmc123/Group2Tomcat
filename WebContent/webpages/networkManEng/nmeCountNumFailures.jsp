@@ -81,6 +81,7 @@
 			List<Object[]> queryResults = PersistenceUtil.findNumberOfFailuresAndDuration(fdate, tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
+	<h4 class="text-center"><%=Strings.DATE_RANGE%><strong> <%=fdate%> - <%=tdate%></strong></h4>
 	<div style="max-height:400px; overflow:auto;">
 		<table class=" table table-striped table-bordered">
 			<tr>

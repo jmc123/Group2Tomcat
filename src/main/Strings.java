@@ -37,6 +37,7 @@ public class Strings {
 	public static String RESULT_PHONE_MODEL = "Model:";
 	public static String RESULT_FROM = "From:";
 	public static String RESULT_TO = "to:";
+	public static String DATE_RANGE = "Range:";
 	public static String QUERY_EXECUTION_TIME = "Query executed in %.2f ms";
 	
 	//Navigation
