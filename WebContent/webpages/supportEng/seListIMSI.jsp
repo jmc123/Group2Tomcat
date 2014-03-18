@@ -92,7 +92,7 @@
 			String tDateOut = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(tdate);
 	%>
 	<div class="col-md-offset-2 col-md-7">
-	<h4 class="text-center"><%=Strings.DATE_RANGE%> <strong><%=fDateOut%> - <%=fDateOut%></strong></h4>
+	<h4 class="text-center"><%=Strings.DATE_RANGE%> <strong><%=fDateOut%> - <%=tDateOut%></strong></h4>
 		<div style="max-height: 400px; overflow: auto;">
 			<table class=" table table-striped table-bordered">
 				<tr>
