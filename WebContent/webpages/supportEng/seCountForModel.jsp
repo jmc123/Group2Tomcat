@@ -57,7 +57,7 @@
 		<div class="form-group">
 			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="from"
-					name="from" value="2013-01-01T12:00:00" step="1"
+					name="from" value="2013-01-01T00:00:00" step="1"
 					data-toggle="tooltip" data-placement="bottom" required
 					title="<%=Strings.TT_FROM%>">
 			</div>

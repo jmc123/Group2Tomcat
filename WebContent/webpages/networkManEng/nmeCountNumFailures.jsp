@@ -49,7 +49,7 @@
 		<div class="form-group">
 			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="from"
-					name="from" title="<%=Strings.TT_FROM%>" data-toggle="tooltip" data-placement="bottom" value="2013-01-01T12:00:00" step="1">
+					name="from" title="<%=Strings.TT_FROM%>" data-toggle="tooltip" data-placement="bottom" value="2013-01-01T00:00:00" step="1">
 			</div>
 		</div>
 		<span class="glyphicon glyphicon-arrow-right"></span>

@@ -19,7 +19,7 @@ public class Strings {
 	public static String IMSI = "IMSI";
 	public static String CAUSE_CODE = "Cause Code";
 	public static String DURATION = "Total Duration (ms)";
-	public static String OCCURANCES = "Occurances";
+	public static String OCCURANCES = "Occurrences";
 	public static String NUM_FAILURES = "Number of failures";
 	public static String SUBMIT = "Submit";
 	

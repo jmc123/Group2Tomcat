@@ -47,7 +47,9 @@
 	<h4 class="col-md-12 text-center"><%=Strings.NUM_FAILURES_BY_IMSI_BY_TIME_PERIOD%></h4>
 	<br /> <br /> <br />
 	<form method="get"
+	name="imsiform" id="imsiform" 
 		action="/JPASprint1/webpages/customerRep/csNumOfFail.jsp"
+		onsubmit="return validateIMSI()"
 		class="form-inline">
 		<div class="form-group">
 			<div class="col-md-1">
@@ -58,7 +60,7 @@
 		<div class="form-group">
 			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="from"
-					name="from" value="2013-01-01T12:00:00" step="1" required
+					name="from" value="2013-01-01T00:00:00" step="1" required
 					title="<%=Strings.TT_FROM%>">
 			</div>
 		</div>

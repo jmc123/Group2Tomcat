@@ -46,13 +46,15 @@
 	<h4 class=" col-md-12 text-center"><%=Strings.UNIQUE_EVENTID_AND_CAUSECODE_COMBINATIONS_BY_IMSI%></h4>
 	<br /> <br /> <br />
 	<form method="get"
+	name="imsiform" id="imsiform" 
 		action="/JPASprint1/webpages/customerRep/csEventCause.jsp"
+		onsubmit="return validateIMSI()"
 		class="form-inline">
 		<div class="form-group">
 			<div class="col-md-4">
 				<input type="text" id="query" name="query" value="EventCauseByIMSI"
 					style="display: none" /> <input type="text" class="form-control"
-					id="IMSI" name="IMSI" placeholder="<%=Strings.PH_IMSI%>"
+					id="imsi" name="imsi" placeholder="<%=Strings.PH_IMSI%>"
 					title="<%=Strings.TT_IMSI%>" required />
 			</div>
 		</div>

@@ -46,12 +46,14 @@
 <div class="col-md-9 text-center">
 	<h4 class="col-md-11 text-center"><%=Strings.UNIQUE_CAUSECODES_BY_IMSI%></h4>
 	<br /> <br /> <br />
-	<form method="get"
+	<form name="imsiform" id="imsiform" 
+	method="get"
 		action="/JPASprint1/webpages/customerRep/csUniqueCodes.jsp"
+		onsubmit="return validateIMSI()"
 		class="form-inline">
 		<div class="form-group">
 			<div class="col-md-4">
-				<input type="text" class="form-control" id="IMSI" name="IMSI"
+				<input type="text" class="form-control" id="imsi" name="imsi"
 					placeholder="<%=Strings.PH_IMSI%>" required
 					title="<%=Strings.TT_IMSI%>" />
 			</div>

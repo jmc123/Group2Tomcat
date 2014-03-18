@@ -52,7 +52,7 @@
 			<div class="col-md-1">
 				<input type="datetime-local" class="form-control" id="from"
 					name="from" data-toggle="tooltip" data-placement="bottom" required
-					title="<%=Strings.TT_FROM%>" value="2013-01-01T12:00:00" step="1" />
+					title="<%=Strings.TT_FROM%>" value="2013-01-01T00:00:00" step="1" />
 			</div>
 		</div>
 		<span class="glyphicon glyphicon-arrow-right"></span>

@@ -22,7 +22,7 @@ public class TestString {
 		assertEquals(Strings.IMSI, "IMSI");
 		assertEquals(Strings.CAUSE_CODE, "Cause Code");
 		assertEquals(Strings.DURATION, "Total Duration (ms)");
-		assertEquals(Strings.OCCURANCES, "Occurances");
+		assertEquals(Strings.OCCURANCES, "Occurrences");
 		assertEquals(Strings.NUM_FAILURES, "Number of failures");
 		assertEquals(Strings.SUBMIT, "Submit");
 		assertEquals(Strings.PROFILE_PAGE, "Profile Page");

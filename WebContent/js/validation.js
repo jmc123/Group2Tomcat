@@ -15,11 +15,10 @@ function validateInputsAreValid(){
 	
 	v.replace(/[^0-9]/g, '');
 	if(v.length < 7 || v.length > 10) { 
-		alert("Invalid phone number length!");
+		alert("Invalid phone number!");
         document.forms["register"]["phone"].focus();
         return false;
 	} 
-	
 	
 	if(x == 0){
 		alert("Please select a user role!");
@@ -33,4 +32,15 @@ function validateInputsAreValid(){
 		return false;
 	}
 	return true;
+}
+
+function validateIMSI(){
+	var imsi = document.forms["imsiform"]["imsi"].value;
+	var RE = /^-{0,1}\d*\.{0,1}\d+$/;
+    if(!RE.test(imsi)){
+    	alert("Invalid IMSI format!");
+    	document.forms["imsiform"]["imsi"].focus();
+    	return false;
+    }
+    return true;
 }
