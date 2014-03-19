@@ -45,7 +45,8 @@
 <div class="col-md-9 text-center">
 	<h4 class="col-md-12 text-center"><%=Strings.NUM_FAILURES_BY_MODEL_BY_TIME_PERIOD%></h4>
 	<br /> <br /> <br />
-	<form method="get"
+	<form name="phoneform" id="phoneform" 
+		method="GET"
 		action="/JPASprint1/webpages/supportEng/seCountForModel.jsp"
 		class="form-inline">
 		<div class="form-group">
@@ -134,7 +135,9 @@
 	</div>
 	<%
 		} else {
-				//Alert invalid model
+			%>
+			<script>alert("Phone model does not exist!");document.forms["phoneform"]["model"].focus();</script>
+			<%
 			}
 		}
 	%>

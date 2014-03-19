@@ -43,7 +43,8 @@
 <div class="col-md-9 text-center">
 	<h4 class="col-md-12 text-center"><%=Strings.UNIQUE_EVENTID_AND_CAUSECODE_COMBINATION_AND_OCCURANCES_BY_MODEL%></h4>
 	<br /> <br /> <br />
-	<form method="get"
+	<form name="phoneform" id="phoneform" 
+	method="get"
 		action="/JPASprint1/webpages/networkManEng/nmeCountEventCauseModel.jsp"
 		class="form-inline">
 		<div class="form-group">
@@ -101,7 +102,9 @@
 	</div>
 	<%
 		} else {
-				//Alert invalid model	
+			%>
+			<script>alert("Phone model does not exist!");document.forms["phoneform"]["model"].focus();</script>
+			<%
 			}
 		}
 	%>

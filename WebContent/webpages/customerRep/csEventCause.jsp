@@ -98,7 +98,9 @@
 	</div>
 	<%
 		} else {
-															//Alert Invalid IMSI
+				%>
+				<script>alert("IMSI does not exist!");document.forms["imsiform"]["imsi"].focus();</script>
+				<%
 			}
 		}
 	%>
