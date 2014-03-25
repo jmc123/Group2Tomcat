@@ -285,4 +285,13 @@ public class PersistenceUtil implements Serializable {
 		
 		return queryDetails;
 	}
+	
+	public static List<Object[]> findTopTenCallFailuresShowingNode() {
+		EntityManager em = emf.createEntityManager();
+		List<Object[]> eventCauses = (List<Object[]>) em
+				.createNativeQuery(
+						"SELECT t1.Cell_ID,t2.Country,t2.Operator, count(*) AS NumberOfFailures, round((count(*)/(SELECT count(*) FROM callfailure) * 100),2) AS '% of all failures' FROM callfailure t1, mcc_mnc t2 WHERE t2.MCC=t1.Market AND t2.MNC=t1.Operator  GROUP BY t1.Cell_ID, t1.Market, t1.Operator ORDER BY NumberOfFailures DESC LIMIT 10").getResultList();
+		em.close();
+		return eventCauses;
+	}
 }
